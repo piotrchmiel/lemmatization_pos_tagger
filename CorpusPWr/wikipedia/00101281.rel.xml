@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chunkList SYSTEM "ccl.dtd">
+<relations>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent10" chan="trajector">1</from>
+   <to sent="sent10" chan="spatial_indicator">2</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent10" chan="landmark">1</from>
+   <to sent="sent10" chan="spatial_indicator">2</to>
+  </rel>
+ <rel name="distance" set="Spatial relations">
+   <from sent="sent10" chan="landmark">2</from>
+   <to sent="sent10" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="distance" set="Spatial relations">
+   <from sent="sent10" chan="trajector">2</from>
+   <to sent="sent10" chan="spatial_indicator">3</to>
+  </rel>
+ <rel name="distance" set="Spatial relations">
+   <from sent="sent10" chan="landmark">3</from>
+   <to sent="sent10" chan="spatial_indicator">3</to>
+  </rel>
+ <rel name="distance" set="Spatial relations">
+   <from sent="sent11" chan="trajector">1</from>
+   <to sent="sent11" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="distance" set="Spatial relations">
+   <from sent="sent11" chan="landmark">1</from>
+   <to sent="sent11" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent15" chan="trajector">1</from>
+   <to sent="sent15" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent15" chan="landmark">1</from>
+   <to sent="sent15" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent16" chan="trajector">1</from>
+   <to sent="sent16" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent16" chan="trajector">2</from>
+   <to sent="sent16" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent16" chan="trajector">3</from>
+   <to sent="sent16" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent16" chan="trajector">4</from>
+   <to sent="sent16" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent16" chan="landmark">1</from>
+   <to sent="sent16" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent18" chan="trajector">2</from>
+   <to sent="sent18" chan="spatial_indicator">3</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent18" chan="landmark">3</from>
+   <to sent="sent18" chan="spatial_indicator">3</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent18" chan="landmark">4</from>
+   <to sent="sent18" chan="spatial_indicator">3</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent18" chan="trajector">1</from>
+   <to sent="sent18" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent18" chan="trajector">1</from>
+   <to sent="sent18" chan="spatial_indicator">2</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent18" chan="landmark">1</from>
+   <to sent="sent18" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent18" chan="landmark">2</from>
+   <to sent="sent18" chan="spatial_indicator">2</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent21" chan="landmark">1</from>
+   <to sent="sent21" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="coreference_pn" set="Coreference">
+   <from sent="sent2" chan="nam_eve_human_holiday">1</from>
+   <to sent="sent1" chan="nam_eve_human_holiday">1</to>
+  </rel>
+ <rel name="coreference_zero" set="Coreference">
+   <from sent="sent3" chan="anafora_wyznacznik">1</from>
+   <to sent="sent2" chan="nam_eve_human_holiday">1</to>
+  </rel>
+ <rel name="alias" set="Semantic relations">
+   <from sent="sent2" chan="nam_eve_human_holiday">2</from>
+   <to sent="sent2" chan="nam_eve_human_holiday">1</to>
+  </rel>
+ <rel name="alias" set="Semantic relations">
+   <from sent="sent2" chan="nam_eve_human_holiday">3</from>
+   <to sent="sent2" chan="nam_eve_human_holiday">1</to>
+  </rel>
+ <rel name="alias" set="Semantic relations">
+   <from sent="sent2" chan="nam_eve_human_holiday">4</from>
+   <to sent="sent2" chan="nam_eve_human_holiday">1</to>
+  </rel>
+ <rel name="composition" set="Semantic relations">
+   <from sent="sent2" chan="nam_eve_human_holiday">1</from>
+   <to sent="sent2" chan="nam_eve_human_holiday">5</to>
+  </rel>
+ <rel name="composition_coref" set="Semantic relations by coreference">
+   <from sent="sent3" chan="anafora_wyznacznik">1</from>
+   <to sent="sent3" chan="nam_eve_human_holiday">1</to>
+  </rel>
+</relations>

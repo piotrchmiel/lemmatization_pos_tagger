@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chunkList SYSTEM "ccl.dtd">
+<relations>
+ <rel name="coreference_pron" set="Coreference">
+   <from sent="sent8" chan="anafora_wyznacznik">1</from>
+   <to sent="sent8" chan="nam_org_nation">1</to>
+  </rel>
+ <rel name="coreference_zero" set="Coreference">
+   <from sent="sent9" chan="anafora_wyznacznik">1</from>
+   <to sent="sent8" chan="nam_org_nation">1</to>
+  </rel>
+ <rel name="coreference_pn" set="Coreference">
+   <from sent="sent7" chan="nam_loc_gpe_country">1</from>
+   <to sent="sent6" chan="nam_loc_gpe_country">1</to>
+  </rel>
+ <rel name="coreference_pn" set="Coreference">
+   <from sent="sent10" chan="nam_org_nation">1</from>
+   <to sent="sent5" chan="nam_org_nation">1</to>
+  </rel>
+ <rel name="coreference_agp" set="Coreference">
+   <from sent="sent10" chan="anafora_wyznacznik">1</from>
+   <to sent="sent3" chan="nam_org_institution">2</to>
+  </rel>
+ <rel name="coreference_agp" set="Coreference">
+   <from sent="sent12" chan="anafora_wyznacznik">1</from>
+   <to sent="sent3" chan="nam_org_institution">2</to>
+  </rel>
+ <rel name="affiliation" set="Semantic relations">
+   <from sent="sent3" chan="nam_org_institution">1</from>
+   <to sent="sent3" chan="nam_org_institution">2</to>
+  </rel>
+ <rel name="coreference_pn" set="Coreference">
+   <from sent="sent2" chan="nam_liv_person">1</from>
+   <to sent="sent1" chan="nam_liv_person">1</to>
+  </rel>
+ <rel name="coreference_zero" set="Coreference">
+   <from sent="sent5" chan="anafora_wyznacznik">2</from>
+   <to sent="sent2" chan="nam_liv_person">1</to>
+  </rel>
+ <rel name="coreference_zero" set="Coreference">
+   <from sent="sent6" chan="anafora_wyznacznik">1</from>
+   <to sent="sent2" chan="nam_liv_person">1</to>
+  </rel>
+ <rel name="coreference_zero" set="Coreference">
+   <from sent="sent12" chan="anafora_wyznacznik">2</from>
+   <to sent="sent2" chan="nam_liv_person">1</to>
+  </rel>
+ <rel name="coreference_pn" set="Coreference">
+   <from sent="sent8" chan="nam_liv_person">1</from>
+   <to sent="sent2" chan="nam_liv_person">1</to>
+  </rel>
+ <rel name="coreference_agp" set="Coreference">
+   <from sent="sent5" chan="anafora_wyznacznik">3</from>
+   <to sent="sent5" chan="nam_org_nation">1</to>
+  </rel>
+ <rel name="coreference_agp" set="Coreference">
+   <from sent="sent6" chan="anafora_wyznacznik">2</from>
+   <to sent="sent5" chan="nam_org_nation">1</to>
+  </rel>
+ <rel name="location_coref" set="Semantic relations by coreference">
+   <from sent="sent9" chan="anafora_wyznacznik">1</from>
+   <to sent="sent9" chan="nam_loc_gpe_city">1</to>
+  </rel>
+ <rel name="location_coref" set="Semantic relations by coreference">
+   <from sent="sent9" chan="nam_loc_gpe_city">1</from>
+   <to sent="sent9" chan="nam_loc_hydronym_river">1</to>
+  </rel>
+ <rel name="distance" set="Spatial relations">
+   <from sent="sent6" chan="landmark">1</from>
+   <to sent="sent6" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent6" chan="trajector">1</from>
+   <to sent="sent6" chan="spatial_indicator">2</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent6" chan="landmark">2</from>
+   <to sent="sent6" chan="spatial_indicator">2</to>
+  </rel>
+ <rel name="direction" set="Spatial relations">
+   <from sent="sent9" chan="landmark">1</from>
+   <to sent="sent9" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="direction" set="Spatial relations">
+   <from sent="sent9" chan="landmark">2</from>
+   <to sent="sent9" chan="spatial_indicator">2</to>
+  </rel>
+ <rel name="direction" set="Spatial relations">
+   <from sent="sent9" chan="trajector">1</from>
+   <to sent="sent9" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="direction" set="Spatial relations">
+   <from sent="sent9" chan="trajector">1</from>
+   <to sent="sent9" chan="spatial_indicator">2</to>
+  </rel>
+ <rel name="nationality" set="Semantic relations">
+   <from sent="sent2" chan="nam_liv_person">1</from>
+   <to sent="sent2" chan="nam_adj_country">1</to>
+  </rel>
+ <rel name="neighbourhood_coref" set="Semantic relations by coreference">
+   <from sent="sent6" chan="anafora_wyznacznik">1</from>
+   <to sent="sent6" chan="nam_loc_gpe_country">1</to>
+  </rel>
+</relations>

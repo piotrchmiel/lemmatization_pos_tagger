@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chunkList SYSTEM "ccl.dtd">
+<relations>
+ <rel name="subj" set="Syntactic relations">
+   <from sent="sent3" chan="chunk_vp">1</from>
+   <to sent="sent3" chan="chunk_np">2</to>
+  </rel>
+ <rel name="cop" set="Syntactic relations">
+   <from sent="sent3" chan="chunk_adjp">1</from>
+   <to sent="sent3" chan="chunk_vp">1</to>
+  </rel>
+ <rel name="subj" set="Syntactic relations">
+   <from sent="sent4" chan="chunk_vp">1</from>
+   <to sent="sent4" chan="chunk_np">1</to>
+  </rel>
+ <rel name="subj" set="Syntactic relations">
+   <from sent="sent5" chan="chunk_vp">1</from>
+   <to sent="sent5" chan="chunk_np">1</to>
+  </rel>
+ <rel name="subj" set="Syntactic relations">
+   <from sent="sent3" chan="chunk_vp">1</from>
+   <to sent="sent3" chan="chunk_np">3</to>
+  </rel>
+ <rel name="coor" set="Syntactic relations">
+   <from sent="sent3" chan="chunk_np">2</from>
+   <to sent="sent3" chan="chunk_np">3</to>
+  </rel>
+ <rel name="cop" set="Syntactic relations">
+   <from sent="sent4" chan="chunk_adjp">1</from>
+   <to sent="sent4" chan="chunk_vp">1</to>
+  </rel>
+ <rel name="cop" set="Syntactic relations">
+   <from sent="sent5" chan="chunk_adjp">1</from>
+   <to sent="sent5" chan="chunk_vp">1</to>
+  </rel>
+ <rel name="direction" set="Spatial relations">
+   <from sent="sent2" chan="trajector">1</from>
+   <to sent="sent2" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="direction" set="Spatial relations">
+   <from sent="sent2" chan="landmark">1</from>
+   <to sent="sent2" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent4" chan="trajector">1</from>
+   <to sent="sent4" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent4" chan="landmark">1</from>
+   <to sent="sent4" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent3" chan="trajector">1</from>
+   <to sent="sent3" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent3" chan="trajector">2</from>
+   <to sent="sent3" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent3" chan="landmark">1</from>
+   <to sent="sent3" chan="spatial_indicator">1</to>
+  </rel>
+</relations>

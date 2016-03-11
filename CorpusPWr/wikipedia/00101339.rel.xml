@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chunkList SYSTEM "ccl.dtd">
+<relations>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent23" chan="trajector">1</from>
+   <to sent="sent23" chan="spatial_indicator">1</to>
+  </rel>
+ <rel name="region" set="Spatial relations">
+   <from sent="sent23" chan="landmark">1</from>
+   <to sent="sent23" chan="spatial_indicator">1</to>
+  </rel>
+</relations>
