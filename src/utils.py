@@ -7,9 +7,12 @@ def save_classifier(file_location, classifier):
     with open(file_location, 'wb') as file_handler:
             dump(classifier, file_handler)
 
+
 def load_classifier(file_location):
-    with open(file_location, 'wb') as file_handler:
-            return load(file_handler)
+    with open(file_location, 'rb') as file_handler:
+        classifier = load(file_handler)
+    return classifier
+
 
 class PosFeatureExtractor(object):
     def __init__(self, one_letter_suffixes, two_letters_suffixes, three_letters_suffixes, four_letters_suffixes):
