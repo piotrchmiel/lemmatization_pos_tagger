@@ -2,8 +2,6 @@ from collections import Counter
 from os import path, walk, mkdir
 from pickle import dump
 from bs4 import BeautifulSoup
-from itertools import islice
-
 
 def get_words(filename):
     with open(filename) as file_handler:
@@ -32,7 +30,7 @@ def main():
     four_letter_suffixes = Counter()
 
     if path.exists(CORPUS_DIR):
-        for filename in islice(find_xml_files(CORPUS_DIR), 0, 10):
+        for filename in find_xml_files(CORPUS_DIR):
             for word in get_words(filename):
                 one_letter_suffixes[word[-1:]] += 1
                 if len(word) > 2:
