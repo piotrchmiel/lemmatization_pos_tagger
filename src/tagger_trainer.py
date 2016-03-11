@@ -23,7 +23,7 @@ def main():
     reader = XmlReader(CORPUS_DIR)
     X = []
     y = []
-    for word, tag in islice(reader.extract_words_and_tags(), 0, 30):
+    for word, tag in reader.extract_words_and_tags():
         X.append(feature_extractor.pos_features(word))
         y.append(tag)
 
