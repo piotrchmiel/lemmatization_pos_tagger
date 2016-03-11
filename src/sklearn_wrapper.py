@@ -20,5 +20,5 @@ class SklearnWrapper(object):
         self._classifier.fit(X,y)
 
     def classify(self, feature_set):
-        featureset = self._vectoricer.transform(feature_set)
+        feature_set = self._vectoricer.transform(feature_set)
         return self._encoder.classes_[self._classifier.predict(feature_set)]
