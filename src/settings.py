@@ -1,0 +1,9 @@
+SUFFIX_FILE = "../Suffixes/suffixes.pickle"
+CLASSIFIERS_DIR = "../Classifiers"
+SUFFIX_DIR = "../Suffixes"
+CORPUS_DIR = "../CorpusPWr"
+SUFFIX_TAGGER = "suffix_tagger.pickle"
+N_ONE_LETTER = 15
+N_TWO_LETTERS = 30
+N_THREE_LETTERS = 30
+N_FOUR_LETTERS = 30
