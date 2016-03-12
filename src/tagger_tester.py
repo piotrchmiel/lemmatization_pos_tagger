@@ -3,6 +3,7 @@ from src.utils import load_classifier, SuffixUnpacker, PosFeatureExtractor
 from src.settings import CLASSIFIERS_DIR, SUFFIX_TAGGER, SUFFIX_FILE, N_ONE_LETTER, N_TWO_LETTERS, N_THREE_LETTERS, \
                         N_FOUR_LETTERS
 
+
 def main():
 
     suffix_unpacker = SuffixUnpacker(SUFFIX_FILE)

@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 def save_classifier(file_location, classifier):
     with open(file_location, 'wb') as file_handler:
-            dump(classifier, file_handler)
+        dump(classifier, file_handler)
 
 
 def load_classifier(file_location):
@@ -35,16 +35,16 @@ class SuffixUnpacker(object):
         with open(name_of_pickle_file, "rb") as file_handler:
             self.suffixes = load(file_handler)
 
-    def extract_n_best_one_letter(self,n):
+    def extract_n_best_one_letter(self, n):
         return self.suffixes[0].most_common(n)
 
-    def extract_n_best_two_letters(self,n):
+    def extract_n_best_two_letters(self, n):
         return self.suffixes[1].most_common(n)
 
-    def extract_n_best_three_letters(self,n):
+    def extract_n_best_three_letters(self, n):
         return self.suffixes[2].most_common(n)
 
-    def extract_n_best_four_letter(self,n):
+    def extract_n_best_four_letter(self, n):
         return self.suffixes[3].most_common(n)
 
 
@@ -76,7 +76,7 @@ class XmlReader(object):
                             yield base, ctag
 
     def find_xml_files(self):
-        for root, dirs, files in walk(self.folder):
+        for root, _, files in walk(self.folder):
             for filename in files:
                 if filename.endswith(".xml") and not filename.endswith(".rel.xml"):
                     yield path.join(root, filename)

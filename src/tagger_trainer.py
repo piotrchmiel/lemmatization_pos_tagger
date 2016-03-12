@@ -1,10 +1,10 @@
-from sklearn import tree
 from os import path, mkdir
+from itertools import islice
+from sklearn import tree
 from src.sklearn_wrapper import SklearnWrapper
 from src.utils import SuffixUnpacker, PosFeatureExtractor, XmlReader, save_classifier
 from src.settings import SUFFIX_FILE, CORPUS_DIR, CLASSIFIERS_DIR, SUFFIX_TAGGER, N_ONE_LETTER, N_TWO_LETTERS, \
                          N_THREE_LETTERS, N_FOUR_LETTERS
-from itertools import islice
 
 def main():
     clf = SklearnWrapper(tree.DecisionTreeClassifier())

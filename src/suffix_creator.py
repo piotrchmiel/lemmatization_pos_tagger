@@ -17,7 +17,7 @@ def get_words(filename):
 
 
 def find_xml_files(folder_name):
-    for root, dirs, files in walk(folder_name):
+    for root, _, files in walk(folder_name):
         for filename in files:
             if filename.endswith(".xml") and not filename.endswith(".rel.xml"):
                 yield path.join(root, filename)
