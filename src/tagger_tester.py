@@ -21,5 +21,6 @@ def main():
     word = "siedzieć"
 
     print(clf.classify(feature_extractor.pos_features(word)))
+
 if __name__ == '__main__':
     main()
