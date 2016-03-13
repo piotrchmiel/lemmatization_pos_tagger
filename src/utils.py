@@ -29,6 +29,47 @@ class PosFeatureExtractor(object):
                 features['endswith({})'.format(suffix)] = True
         return features
 
+    @staticmethod
+    def tag_mapper(word):
+        PARTS_OF_SPEECH = {
+            'subst': 'rzeczownik',
+            'depr': 'rzeczownik deprecjatywny',
+            'num': 'liczebnik główny',
+            'numcol': 'liczebnik zbiorowy',
+            'adj': 'przymiotnik',
+            'adja': 'przymiotnik przyprzym.',
+            'adjp': 'przymiotnik poprzyimkowy',
+            'adjc': 'przymiotnik predykatywny',
+            'adv': 'przysłówek',
+            'ppron12': 'zaimek nietrzecioosobowy',
+            'ppron3': 'zaimek trzecioosobowy',
+            'siebie': 'zaimek siebie ',
+            'fin': 'forma nieprzeszła',
+            'bedzie': 'forma przyszła być ',
+            'aglt': 'aglutynant być ',
+            'praet': 'pseudoimiesłów',
+            'impt': 'rozkaźnik',
+            'imps': 'bezosobnik',
+            'inf': 'bezokolicznik',
+            'pcon': 'im. przys. współczesny',
+            'pant': 'im. przys. uprzedni',
+            'ger': 'odsłownik',
+            'pact': 'im. przym. czynny',
+            'ppas': 'im. przym. bierny',
+            'winien': 'winien',
+            'pred': 'predykatyw',
+            'prep': 'przyimek',
+            'conj': 'spójnik współrzędny',
+            'comp': 'spójnik podrzędny',
+            'qub': 'kublik',
+            'brev': 'skrót',
+            'burk': 'burkinostka',
+            'interj': 'wykrzyknik',
+            'interp': 'interpunkcja',
+            'xxx': 'ciało obce',
+            'ign': 'forma nierozpoznana'
+        }
+        return PARTS_OF_SPEECH[word.split(':')[0]]
 
 class SuffixUnpacker(object):
     def __init__(self, name_of_pickle_file):
