@@ -105,7 +105,7 @@ class XmlReader(object):
                 word = token.orth.string
                 try:
                     base = token.lex.base.string
-                    ctag = token.lex.ctag.string
+                    ctag = PosFeatureExtractor.tag_mapper(token.lex.ctag.string)
                 except:
                     continue
 
