@@ -46,7 +46,7 @@ def main():
         with open(SUFFIX_FILE, 'wb') as file_handler:
             dump([one_letter_suffixes, two_letter_suffixes, three_letter_suffixes, four_letter_suffixes], file_handler)
     else:
-        print("There is no Corpus Path!")
+        print("You are trying to cheat on me again. Where's the Corpus directory?")
 
 if __name__ == '__main__':
     main()

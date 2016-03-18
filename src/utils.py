@@ -1,6 +1,7 @@
 from pickle import load, dump
 from os import walk, path
 from bs4 import BeautifulSoup
+import csv
 
 
 def save_classifier(file_location, classifier):
@@ -88,7 +89,6 @@ class SuffixUnpacker(object):
     def extract_n_best_four_letter(self, n):
         return self.suffixes[3].most_common(n)
 
-
 class XmlReader(object):
     def __init__(self, folder_name):
         self.folder = folder_name
@@ -121,3 +121,26 @@ class XmlReader(object):
             for filename in files:
                 if filename.endswith(".xml") and not filename.endswith(".rel.xml"):
                     yield path.join(root, filename)
+
+class CsvReader(object):
+    def __init__(self, folder_name):
+        self.folder = folder_name
+
+    def convert_xml_to_csv(self):
+        if path.exists(self.folder):
+            print("Starting conversion of files from .xml to .csv format. Please have a coffee break while I do my job.")
+
+            with open(path.join(self.folder, "extracted.csv"), "w", newline="") as csv_file:
+                writer = csv.writer(csv_file, delimiter=" ", quotechar=";", quoting=csv.QUOTE_MINIMAL)
+                reader = XmlReader(self.folder)
+                for word, tag in reader.extract_words_and_tags():
+                    writer.writerow([word, tag])
+
+            print("All done. I appreciate your patience.")
+        else:
+            print("I am just a very simple algorithm and I have not found a Corpus directory. Provide the proper one.")
+
+    def extract_words_and_tags(self):
+        with open(path.join(self.folder, "extracted.csv"), "w", newline="") as csv_file:
+            reader = csv.reader(csv_file, delimiter=" ", quotechar=";")
+            return [tuple(line) for line in reader]
