@@ -11,7 +11,7 @@ def main():
     one_letter_suffixes = suffix_unpacker.extract_n_best_one_letter(N_ONE_LETTER)
     two_letters_suffixes = suffix_unpacker.extract_n_best_two_letters(N_TWO_LETTERS)
     three_letters_suffixes = suffix_unpacker.extract_n_best_three_letters(N_THREE_LETTERS)
-    four_letters_suffixes = suffix_unpacker.extract_n_best_four_letter(N_FOUR_LETTERS)
+    four_letters_suffixes = suffix_unpacker.extract_n_best_four_letters(N_FOUR_LETTERS)
 
     feature_extractor = PosFeatureExtractor(one_letter_suffixes, two_letters_suffixes, three_letters_suffixes,
                                             four_letters_suffixes)

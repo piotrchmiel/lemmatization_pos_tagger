@@ -87,7 +87,7 @@ class SuffixUnpacker(object):
     def extract_n_best_three_letters(self, n):
         return self.suffixes[2].most_common(n)
 
-    def extract_n_best_four_letter(self, n):
+    def extract_n_best_four_letters(self, n):
         return self.suffixes[3].most_common(n)
 
 

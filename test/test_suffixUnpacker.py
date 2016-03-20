@@ -27,7 +27,7 @@ class TestSuffixUnpacker(TestCase):
             self.assertEqual(len(suffix), 3)
 
     def test_extract_n_best_four_letter(self):
-        extracted_four_letter_suffixes = self.unpacker.extract_n_best_four_letter(self.num_of_extracted_suffixes)
+        extracted_four_letter_suffixes = self.unpacker.extract_n_best_four_letters(self.num_of_extracted_suffixes)
         for suffix_with_count in extracted_four_letter_suffixes:
             suffix = suffix_with_count[0]
             self.assertEqual(len(suffix), 4)
