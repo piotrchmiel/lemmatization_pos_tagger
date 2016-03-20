@@ -4,6 +4,7 @@ from src.settings import CLASSIFIERS_DIR, SUFFIX_FILE, N_ONE_LETTER, N_TWO_LETTE
                         N_FOUR_LETTERS, CORPUS_DIR
 from src.utils import load_classifier, SuffixUnpacker, PosFeatureExtractor, CsvReader
 
+
 def main():
 
     suffix_unpacker = SuffixUnpacker(SUFFIX_FILE)
@@ -24,9 +25,9 @@ def main():
     k_neighbors = load_classifier(path.join(CLASSIFIERS_DIR, 'kneighbors_pwr.pickle'))
     neural_networks = load_classifier(path.join(CLASSIFIERS_DIR, 'neural_network_pwr.pickle'))
 
+    print("Support Vector Machine PWr Tagger      :", svc.accuracy(CORPUS_DIR, CsvReader, feature_extractor))
     print("Decision Tree PWr Tagger               :", decision_tree.accuracy(CORPUS_DIR, CsvReader, feature_extractor))
     print("Stochastic Gradient Descent PWr Tagger :", sgd.accuracy(CORPUS_DIR, CsvReader, feature_extractor))
-    print("Support Vector Machine PWr Tagger      :", svc.accuracy(CORPUS_DIR, CsvReader, feature_extractor))
     print("Logistic Regression PWr Tagger         :", logistic_regression.accuracy(CORPUS_DIR, CsvReader, feature_extractor))
     print("Naive Bayes PWr Tagger                 :", naive_bayes.accuracy(CORPUS_DIR, CsvReader, feature_extractor))
     print("K Neighbors PWr Tagger                 :", k_neighbors.accuracy(CORPUS_DIR, CsvReader, feature_extractor))

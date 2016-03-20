@@ -1,5 +1,8 @@
+from itertools import islice
+
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.preprocessing import LabelEncoder
+
 
 class SklearnWrapper(object):
 
@@ -26,10 +29,9 @@ class SklearnWrapper(object):
         reader = reader(corpus_dir)
         total = 0
         good = 0
-        for word, tag in zip(reader.extract_feature('word'), reader.extract_feature('tag')):
+        for word, tag in islice(zip(reader.extract_feature('word'), reader.extract_feature('tag')), 0, 10000):
             if self.classify(feature_extractor.pos_features(word)) == tag:
                 good+=1
             total += 1
 
-        return good/total
-
+        return (good/total) * 100
