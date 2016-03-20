@@ -4,6 +4,7 @@ from pickle import dump
 from bs4 import BeautifulSoup
 from src.settings import CORPUS_DIR, SUFFIX_FILE, SUFFIX_DIR
 
+
 def get_words(filename):
     with open(filename) as file_handler:
         tokens = BeautifulSoup(file_handler.read(), 'xml').find_all('tok')

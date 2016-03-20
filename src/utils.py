@@ -72,6 +72,7 @@ class PosFeatureExtractor(object):
         }
         return PARTS_OF_SPEECH[word.split(':')[0]]
 
+
 class SuffixUnpacker(object):
     def __init__(self, name_of_pickle_file):
         with open(name_of_pickle_file, "rb") as file_handler:
@@ -88,6 +89,7 @@ class SuffixUnpacker(object):
 
     def extract_n_best_four_letter(self, n):
         return self.suffixes[3].most_common(n)
+
 
 class XmlReader(object):
     def __init__(self, folder_name):
@@ -121,6 +123,7 @@ class XmlReader(object):
             for filename in files:
                 if filename.endswith(".xml") and not filename.endswith(".rel.xml"):
                     yield path.join(root, filename)
+
 
 class CsvReader(object):
     def __init__(self, folder_name):

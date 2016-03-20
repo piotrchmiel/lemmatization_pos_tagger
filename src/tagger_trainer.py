@@ -6,6 +6,7 @@ from src.utils import SuffixUnpacker, PosFeatureExtractor, CsvReader, save_class
 from src.settings import SUFFIX_FILE, CORPUS_DIR, CLASSIFIERS_DIR, SUFFIX_TAGGER, N_ONE_LETTER, N_TWO_LETTERS, \
                          N_THREE_LETTERS, N_FOUR_LETTERS
 
+
 def main():
     clf = SklearnWrapper(tree.DecisionTreeClassifier())
     print("Tagger Trainer Start")
