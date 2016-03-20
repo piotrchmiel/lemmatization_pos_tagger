@@ -32,7 +32,7 @@ def main():
     print("Logistic Regression PWr Tagger         :", logistic_regression.classify(feature_extractor.pos_features(word)))
     print("Naive Bayes PWr Tagger                 :", naive_bayes.classify(feature_extractor.pos_features(word)))
     print("K Neighbors PWr Tagger                 :", k_neighbors.classify(feature_extractor.pos_features(word)))
-    print("Neural Networks PWr Tagger             :", neural_networks.classify(feature_extractor.pos_features(word)))
+    print("Neural Networks PWr Tagger             :", neural_networks.classify(feature_extractor.pos_features(word))[0])
 
 if __name__ == '__main__':
     main()
