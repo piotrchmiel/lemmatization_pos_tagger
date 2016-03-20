@@ -18,7 +18,7 @@ def main():
 
     clf = load_classifier(path.join(CLASSIFIERS_DIR, SUFFIX_TAGGER))
 
-    word = "siedzieć"
+    word = "Maciek"
 
     print(clf.classify(feature_extractor.pos_features(word)))
 

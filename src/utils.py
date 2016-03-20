@@ -1,8 +1,7 @@
 from pickle import load, dump
 from os import walk, path
 from bs4 import BeautifulSoup
-import csv
-
+from csv import DictWriter, DictReader, QUOTE_MINIMAL
 
 def save_classifier(file_location, classifier):
     with open(file_location, 'wb') as file_handler:
@@ -134,16 +133,19 @@ class CsvReader(object):
             print("Starting conversion of files from .xml to .csv format. Please have a coffee break while I do my job.")
 
             with open(path.join(self.folder, "extracted.csv"), "w", newline="") as csv_file:
-                writer = csv.writer(csv_file, delimiter=" ", quotechar=";", quoting=csv.QUOTE_MINIMAL)
+                fieldnames = ['word', 'tag']
+                writer = DictWriter(csv_file, fieldnames=fieldnames)
                 reader = XmlReader(self.folder)
+                writer.writeheader()
                 for word, tag in reader.extract_words_and_tags():
-                    writer.writerow([word, tag])
+                    writer.writerow({'word': word, 'tag': tag})
 
             print("All done. I appreciate your patience.")
         else:
             print("I am just a very simple algorithm and I have not found a Corpus directory. Provide the proper one.")
 
-    def extract_words_and_tags(self):
-        with open(path.join(self.folder, "extracted.csv"), "w", newline="") as csv_file:
-            reader = csv.reader(csv_file, delimiter=" ", quotechar=";")
-            return [tuple(line) for line in reader]
+    def extract_feature(self, feature_name):
+        with open(path.join(self.folder, "extracted.csv"), "r", newline="") as csv_file:
+            reader = DictReader(csv_file)
+            for row in reader:
+                yield row[feature_name]

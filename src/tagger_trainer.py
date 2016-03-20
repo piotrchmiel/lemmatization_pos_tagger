@@ -24,24 +24,19 @@ def main():
     reader = CsvReader(CORPUS_DIR)
 
     if not path.isfile(path.join(CORPUS_DIR, "extracted.csv")):
-        print("Will now blast through those xml files and create a shiny new csv file.")
-        reader.convert_xml_to_csv()
+        print("No CSV File")
     else:
         print("Csv file found. Gonna use it.")
 
-    X = []
-    y = []
+        X = (feature_extractor.pos_features(word) for word in reader.extract_feature('word'))
+        y = [tag for tag in reader.extract_feature('tag')]
 
-    for word, tag in reader.extract_words_and_tags():
-        X.append(feature_extractor.pos_features(word))
-        y.append(tag)
+        clf.train(X, y)
 
-    clf.train(X, y)
+        if not path.exists(CLASSIFIERS_DIR):
+            mkdir(CLASSIFIERS_DIR)
 
-    if not path.exists(CLASSIFIERS_DIR):
-        mkdir(CLASSIFIERS_DIR)
-
-    save_classifier(path.join(CLASSIFIERS_DIR, SUFFIX_TAGGER), clf)
+        save_classifier(path.join(CLASSIFIERS_DIR, SUFFIX_TAGGER), clf)
 
 if __name__ == '__main__':
     main()
