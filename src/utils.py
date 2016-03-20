@@ -1,7 +1,38 @@
-from pickle import load, dump
+from csv import DictWriter, DictReader
 from os import walk, path
+from pickle import load, dump
+
 from bs4 import BeautifulSoup
-from csv import DictWriter, DictReader, QUOTE_MINIMAL
+from sknn.mlp import Classifier, Layer
+
+from src.settings import CLASSIFIERS_DIR
+from src.sklearn_wrapper import SklearnWrapper
+
+
+def train_target(Class, feature_extractor, train_corpus_dir, filename):
+    if Class == Classifier:
+        nn = Classifier(
+            layers=[
+                Layer("Rectifier", units=100),
+                Layer("Softmax")],
+                    learning_rate=0.02,
+                    n_iter=10)
+        clf = SklearnWrapper(nn)
+    else:
+        clf = SklearnWrapper(Class())
+    reader = CsvReader(train_corpus_dir)
+
+    X = (feature_extractor.pos_features(word) for word in reader.extract_feature('word'))
+    y = [tag for tag in reader.extract_feature('tag')]
+
+    print("Training model", Class, "...")
+    clf.train(X, y)
+    print("Done.")
+
+    print("Saving Model.")
+    save_classifier(path.join(CLASSIFIERS_DIR, filename), clf)
+    print("Done.")
+
 
 def save_classifier(file_location, classifier):
     with open(file_location, 'wb') as file_handler:
@@ -104,30 +135,40 @@ class XmlReader(object):
         with open(filename) as file_handler:
             tokens_str = 'tok' if not self.national_corpus else 'seg'
             tokens = BeautifulSoup(file_handler.read(), 'xml').find_all(tokens_str)
-            for token in tokens:
-                if self.national_corpus:
-                    word = token.find('f', attrs={'name': 'orth'}).find('string').string
-                    try:
-                        base = token.find('f', attrs={'name': 'base'}).find('string').string
-                        ctag = PosFeatureExtractor.tag_mapper(':'.join(token.find('f', attrs={'name': 'disamb'}).
-                                                                       find('f', attrs={'name': 'interpretation'}).
-                                                                       find('string').string.split(':')[1:]))
-                    except:
-                        continue
-                else:
-                    word = token.orth.string
-                    try:
-                        base = token.lex.base.string
-                        ctag = PosFeatureExtractor.tag_mapper(token.lex.ctag.string)
-                    except:
-                        continue
+            if self.national_corpus:
+                return self.get_words_national(tokens)
+            else:
+                return self.get_words_pwr(tokens)
 
-                if ctag is not None:
-                    if word is not None and len(word) != 1:
-                        yield word, ctag
+    def get_words_pwr(self, tokens):
+        for token in tokens:
+            try:
+                word = ctag = None
+                word = token.orth.string
+                ctag = PosFeatureExtractor.tag_mapper(token.find('lex').ctag.string)
+            except Exception as e:
+                pass
+            else:
+                if ctag is not None and word is not None and len(word) != 1:
+                    yield word, ctag
 
-                        if base is not None and len(base) != 1 and base != word:
-                            yield base, ctag
+    def get_words_national(self, tokens):
+        for token in tokens:
+            word = token.find('f', attrs={'name': 'orth'}).find('string').string
+            try:
+                base = token.find('f', attrs={'name': 'base'}).find('string').string
+                ctag = PosFeatureExtractor.tag_mapper(':'.join(token.find('f', attrs={'name': 'disamb'}).
+                                                               find('f', attrs={'name': 'interpretation'}).
+                                                               find('string').string.split(':')[1:]))
+            except:
+                continue
+
+            if ctag is not None:
+                if word is not None and len(word) != 1:
+                    yield word, ctag
+
+                if base is not None and len(base) != 1 and base != word:
+                    yield base, ctag
 
     def find_xml_files(self):
         for root, _, files in walk(self.folder):

@@ -1,7 +1,8 @@
 from os import path
-from src.utils import load_classifier, SuffixUnpacker, PosFeatureExtractor
-from src.settings import CLASSIFIERS_DIR, SUFFIX_TAGGER, SUFFIX_FILE, N_ONE_LETTER, N_TWO_LETTERS, N_THREE_LETTERS, \
+
+from src.settings import CLASSIFIERS_DIR, SUFFIX_FILE, N_ONE_LETTER, N_TWO_LETTERS, N_THREE_LETTERS, \
                         N_FOUR_LETTERS
+from src.utils import load_classifier, SuffixUnpacker, PosFeatureExtractor
 
 
 def main():
@@ -16,11 +17,22 @@ def main():
     feature_extractor = PosFeatureExtractor(one_letter_suffixes, two_letters_suffixes, three_letters_suffixes,
                                             four_letters_suffixes)
 
-    clf = load_classifier(path.join(CLASSIFIERS_DIR, SUFFIX_TAGGER))
+    decision_tree = load_classifier(path.join(CLASSIFIERS_DIR, 'tagger_decision_tree_pwr.pickle'))
+    sgd = load_classifier(path.join(CLASSIFIERS_DIR, "sgd_pwr.pickle"))
+    svc = load_classifier(path.join(CLASSIFIERS_DIR, 'svm_pwr.pickle'))
+    logistic_regression = load_classifier(path.join(CLASSIFIERS_DIR, 'logistic_regression.pickle'))
+    naive_bayes = load_classifier(path.join(CLASSIFIERS_DIR, 'naive_bayes_pwr.pickle'))
+    k_neighbors = load_classifier(path.join(CLASSIFIERS_DIR, 'kneighbors_pwr.pickle'))
+    neural_networks = load_classifier(path.join(CLASSIFIERS_DIR, 'neural_network_pwr.pickle'))
+    word = input("Podaj słowo: ")
 
-    word = "czerwony"
-
-    print(clf.classify(feature_extractor.pos_features(word)))
+    print("Decision Tree PWr Tagger               :", decision_tree.classify(feature_extractor.pos_features(word)))
+    print("Stochastic Gradient Descent PWr Tagger :", sgd.classify(feature_extractor.pos_features(word)))
+    print("Support Vector Machine PWr Tagger      :", svc.classify(feature_extractor.pos_features(word)))
+    print("Logistic Regression PWr Tagger         :", logistic_regression.classify(feature_extractor.pos_features(word)))
+    print("Naive Bayes PWr Tagger                 :", naive_bayes.classify(feature_extractor.pos_features(word)))
+    print("K Neighbors PWr Tagger                 :", k_neighbors.classify(feature_extractor.pos_features(word)))
+    print("Neural Networks PWr Tagger             :", neural_networks.classify(feature_extractor.pos_features(word)))
 
 if __name__ == '__main__':
     main()

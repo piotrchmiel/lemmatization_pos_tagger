@@ -1,14 +1,19 @@
-from os import path, mkdir
-from itertools import islice
+from os import path
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import SGDClassifier
+from sklearn.naive_bayes import BernoulliNB
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
-from src.sklearn_wrapper import SklearnWrapper
-from src.utils import SuffixUnpacker, PosFeatureExtractor, CsvReader, save_classifier
-from src.settings import SUFFIX_FILE, CORPUS_DIR, CLASSIFIERS_DIR, SUFFIX_TAGGER, N_ONE_LETTER, N_TWO_LETTERS, \
+from sklearn.tree import DecisionTreeClassifier
+from sknn.mlp import Classifier
+
+from src.settings import SUFFIX_FILE, CORPUS_DIR, N_ONE_LETTER, N_TWO_LETTERS, \
                          N_THREE_LETTERS, N_FOUR_LETTERS
+from src.utils import SuffixUnpacker, PosFeatureExtractor, train_target
 
 
 def main():
-    clf = SklearnWrapper(SVC())
     print("Tagger Trainer Start")
     print("Extracting features...")
     suffix_unpacker = SuffixUnpacker(SUFFIX_FILE)
@@ -21,26 +26,20 @@ def main():
     feature_extractor = PosFeatureExtractor(one_letter_suffixes, two_letters_suffixes, three_letters_suffixes,
                                             four_letters_suffixes)
 
-    reader = CsvReader(CORPUS_DIR)
 
     if not path.isfile(path.join(CORPUS_DIR, "extracted.csv")):
         print("No CSV File")
     else:
         print("Csv file found. Gonna use it.")
 
-        X = (feature_extractor.pos_features(word) for word in reader.extract_feature('word'))
-        y = [tag for tag in reader.extract_feature('tag')]
+        train_target(DecisionTreeClassifier, feature_extractor, CORPUS_DIR, "tagger_decision_tree_pwr.pickle")
+        train_target(SGDClassifier, feature_extractor, CORPUS_DIR, "sgd_pwr.pickle")
+        train_target(LogisticRegression, feature_extractor, CORPUS_DIR, "logistic_regression.pickle")
+        train_target(BernoulliNB, feature_extractor, CORPUS_DIR, "naive_bayes_pwr.pickle")
+        train_target(SVC, feature_extractor, CORPUS_DIR, "svm_pwr.pickle")
+        train_target(KNeighborsClassifier, feature_extractor, CORPUS_DIR, "kneighbors_pwr.pickle")
+        train_target(Classifier, feature_extractor, CORPUS_DIR, "neural_network_pwr.pickle")
 
-        print("Training...")
-        clf.train(X, y)
-        print("Done.")
-
-        if not path.exists(CLASSIFIERS_DIR):
-            mkdir(CLASSIFIERS_DIR)
-
-        print("Saving Model.")
-        save_classifier(path.join(CLASSIFIERS_DIR, SUFFIX_TAGGER), clf)
-        print("Done.")
 
 if __name__ == '__main__':
     main()
