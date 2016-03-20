@@ -142,8 +142,9 @@ class XmlReader(object):
 
 
 class CsvReader(object):
-    def __init__(self, folder_name):
+    def __init__(self, folder_name, national_corpus=False):
         self.folder = folder_name
+        self.national_corpus = national_corpus
 
     def convert_xml_to_csv(self):
         if path.exists(self.folder):
@@ -152,7 +153,7 @@ class CsvReader(object):
             with open(path.join(self.folder, "extracted.csv"), "w", newline="") as csv_file:
                 fieldnames = ['word', 'tag']
                 writer = DictWriter(csv_file, fieldnames=fieldnames)
-                reader = XmlReader(self.folder)
+                reader = XmlReader(self.folder, national_corpus=self.national_corpus)
                 writer.writeheader()
                 for word, tag in reader.extract_words_and_tags():
                     writer.writerow({'word': word, 'tag': tag})

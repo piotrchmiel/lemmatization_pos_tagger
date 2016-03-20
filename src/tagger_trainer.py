@@ -1,6 +1,6 @@
 from os import path, mkdir
 from itertools import islice
-from sklearn import tree
+from sklearn.svm import SVC
 from src.sklearn_wrapper import SklearnWrapper
 from src.utils import SuffixUnpacker, PosFeatureExtractor, CsvReader, save_classifier
 from src.settings import SUFFIX_FILE, CORPUS_DIR, CLASSIFIERS_DIR, SUFFIX_TAGGER, N_ONE_LETTER, N_TWO_LETTERS, \
@@ -8,7 +8,7 @@ from src.settings import SUFFIX_FILE, CORPUS_DIR, CLASSIFIERS_DIR, SUFFIX_TAGGER
 
 
 def main():
-    clf = SklearnWrapper(tree.DecisionTreeClassifier())
+    clf = SklearnWrapper(SVC())
     print("Tagger Trainer Start")
     print("Extracting features...")
     suffix_unpacker = SuffixUnpacker(SUFFIX_FILE)
@@ -31,12 +31,16 @@ def main():
         X = (feature_extractor.pos_features(word) for word in reader.extract_feature('word'))
         y = [tag for tag in reader.extract_feature('tag')]
 
+        print("Training...")
         clf.train(X, y)
+        print("Done.")
 
         if not path.exists(CLASSIFIERS_DIR):
             mkdir(CLASSIFIERS_DIR)
 
+        print("Saving Model.")
         save_classifier(path.join(CLASSIFIERS_DIR, SUFFIX_TAGGER), clf)
+        print("Done.")
 
 if __name__ == '__main__':
     main()

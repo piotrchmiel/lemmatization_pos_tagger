@@ -4,7 +4,7 @@ from src.settings import CORPUS_DIR
 
 def main():
     print("Start CSV extracting...")
-    reader = CsvReader(CORPUS_DIR)
+    reader = CsvReader('../NationalCorpus', True)
     reader.convert_xml_to_csv()
     print("Done.")
 
