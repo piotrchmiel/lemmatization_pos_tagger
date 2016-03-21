@@ -9,24 +9,20 @@ from src.settings import CLASSIFIERS_DIR
 from src.sklearn_wrapper import SklearnWrapper
 
 
-def train_target(Class, feature_extractor, train_corpus_dir, filename):
-    if Class == Classifier:
-        nn = Classifier(
-            layers=[
-                Layer("Rectifier", units=100),
-                Layer("Softmax")],
-                    learning_rate=0.02,
-                    n_iter=10)
-        clf = SklearnWrapper(nn)
+def train_target(classifier_class, feature_extractor, train_corpus_dir, filename):
+    if classifier_class == Classifier:
+        neural_networks = Classifier(layers=[Layer("Rectifier", units=100), Layer("Softmax")],
+                                     learning_rate=0.02, n_iter=10)
+        clf = SklearnWrapper(neural_networks)
     else:
-        clf = SklearnWrapper(Class())
+        clf = SklearnWrapper(classifier_class())
     reader = CsvReader(train_corpus_dir)
 
-    X = (feature_extractor.pos_features(word) for word in reader.extract_feature('word'))
-    y = [tag for tag in reader.extract_feature('tag')]
+    train_features = (feature_extractor.pos_features(word) for word in reader.extract_feature('word'))
+    train_labels = [tag for tag in reader.extract_feature('tag')]
 
-    print("Training model", Class, "...")
-    clf.train(X, y)
+    print("Training model", classifier_class, "...")
+    clf.train(train_features, train_labels)
     print("Done.")
 
     print("Saving Model.")
@@ -46,7 +42,8 @@ def load_classifier(file_location):
 
 
 class PosFeatureExtractor(object):
-    def __init__(self, one_letter_suffixes, two_letters_suffixes, three_letters_suffixes, four_letters_suffixes):
+    def __init__(self, one_letter_suffixes, two_letters_suffixes, three_letters_suffixes,
+                 four_letters_suffixes):
         self.common_suffixes = [word for word, _ in one_letter_suffixes]
         self.common_suffixes.extend([word for word, _ in two_letters_suffixes])
         self.common_suffixes.extend([word for word, _ in three_letters_suffixes])
@@ -62,7 +59,7 @@ class PosFeatureExtractor(object):
 
     @staticmethod
     def tag_mapper(word):
-        PARTS_OF_SPEECH = {
+        parts_of_speech = {
             'subst': 'rzeczownik',
             'depr': 'rzeczownik deprecjatywny',
             'num': 'liczebnik główny',
@@ -100,7 +97,7 @@ class PosFeatureExtractor(object):
             'xxx': 'ciało obce',
             'ign': 'forma nierozpoznana'
         }
-        return PARTS_OF_SPEECH[word.split(':')[0]]
+        return parts_of_speech[word.split(':')[0]]
 
 
 class SuffixUnpacker(object):
@@ -146,7 +143,7 @@ class XmlReader(object):
                 word = ctag = None
                 word = token.orth.string
                 ctag = PosFeatureExtractor.tag_mapper(token.find('lex').ctag.string)
-            except Exception as e:
+            except Exception:
                 pass
             else:
                 if ctag is not None and word is not None and len(word) != 1:
@@ -156,10 +153,11 @@ class XmlReader(object):
         for token in tokens:
             try:
                 word = token.find('f', attrs={'name': 'orth'}).find('string').string
-                ctag = PosFeatureExtractor.tag_mapper(':'.join(token.find('f', attrs={'name': 'disamb'}).
-                                                               find('f', attrs={'name': 'interpretation'}).
-                                                               find('string').string.split(':')[1:]))
-            except:
+                ctag = PosFeatureExtractor.tag_mapper(':'.join(
+                    token.find('f', attrs={'name': 'disamb'}).find(
+                        'f', attrs={'name': 'interpretation'}).find(
+                            'string').string.split(':')[1:]))
+            except Exception:
                 pass
             else:
                 if ctag is not None and word is not None and len(word) != 1:
@@ -184,7 +182,8 @@ class CsvReader(object):
 
     def convert_xml_to_csv(self):
         if path.exists(self.folder):
-            print("Starting conversion of files from .xml to .csv format. Please have a coffee break while I do my job.")
+            print("Starting conversion of files from .xml to .csv format. "
+                  "Please have a coffee break while I do my job.")
 
             with open(path.join(self.folder, "extracted.csv"), "w", newline="") as csv_file:
                 fieldnames = ['word', 'tag']
@@ -196,7 +195,8 @@ class CsvReader(object):
 
             print("All done. I appreciate your patience.")
         else:
-            print("I am just a very simple algorithm and I have not found a Corpus directory. Provide the proper one.")
+            print("I am just a very simple algorithm and I have not found a Corpus directory. "
+                  "Provide the proper one.")
 
     def extract_feature(self, feature_name):
         with open(path.join(self.folder, "extracted.csv"), "r", newline="") as csv_file:

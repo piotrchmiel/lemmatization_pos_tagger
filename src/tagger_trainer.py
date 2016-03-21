@@ -26,7 +26,6 @@ def main():
     feature_extractor = PosFeatureExtractor(one_letter_suffixes, two_letters_suffixes, three_letters_suffixes,
                                             four_letters_suffixes)
 
-
     if not path.isfile(path.join(CORPUS_DIR, "extracted.csv")):
         print("No CSV File")
     else:
