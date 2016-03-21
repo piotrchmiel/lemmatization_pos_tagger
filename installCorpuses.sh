@@ -15,14 +15,13 @@ if ! which tar > /dev/null; then
     exit
 fi
 
-
 echo "***** Unpacking CorpusPwr *****"
 
 if [ ! -d "CorpusPWr" ]; then
     mkdir "CorpusPWr"
 fi
 
-#7z x ./CorpusPWr/kpwr-1.2.6-disamb.7z -o./CorpusPWr/ -y -r
+7z x ./kpwr-1.2.6-disamb.7z -o./CorpusPWr/ -y -r
 
 echo "***** Downloading NationalCorpus 1.2 *****"
 
@@ -34,6 +33,6 @@ wget -O ./NationalCorpus/NKJP-PodkorpusMilionowy-1.2.tar.gz "http://clip.ipipan.
 
 echo "***** Unpacking NationalCorpus *****"
 
-tar -zxvf ./NationalCorpus/NKJP-PodkorpusMilionowy-1.2.tar.gz
+tar -zxvf ./NationalCorpus/NKJP-PodkorpusMilionowy-1.2.tar.gz -C ./NationalCorpus/
 
 echo "***** All done *****"
