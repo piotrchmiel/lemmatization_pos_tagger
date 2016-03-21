@@ -1,13 +1,29 @@
+import os
+from optparse import OptionParser
+
+
 from src.settings import CORPUS_DIR
 from src.utils import CsvReader
 
 
-def main():
-    print("Start CSV extracting...")
-    reader = CsvReader(CORPUS_DIR)
-    reader.convert_xml_to_csv()
+def detect_national_corpus(path):
+    _, subdirectories, _ = next(os.walk(path))
+    return 'ann_morphosyntax.xml' in os.listdir(os.path.join(path, subdirectories[0]))
 
-    print("Done.")
+
+def main():
+    parser = OptionParser()
+    parser.add_option("-c", "--corpus", dest="corpus", help="path to corpus directory", default="../CorpusPWr")
+    (options, remainder) = parser.parse_args()
+    if os.path.exists(options.corpus):
+        print("Start CSV extracting...")
+        reader = CsvReader(options.corpus, national_corpus=detect_national_corpus(options.corpus))
+        reader.convert_xml_to_csv()
+
+        print("Done.")
+    else:
+        print("Please provide valid directory!")
 
 if __name__ == '__main__':
     main()
+
