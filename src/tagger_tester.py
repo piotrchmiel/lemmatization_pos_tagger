@@ -1,7 +1,7 @@
 from os import path
 
-from src.settings import CLASSIFIERS_DIR, SUFFIX_FILE, N_ONE_LETTER, N_TWO_LETTERS, N_THREE_LETTERS, \
-                        N_FOUR_LETTERS
+from src.settings import CLASSIFIERS_DIR, SUFFIX_FILE, N_ONE_LETTER, N_TWO_LETTERS, \
+                        N_THREE_LETTERS, N_FOUR_LETTERS
 from src.utils import load_classifier, SuffixUnpacker, PosFeatureExtractor
 
 
@@ -14,8 +14,8 @@ def main():
     three_letters_suffixes = suffix_unpacker.extract_n_best_three_letters(N_THREE_LETTERS)
     four_letters_suffixes = suffix_unpacker.extract_n_best_four_letters(N_FOUR_LETTERS)
 
-    feature_extractor = PosFeatureExtractor(one_letter_suffixes, two_letters_suffixes, three_letters_suffixes,
-                                            four_letters_suffixes)
+    feature_extractor = PosFeatureExtractor(one_letter_suffixes, two_letters_suffixes,
+                                            three_letters_suffixes, four_letters_suffixes)
 
     decision_tree = load_classifier(path.join(CLASSIFIERS_DIR, 'tagger_decision_tree_pwr.pickle'))
     sgd = load_classifier(path.join(CLASSIFIERS_DIR, "sgd_pwr.pickle"))

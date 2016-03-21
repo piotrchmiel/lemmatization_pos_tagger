@@ -1,7 +1,9 @@
 from collections import Counter
 from os import path, walk, mkdir
 from pickle import dump
+
 from bs4 import BeautifulSoup
+
 from src.settings import CORPUS_DIR, SUFFIX_FILE, SUFFIX_DIR
 
 
@@ -45,7 +47,8 @@ def main():
             mkdir(SUFFIX_DIR)
 
         with open(SUFFIX_FILE, 'wb') as file_handler:
-            dump([one_letter_suffixes, two_letter_suffixes, three_letter_suffixes, four_letter_suffixes], file_handler)
+            dump([one_letter_suffixes, two_letter_suffixes, three_letter_suffixes,
+                  four_letter_suffixes], file_handler)
     else:
         print("You are trying to cheat on me again. Where's the Corpus directory?")
 

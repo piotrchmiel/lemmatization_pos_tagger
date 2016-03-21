@@ -23,8 +23,8 @@ def main():
     three_letters_suffixes = suffix_unpacker.extract_n_best_three_letters(N_THREE_LETTERS)
     four_letters_suffixes = suffix_unpacker.extract_n_best_four_letters(N_FOUR_LETTERS)
 
-    feature_extractor = PosFeatureExtractor(one_letter_suffixes, two_letters_suffixes, three_letters_suffixes,
-                                            four_letters_suffixes)
+    feature_extractor = PosFeatureExtractor(one_letter_suffixes, two_letters_suffixes,
+                                            three_letters_suffixes, four_letters_suffixes)
 
     if not path.isfile(path.join(CORPUS_DIR, "extracted.csv")):
         print("No CSV File")
