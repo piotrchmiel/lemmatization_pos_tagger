@@ -12,7 +12,7 @@ def detect_national_corpus(path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-c", "--corpus", dest="corpus", help="path to corpus directory", default="../CorpusPWr")
+    parser.add_argument("-c", "--corpus", dest="corpus", help="path to corpus directory", default=CORPUS_DIR)
     args = parser.parse_args()
     if os.path.exists(args.corpus):
         print("Start CSV extracting...")
