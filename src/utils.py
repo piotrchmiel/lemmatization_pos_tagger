@@ -154,21 +154,16 @@ class XmlReader(object):
 
     def get_words_national(self, tokens):
         for token in tokens:
-            word = token.find('f', attrs={'name': 'orth'}).find('string').string
             try:
-                base = token.find('f', attrs={'name': 'base'}).find('string').string
+                word = token.find('f', attrs={'name': 'orth'}).find('string').string
                 ctag = PosFeatureExtractor.tag_mapper(':'.join(token.find('f', attrs={'name': 'disamb'}).
                                                                find('f', attrs={'name': 'interpretation'}).
                                                                find('string').string.split(':')[1:]))
             except:
-                continue
-
-            if ctag is not None:
-                if word is not None and len(word) != 1:
+                pass
+            else:
+                if ctag is not None and word is not None and len(word) != 1:
                     yield word, ctag
-
-                if base is not None and len(base) != 1 and base != word:
-                    yield base, ctag
 
     def find_xml_files(self):
         for root, _, files in walk(self.folder):
