@@ -8,7 +8,7 @@ from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sknn.mlp import Classifier
 
-from src.settings import SUFFIX_FILE, CORPUS_DIR, N_ONE_LETTER, N_TWO_LETTERS, \
+from src.settings import SUFFIX_FILE, CORPUS_DIR, CORPUS_CSV, N_ONE_LETTER, N_TWO_LETTERS, \
                          N_THREE_LETTERS, N_FOUR_LETTERS
 from src.utils import SuffixUnpacker, PosFeatureExtractor, train_target
 
@@ -26,7 +26,7 @@ def main():
     feature_extractor = PosFeatureExtractor(one_letter_suffixes, two_letters_suffixes,
                                             three_letters_suffixes, four_letters_suffixes)
 
-    if not path.isfile(path.join(CORPUS_DIR, "extracted.csv")):
+    if not path.isfile(CORPUS_CSV):
         print("No CSV File")
     else:
         print("Csv file found. Gonna use it.")
