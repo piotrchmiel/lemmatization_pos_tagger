@@ -3,6 +3,7 @@ from itertools import islice
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.preprocessing import LabelEncoder
 
+from src.utils.csv import CsvReader
 
 class SklearnWrapper(object):
 
@@ -25,12 +26,12 @@ class SklearnWrapper(object):
         feature_set = self._vectorizer.transform(feature_set)
         return self._encoder.classes_[self._classifier.predict(feature_set)][0]
 
-    def accuracy(self, corpus_dir, reader, feature_extractor):
-        reader = reader(corpus_dir)
+    def accuracy(self, is_test_corpus_national, number_of_testing_features, feature_extractor):
+        reader = CsvReader(national_corpus=is_test_corpus_national)
         total = 0
         good = 0
         for word, tag in islice(zip(reader.extract_feature('word'),
-                                    reader.extract_feature('tag')), 0, 10000):
+                                    reader.extract_feature('tag')), 0, number_of_testing_features):
             if self.classify(feature_extractor.pos_features(word)) == tag:
                 good += 1
             total += 1

@@ -1,8 +1,9 @@
 import argparse
 import os
 
+from src.utils.csv_management import CsvReader
+
 from src.settings import CORPUS_DIR
-from src.utils import CsvReader
 
 
 def detect_national_corpus(path):

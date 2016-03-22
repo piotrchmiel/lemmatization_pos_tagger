@@ -1,38 +1,41 @@
-from os import path
-
-from src.settings import CLASSIFIERS_DIR, SUFFIX_FILE, N_ONE_LETTER, N_TWO_LETTERS, \
-                        N_THREE_LETTERS, N_FOUR_LETTERS
-from src.utils import load_classifier, SuffixUnpacker, PosFeatureExtractor
+from src.factories.tagger_factory import TaggerFactory
 
 
 def main():
+    factory = TaggerFactory()
+    feature_extractor = factory.get_feature_extractor()
 
-    suffix_unpacker = SuffixUnpacker(SUFFIX_FILE)
+    decision_tree_pwr = factory.create_tagger_from_file('tagger_decision_tree', False)
+    sgd_pwr = factory.create_tagger_from_file('sgd', False)
+    svc_pwr = factory.create_tagger_from_file('svm', False)
+    logistic_regression_pwr = factory.create_tagger_from_file('logistic_regression', False)
+    naive_bayes_pwr = factory.create_tagger_from_file('naive_bayes', False)
+    k_neighbors_pwr = factory.create_tagger_from_file('kneighbors', False)
+    neural_networks_pwr = factory.create_tagger_from_file('neural_network', False)
+    decision_tree_nc = factory.create_tagger_from_file('tagger_decision_tree', True)
+    sgd_nc = factory.create_tagger_from_file('sgd', True)
+    svc_nc = factory.create_tagger_from_file('svm', True)
+    logistic_regression_nc = factory.create_tagger_from_file('logistic_regression', True)
+    naive_bayes_nc = factory.create_tagger_from_file('naive_bayes', True)
+    k_neighbors_nc = factory.create_tagger_from_file('kneighbors', True)
+    neural_networks_nc = factory.create_tagger_from_file('neural_network', True)
 
-    one_letter_suffixes = suffix_unpacker.extract_n_best_one_letter(N_ONE_LETTER)
-    two_letters_suffixes = suffix_unpacker.extract_n_best_two_letters(N_TWO_LETTERS)
-    three_letters_suffixes = suffix_unpacker.extract_n_best_three_letters(N_THREE_LETTERS)
-    four_letters_suffixes = suffix_unpacker.extract_n_best_four_letters(N_FOUR_LETTERS)
-
-    feature_extractor = PosFeatureExtractor(one_letter_suffixes, two_letters_suffixes,
-                                            three_letters_suffixes, four_letters_suffixes)
-
-    decision_tree = load_classifier(path.join(CLASSIFIERS_DIR, 'tagger_decision_tree_pwr.pickle'))
-    sgd = load_classifier(path.join(CLASSIFIERS_DIR, "sgd_pwr.pickle"))
-    svc = load_classifier(path.join(CLASSIFIERS_DIR, 'svm_pwr.pickle'))
-    logistic_regression = load_classifier(path.join(CLASSIFIERS_DIR, 'logistic_regression.pickle'))
-    naive_bayes = load_classifier(path.join(CLASSIFIERS_DIR, 'naive_bayes_pwr.pickle'))
-    k_neighbors = load_classifier(path.join(CLASSIFIERS_DIR, 'kneighbors_pwr.pickle'))
-    neural_networks = load_classifier(path.join(CLASSIFIERS_DIR, 'neural_network_pwr.pickle'))
     word = input("Podaj słowo: ")
 
-    print("Decision Tree PWr Tagger               :", decision_tree.classify(feature_extractor.pos_features(word)))
-    print("Stochastic Gradient Descent PWr Tagger :", sgd.classify(feature_extractor.pos_features(word)))
-    print("Support Vector Machine PWr Tagger      :", svc.classify(feature_extractor.pos_features(word)))
-    print("Logistic Regression PWr Tagger         :", logistic_regression.classify(feature_extractor.pos_features(word)))
-    print("Naive Bayes PWr Tagger                 :", naive_bayes.classify(feature_extractor.pos_features(word)))
-    print("K Neighbors PWr Tagger                 :", k_neighbors.classify(feature_extractor.pos_features(word)))
-    print("Neural Networks PWr Tagger             :", neural_networks.classify(feature_extractor.pos_features(word))[0])
+    print("Decision Tree PWr Tagger               :", decision_tree_pwr.classify(feature_extractor.pos_features(word)))
+    print("Stochastic Gradient Descent PWr Tagger :", sgd_pwr.classify(feature_extractor.pos_features(word)))
+    print("Support Vector Machine PWr Tagger      :", svc_pwr.classify(feature_extractor.pos_features(word)))
+    print("Logistic Regression PWr Tagger         :", logistic_regression_pwr.classify(feature_extractor.pos_features(word)))
+    print("Naive Bayes PWr Tagger                 :", naive_bayes_pwr.classify(feature_extractor.pos_features(word)))
+    print("K Neighbors PWr Tagger                 :", k_neighbors_pwr.classify(feature_extractor.pos_features(word)))
+    print("Neural Networks PWr Tagger             :", neural_networks_pwr.classify(feature_extractor.pos_features(word))[0])
+    print("Decision Tree NC Tagger               :", decision_tree_nc.classify(feature_extractor.pos_features(word)))
+    print("Stochastic Gradient Descent NC Tagger :", sgd_nc.classify(feature_extractor.pos_features(word)))
+    print("Support Vector Machine NC Tagger      :", svc_nc.classify(feature_extractor.pos_features(word)))
+    print("Logistic Regression NC Tagger         :", logistic_regression_nc.classify(feature_extractor.pos_features(word)))
+    print("Naive Bayes NC Tagger                 :", naive_bayes_nc.classify(feature_extractor.pos_features(word)))
+    print("K Neighbors NC Tagger                 :", k_neighbors_nc.classify(feature_extractor.pos_features(word)))
+    print("Neural Networks NC Tagger             :", neural_networks_nc.classify(feature_extractor.pos_features(word))[0])
 
 if __name__ == '__main__':
     main()

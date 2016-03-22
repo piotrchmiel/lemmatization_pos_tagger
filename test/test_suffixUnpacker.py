@@ -1,6 +1,7 @@
-from src.settings import SUFFIX_FILE
-from src.utils import SuffixUnpacker
 from unittest import TestCase
+
+from src.settings import SUFFIX_FILE
+from src.utils.suffix import SuffixUnpacker
 
 
 class TestSuffixUnpacker(TestCase):
