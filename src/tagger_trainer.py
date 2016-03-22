@@ -21,7 +21,7 @@ def main():
 
     for filename, algorithm in algorithms.items():
         factory.create_tagger(deepcopy(algorithm), False, filename)
-        factory.create_tagger(deepcopy(algorithm), False, filename)
+        factory.create_tagger(deepcopy(algorithm), True, filename)
 
 if __name__ == '__main__':
     main()
