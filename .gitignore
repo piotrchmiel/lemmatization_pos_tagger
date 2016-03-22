@@ -68,3 +68,7 @@ chmura_pomiarowa/chmura/migrations
 Session.vim
 .netrwhist
 *~
+
+# Corpuses
+CorpusPWr/
+NationalCorpus/
