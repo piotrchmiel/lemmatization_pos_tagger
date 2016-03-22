@@ -1,3 +1,5 @@
+# **W CELU POPRAWNEGO ŚCIĄGNIĘCIA REPOZYTORIUM WYMAGANY JEST [GIT-LFS](https://git-lfs.github.com/)**
+
 # lemmatization_pos_tagger
 ZIWG Projekt
 
