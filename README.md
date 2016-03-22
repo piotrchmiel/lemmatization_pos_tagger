@@ -14,6 +14,13 @@ Wymagany Python 3.5. Instalacja pakietów:
 Korpusy z powodu takiego, że są ogromnych rozmiarów wyleciały z repo i można je zaciągnąć uruchamiając skrypt instalacyjny, który rozpakowywuje korpus PWr z pliku kpwr-1.2.6-disamb.7z a korpus polski pobiera ze źródła. Uruchomienie:
 
 	./installCorpuses.sh
+	
+## Instalacja nlkt:
+
+Do tokenizacji slów w podanym tekscie użyto NLTK. W celu instalacji w interpreterze należy użyć następujących komand:
+	
+	>>> import nltk
+	>>> nltk.download()
 
 ### Wstępne wyniki 10000 ze zbioru
 
