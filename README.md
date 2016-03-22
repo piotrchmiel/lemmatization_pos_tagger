@@ -15,7 +15,7 @@ Korpusy z powodu takiego, że są ogromnych rozmiarów wyleciały z repo i możn
 
 	./installCorpuses.sh
 	
-## Instalacja nlkt:
+## Instalacja NLTK:
 
 Do tokenizacji slów w podanym tekscie użyto NLTK. W celu instalacji w interpreterze należy użyć następujących komand:
 	
