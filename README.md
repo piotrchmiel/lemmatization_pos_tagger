@@ -7,6 +7,12 @@ Wymagany Python 3.5. Instalacja pakietów:
     
 	pip3 install -r requirements.txt
 
+## Instalacja korpusów:
+
+Korpusy z powodu takiego, że są ogromnych rozmiarów wyleciały z repo i można je zaciągnąć uruchamiając skrypt instalacyjny, który rozpakowywuje korpus PWr z pliku kpwr-1.2.6-disamb.7z a korpus polski pobiera ze źródła. Uruchomienie:
+
+	./installCorpuses.sh
+
 ### Wstępne wyniki 10000 ze zbioru
 
 Support Vector Machine PWr Tagger      : 55.35<br />
