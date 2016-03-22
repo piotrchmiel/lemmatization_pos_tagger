@@ -5,7 +5,7 @@ from pickle import load, dump
 from bs4 import BeautifulSoup
 from sknn.mlp import Classifier, Layer
 
-from src.settings import CLASSIFIERS_DIR
+from src.settings import CLASSIFIERS_DIR, CORPUS_CSV, NATIONAL_CORPUS_CSV
 from src.sklearn_wrapper import SklearnWrapper
 
 
@@ -179,13 +179,17 @@ class CsvReader(object):
     def __init__(self, folder_name, national_corpus=False):
         self.folder = folder_name
         self.national_corpus = national_corpus
+        if self.national_corpus == True:
+            self.output_csv = NATIONAL_CORPUS_CSV
+        else:
+            self.output_csv = CORPUS_CSV
 
     def convert_xml_to_csv(self):
         if path.exists(self.folder):
             print("Starting conversion of files from .xml to .csv format. "
                   "Please have a coffee break while I do my job.")
 
-            with open(path.join(self.folder, "extracted.csv"), "w", newline="") as csv_file:
+            with open(self.output_csv, "w", newline="") as csv_file:
                 fieldnames = ['word', 'tag']
                 writer = DictWriter(csv_file, fieldnames=fieldnames)
                 reader = XmlReader(self.folder, national_corpus=self.national_corpus)
@@ -199,7 +203,7 @@ class CsvReader(object):
                   "Provide the proper one.")
 
     def extract_feature(self, feature_name):
-        with open(path.join(self.folder, "extracted.csv"), "r", newline="") as csv_file:
+        with open(self.output_csv, "r", newline="") as csv_file:
             reader = DictReader(csv_file)
             for row in reader:
                 yield row[feature_name]
