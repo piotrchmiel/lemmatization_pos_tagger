@@ -6,8 +6,8 @@ CLASSIFIERS_DIR = path.join(BASE_DIR, 'Classifiers')
 SUFFIX_DIR = path.join(BASE_DIR, 'Suffixes')
 OUTPUT_CSV = path.join(BASE_DIR, 'OutputCsv')
 CORPUS_DIR = path.join(BASE_DIR, 'CorpusPWr')
-CORPUS_CSV = path.join(OUTPUT_CSV, 'CorpusPWr')
-NATIONAL_CORPUS_DIR = path.join(BASE_DIR, 'NationalCorpus.csv')
+CORPUS_CSV = path.join(OUTPUT_CSV, 'CorpusPWr.csv')
+NATIONAL_CORPUS_DIR = path.join(BASE_DIR, 'NationalCorpus')
 NATIONAL_CORPUS_CSV = path.join(OUTPUT_CSV, 'NationalCorpus.csv')
 
 SUFFIX_TAGGER = "suffix_tagger.pickle"
