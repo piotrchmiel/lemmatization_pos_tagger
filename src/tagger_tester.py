@@ -16,7 +16,7 @@ def main():
     word = input("Podaj słowo: ")
 
     for name, tagger in taggers.items():
-        print(name + "\t:", tagger.classify(feature_extractor.pos_features(word)))
+        print("{0:25} : {1}".format(name, tagger.classify(feature_extractor.pos_features(word))))
 
 
 if __name__ == '__main__':

@@ -16,9 +16,9 @@ def main():
 
     for name, tagger in taggers.items():
         if "pwr" in name:
-            print(name + "\t:", tagger.accuracy(True, 100, feature_extractor))
+            print("{0:25} : {1:.3f}".format(name, tagger.accuracy(True, 100, feature_extractor)))
         else:
-            print(name + "\t:", tagger.accuracy(False, 100, feature_extractor))
+            print("{0:25} : {1:.3f}".format(name, tagger.accuracy(False, 100, feature_extractor)))
 
 if __name__ == '__main__':
     main()
