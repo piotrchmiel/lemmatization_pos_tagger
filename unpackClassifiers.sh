@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "***** Unpacking classifiers *****"
 
 if ! which xz > /dev/null; then
