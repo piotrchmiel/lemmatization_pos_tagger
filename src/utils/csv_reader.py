@@ -1,7 +1,7 @@
 from csv import DictWriter, DictReader
 from os import path
 
-from src.settings import NATIONAL_CORPUS_CSV, CORPUS_CSV
+from src.settings import NATIONAL_CORPUS_CSV, CORPUS_CSV, NATIONAL_CORPUS_DIR, CORPUS_DIR
 from src.utils.xml import XmlReader
 
 
@@ -10,7 +10,8 @@ class CsvReader(object):
         self.national_corpus = national_corpus
         self.csv_file_path = NATIONAL_CORPUS_CSV if self.national_corpus else CORPUS_CSV
 
-    def convert_xml_to_csv(self, dir_name):
+    def convert_xml_to_csv(self):
+        dir_name = NATIONAL_CORPUS_DIR if self.national_corpus else CORPUS_DIR
         if path.exists(dir_name):
             print("Starting conversion of files from .xml to .csv format. "
                   "Please have a coffee break while I do my job.")

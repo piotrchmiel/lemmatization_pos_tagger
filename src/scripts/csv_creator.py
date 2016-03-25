@@ -1,29 +1,23 @@
 import argparse
 import os
 
-from src.utils.csv_management import CsvReader
-
-from src.settings import CORPUS_DIR
-
-
-def detect_national_corpus(path):
-    _, subdirectories, _ = next(os.walk(path))
-    return 'ann_morphosyntax.xml' in os.listdir(os.path.join(path, subdirectories[0]))
+from src.utils.csv_reader import CsvReader
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-c", "--corpus", dest="corpus",
-                        help="path to corpus directory", default=CORPUS_DIR)
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument('--use_pwr', action='store_true', help="Use pwr corpus")
+    group.add_argument('--use_national', action='store_true', help="Use national corpus")
     args = parser.parse_args()
-    if os.path.exists(args.corpus):
-        print("Start CSV extracting...")
-        reader = CsvReader(args.corpus, national_corpus=detect_national_corpus(args.corpus))
-        reader.convert_xml_to_csv()
+    print(args.use_pwr, args.use_national)
 
-        print("Done.")
-    else:
-        print("Please provide valid directory!")
+    print("Start CSV extracting...")
+    reader = CsvReader(national_corpus=args.use_national)
+    reader.convert_xml_to_csv()
+
+    print("Done.")
+
 
 if __name__ == '__main__':
     main()
