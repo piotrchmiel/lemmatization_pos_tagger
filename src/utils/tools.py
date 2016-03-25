@@ -1,7 +1,7 @@
 from pickle import load, dump
 
 from src.sklearn_wrapper import SklearnWrapper
-from src.utils.csv import CsvReader
+from src.utils.csv_reader import CsvReader
 
 
 def train_target(class_object, feature_extractor, is_train_corpus_national):

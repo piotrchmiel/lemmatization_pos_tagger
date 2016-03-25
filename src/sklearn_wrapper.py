@@ -3,7 +3,7 @@ from itertools import islice
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.preprocessing import LabelEncoder
 
-from src.utils.csv import CsvReader
+from src.utils.csv_reader import CsvReader
 
 class SklearnWrapper(object):
 
