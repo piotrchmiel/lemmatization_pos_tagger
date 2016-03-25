@@ -1,11 +1,10 @@
 class PosFeatureExtractor(object):
     def __init__(self, one_letter_suffixes, two_letters_suffixes, three_letters_suffixes,
                  four_letters_suffixes):
-        self.common_suffixes = [word for word, _ in one_letter_suffixes]
-        self.common_suffixes.extend([word for word, _ in two_letters_suffixes])
-        self.common_suffixes.extend([word for word, _ in three_letters_suffixes])
-        self.common_suffixes.extend([word for word, _ in four_letters_suffixes])
-        self.common_suffixes = set(self.common_suffixes)
+        self.common_suffixes = {word for word, _ in one_letter_suffixes}
+        self.common_suffixes.update({word for word, _ in two_letters_suffixes})
+        self.common_suffixes.update({word for word, _ in three_letters_suffixes})
+        self.common_suffixes.update({word for word, _ in four_letters_suffixes})
 
     def pos_features(self, word):
         features = {}
