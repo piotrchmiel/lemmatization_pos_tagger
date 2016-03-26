@@ -23,7 +23,7 @@ class TaggerFactory(object):
     def create_tagger(self, classifier_object, national_corpus, filename):
 
         if national_corpus:
-            filename += "_nc._pickle"
+            filename += "_nc.pickle"
         else:
             filename += "_pwr.pickle"
 
