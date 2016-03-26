@@ -1,20 +1,20 @@
 from csv import DictWriter, DictReader
 
-from src.settings import NATIONAL_CORPUS_CSV, CORPUS_CSV, NATIONAL_CORPUS_DIR, CORPUS_DIR
+from src.settings import NATIONAL_CORPUS_CSV, PWR_CORPUS_CSV, NATIONAL_CORPUS_DIR, PWR_CORPUS_DIR
 from src.utils.xml import XmlReader
 
 
 class CsvReader(object):
     def __init__(self, national_corpus=False):
         self.national_corpus = national_corpus
-        self.csv_file_path = NATIONAL_CORPUS_CSV if self.national_corpus else CORPUS_CSV
+        self.csv_file_path = NATIONAL_CORPUS_CSV if self.national_corpus else PWR_CORPUS_CSV
 
     def convert_xml_to_csv(self):
         print("Starting conversion of files from .xml to .csv format. "
               "Please have a coffee break while I do my job.")
 
         with open(self.csv_file_path, "w", newline="") as csv_file:
-            dir_name = NATIONAL_CORPUS_DIR if self.national_corpus else CORPUS_DIR
+            dir_name = NATIONAL_CORPUS_DIR if self.national_corpus else PWR_CORPUS_DIR
             reader = XmlReader(dir_name, national_corpus=self.national_corpus)
             fieldnames = ['word', 'tag']
             writer = DictWriter(csv_file, fieldnames=fieldnames)
