@@ -17,7 +17,7 @@ class XmlReader(object):
 
     def get_words(self, filename):
         with open(filename) as file_handler:
-            tokens_str = 'tok' if not self.use_national_corpus else 'seg'
+            tokens_str = 'seg' if self.use_national_corpus else 'tok'
             tokens = BeautifulSoup(file_handler.read(), 'xml').find_all(tokens_str)
             if self.use_national_corpus:
                 return self.get_words_national(tokens)
