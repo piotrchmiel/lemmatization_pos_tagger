@@ -6,9 +6,9 @@ from src.utils.extractor import PosFeatureExtractor
 
 
 class XmlReader(object):
-    def __init__(self, folder_name, national_corpus=False):
-        self.folder = folder_name
-        self.national_corpus = national_corpus
+    def __init__(self, corpus_dir, use_national_corpus=False):
+        self.corpus_dir = corpus_dir
+        self.use_national_corpus = use_national_corpus
 
     def extract_words_and_tags(self):
         for filename in self.find_xml_files():
@@ -17,9 +17,9 @@ class XmlReader(object):
 
     def get_words(self, filename):
         with open(filename) as file_handler:
-            tokens_str = 'tok' if not self.national_corpus else 'seg'
+            tokens_str = 'tok' if not self.use_national_corpus else 'seg'
             tokens = BeautifulSoup(file_handler.read(), 'xml').find_all(tokens_str)
-            if self.national_corpus:
+            if self.use_national_corpus:
                 return self.get_words_national(tokens)
             else:
                 return self.get_words_pwr(tokens)
@@ -51,10 +51,10 @@ class XmlReader(object):
                     yield word, ctag
 
     def find_xml_files(self):
-        for root, _, files in walk(self.folder):
+        for root, _, files in walk(self.corpus_dir):
             for filename in files:
                 query = False
-                if self.national_corpus:
+                if self.use_national_corpus:
                     query = filename == "ann_morphosyntax.xml"
                 else:
                     query = filename.endswith(".xml") and not filename.endswith(".rel.xml")

@@ -5,17 +5,17 @@ from src.utils.xml import XmlReader
 
 
 class CsvReader(object):
-    def __init__(self, national_corpus=False):
-        self.national_corpus = national_corpus
-        self.csv_file_path = NATIONAL_CORPUS_CSV if self.national_corpus else PWR_CORPUS_CSV
+    def __init__(self, use_national_corpus=False):
+        self.use_national_corpus = use_national_corpus
+        self.csv_file_path = NATIONAL_CORPUS_CSV if self.use_national_corpus else PWR_CORPUS_CSV
 
     def convert_xml_to_csv(self):
         print("Starting conversion of files from .xml to .csv format. "
               "Please have a coffee break while I do my job.")
 
         with open(self.csv_file_path, "w", newline="") as csv_file:
-            dir_name = NATIONAL_CORPUS_DIR if self.national_corpus else PWR_CORPUS_DIR
-            reader = XmlReader(dir_name, national_corpus=self.national_corpus)
+            corpus_dir = NATIONAL_CORPUS_DIR if self.use_national_corpus else PWR_CORPUS_DIR
+            reader = XmlReader(corpus_dir, use_national_corpus=self.use_national_corpus)
             fieldnames = ['word', 'tag']
             writer = DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()

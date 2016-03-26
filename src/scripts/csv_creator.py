@@ -11,7 +11,7 @@ def main():
     args = parser.parse_args()
 
     print("Start CSV extracting...")
-    reader = CsvReader(national_corpus=args.use_national)
+    reader = CsvReader(use_national_corpus=args.use_national)
     try:
         reader.convert_xml_to_csv()
     except FileNotFoundError as E:
@@ -22,4 +22,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

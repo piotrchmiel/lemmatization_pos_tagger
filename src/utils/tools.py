@@ -7,7 +7,7 @@ from src.utils.csv_reader import CsvReader
 def train_target(class_object, feature_extractor, is_train_corpus_national):
 
     clf = SklearnWrapper(class_object)
-    reader = CsvReader(national_corpus=is_train_corpus_national)
+    reader = CsvReader(use_national_corpus=is_train_corpus_national)
 
     train_features = (feature_extractor.pos_features(word) for word in reader.extract_feature('word'))
     train_labels = [tag for tag in reader.extract_feature('tag')]

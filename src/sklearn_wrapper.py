@@ -27,7 +27,7 @@ class SklearnWrapper(object):
         return self._encoder.classes_[self._classifier.predict(feature_set)][0]
 
     def accuracy(self, is_test_corpus_national, number_of_testing_features, feature_extractor):
-        reader = CsvReader(national_corpus=is_test_corpus_national)
+        reader = CsvReader(use_national_corpus=is_test_corpus_national)
         total = 0
         good = 0
         for word, tag in islice(zip(reader.extract_feature('word'),
