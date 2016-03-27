@@ -24,5 +24,5 @@ class TestCsvReader(TestCase):
     def test_extract_feature(self):
         self.reader.convert_xml_to_csv()
         words_with_tags = (('Powód', 'rzeczownik'), ('był', 'pseudoimiesłów'), ('prosty', 'przymiotnik'))
-        for word_with_tag in zip(self.reader.extract_feature('word'), self.reader.extract_feature('tag')):
-            self.assertIn(word_with_tag, words_with_tags)
+        extracted = [w for w in zip(self.reader.extract_feature('word'), self.reader.extract_feature('tag'))]
+        self.assertSequenceEqual(words_with_tags, extracted)
