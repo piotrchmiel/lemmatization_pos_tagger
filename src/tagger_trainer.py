@@ -23,8 +23,8 @@ def main():
                                                learning_rate=0.02, n_iter=10)}
 
     for filename, algorithm in algorithms.items():
-        factory.create_tagger_for_pwr_corpus(deepcopy(algorithm), filename)
-        factory.create_tagger_for_national_corpus(deepcopy(algorithm), filename)
+        factory.dump_pwr_tagger(deepcopy(algorithm), filename)
+        factory.dump_national_tagger(deepcopy(algorithm), filename)
 
 
 if __name__ == '__main__':

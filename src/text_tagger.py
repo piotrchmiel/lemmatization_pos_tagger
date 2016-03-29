@@ -10,8 +10,8 @@ def main():
     feature_extractor = factory.get_feature_extractor()
 
     for filename in TAGGER_FILENAMES:
-        taggers[filename + '_pwr'] = factory.create_pwr_tagger_from_file(filename)
-        taggers[filename + '_nc'] = factory.create_national_tagger_from_file(filename)
+        taggers[filename + '_pwr'] = factory.load_pwr_tagger(filename)
+        taggers[filename + '_nc'] = factory.load_national_tagger(filename)
 
     text = input("Wprowadź tekst: ")
 

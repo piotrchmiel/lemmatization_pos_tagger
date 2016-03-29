@@ -2,6 +2,7 @@ from os import path
 
 from src.settings import CLASSIFIERS_DIR, SUFFIX_FILE, N_ONE_LETTER, N_TWO_LETTERS, \
                         N_THREE_LETTERS, N_FOUR_LETTERS
+from src.utils.csv_reader import CsvReader
 from src.utils.extractor import PosFeatureExtractor
 from src.utils.suffix import SuffixUnpacker
 from src.utils.tools import train_target, save_classifier, load_classifier
@@ -20,26 +21,25 @@ class TaggerFactory(object):
         self.feature_extractor = PosFeatureExtractor(one_letter_suffixes, two_letters_suffixes,
                                                      three_letters_suffixes, four_letters_suffixes)
 
-    def create_tagger_for_national_corpus(self, classifier_object, filename):
+    def dump_national_tagger(self, classifier_object, filename):
         filename += "_nc.pickle"
-        save_classifier(path.join(CLASSIFIERS_DIR, filename),
-                        train_target(classifier_object, self.feature_extractor,
-                                     is_train_corpus_national=True))
+        file_location = path.join(CLASSIFIERS_DIR, filename)
+        csv_reader = CsvReader(use_national_corpus=True)
+        save_classifier(file_location, train_target(classifier_object, self.feature_extractor, csv_reader))
 
-    def create_tagger_for_pwr_corpus(self, classifier_object, filename):
+    def dump_pwr_tagger(self, classifier_object, filename):
         filename += "_pwr.pickle"
-        save_classifier(path.join(CLASSIFIERS_DIR, filename),
-                        train_target(classifier_object, self.feature_extractor,
-                                     is_train_corpus_national=False))
+        file_location = path.join(CLASSIFIERS_DIR, filename)
+        csv_reader = CsvReader(use_national_corpus=False)
+        save_classifier(file_location, train_target(classifier_object, self.feature_extractor, csv_reader))
 
-    def create_national_tagger_from_file(self, filename):
+    def load_national_tagger(self, filename):
         filename += "_nc.pickle"
         return load_classifier(path.join(CLASSIFIERS_DIR, filename))
 
-    def create_pwr_tagger_from_file(self, filename):
+    def load_pwr_tagger(self, filename):
         filename += "_pwr.pickle"
         return load_classifier(path.join(CLASSIFIERS_DIR, filename))
-
 
     def get_feature_extractor(self):
         return self.feature_extractor
