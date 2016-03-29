@@ -20,15 +20,17 @@ class TaggerFactory(object):
         self.feature_extractor = PosFeatureExtractor(one_letter_suffixes, two_letters_suffixes,
                                                      three_letters_suffixes, four_letters_suffixes)
 
-    def create_tagger(self, classifier_object, national_corpus, filename):
-
-        if national_corpus:
-            filename += "_nc.pickle"
-        else:
-            filename += "_pwr.pickle"
-
+    def create_tagger_for_national_corpus(self, classifier_object, filename):
+        filename += "_nc.pickle"
         save_classifier(path.join(CLASSIFIERS_DIR, filename),
-                        train_target(classifier_object, self.feature_extractor, national_corpus))
+                        train_target(classifier_object, self.feature_extractor,
+                                     is_train_corpus_national=True))
+
+    def create_tagger_for_pwr_corpus(self, classifier_object, filename):
+        filename += "_pwr.pickle"
+        save_classifier(path.join(CLASSIFIERS_DIR, filename),
+                        train_target(classifier_object, self.feature_extractor,
+                                     is_train_corpus_national=False))
 
     def create_tagger_from_file(self, filename, is_trained_by_national):
         if is_trained_by_national:

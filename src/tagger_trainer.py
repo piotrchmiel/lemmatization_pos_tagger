@@ -16,12 +16,16 @@ def main():
 
     algorithms = {'tagger_decision_tree': DecisionTreeClassifier(), 'sdg': SGDClassifier(), 'svm': SVC(),
                   'logistic_regression': LogisticRegression(), 'naive_bayes': BernoulliNB(),
-                  'kneighbors': KNeighborsClassifier(), 'neural_network' : Classifier(layers=[Layer("Rectifier",
-                   units=100), Layer("Softmax")], learning_rate=0.02, n_iter=10)}
+                  'kneighbors': KNeighborsClassifier(),
+                  'neural_network': Classifier(layers=[Layer("Rectifier",
+                                                             units=100),
+                                                       Layer("Softmax")],
+                                               learning_rate=0.02, n_iter=10)}
 
     for filename, algorithm in algorithms.items():
-        factory.create_tagger(deepcopy(algorithm), False, filename)
-        factory.create_tagger(deepcopy(algorithm), True, filename)
+        factory.create_tagger_for_pwr_corpus(deepcopy(algorithm), filename)
+        factory.create_tagger_for_national_corpus(deepcopy(algorithm), filename)
+
 
 if __name__ == '__main__':
     main()
