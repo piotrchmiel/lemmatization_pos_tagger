@@ -32,13 +32,14 @@ class TaggerFactory(object):
                         train_target(classifier_object, self.feature_extractor,
                                      is_train_corpus_national=False))
 
-    def create_tagger_from_file(self, filename, is_trained_by_national):
-        if is_trained_by_national:
-            filename += "_nc.pickle"
-        else:
-            filename += "_pwr.pickle"
-
+    def create_national_tagger_from_file(self, filename):
+        filename += "_nc.pickle"
         return load_classifier(path.join(CLASSIFIERS_DIR, filename))
+
+    def create_pwr_tagger_from_file(self, filename):
+        filename += "_pwr.pickle"
+        return load_classifier(path.join(CLASSIFIERS_DIR, filename))
+
 
     def get_feature_extractor(self):
         return self.feature_extractor

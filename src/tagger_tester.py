@@ -10,8 +10,8 @@ def main():
     taggers = OrderedDict()
 
     for filename in TAGGER_FILENAMES:
-        taggers[filename + '_pwr'] = factory.create_tagger_from_file(filename, False)
-        taggers[filename + '_nc'] = factory.create_tagger_from_file(filename, True)
+        taggers[filename + '_pwr'] = factory.create_pwr_tagger_from_file(filename)
+        taggers[filename + '_nc'] = factory.create_national_tagger_from_file(filename)
 
     word = input("Podaj słowo: ")
 
