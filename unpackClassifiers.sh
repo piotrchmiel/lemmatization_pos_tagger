@@ -6,6 +6,6 @@ if ! [ -x "$(command -v xz)" ] ; then
     exit 1
 fi
 
-find "${BASH_SOURCE[0]%/*}/Classifiers" -name "*.xz" -exec xz -d {} \;
+find "${BASH_SOURCE[0]%/*}/Classifiers" -name "*.xz" -exec xz -dk {} \;
 
 echo "***** All done *****"
