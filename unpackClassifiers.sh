@@ -1,9 +1,9 @@
 #!/bin/bash
-echo "***** Unpacking classifiers *****"
 
-if ! which xz > /dev/null; then
-    echo "No xz found. Please install it first."
-    exit
+echo "***** Unpacking classifiers *****"
+if ! [ -x "$(command -v xz)" ] ; then
+    echo "Error: xz is not installed. Cannot continue."
+    exit 1
 fi
 
 find "${BASH_SOURCE[0]%/*}/Classifiers" -name "*.xz" -exec xz -d {} \;
