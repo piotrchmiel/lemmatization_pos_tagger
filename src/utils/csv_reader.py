@@ -14,7 +14,7 @@ class CsvReader(object):
         print("Starting conversion of files from .xml to .csv format. "
               "Please have a coffee break while I do my job.")
 
-        with open(self.csv_file_path, "w", newline="") as csv_file:
+        with open(self.csv_file_path, "w", newline="", encoding="utf8") as csv_file:
             reader = XmlReader(self.corpus_dir, use_national_corpus=self.use_national_corpus)
             fieldnames = ['word', 'tag']
             writer = DictWriter(csv_file, fieldnames=fieldnames)
@@ -25,7 +25,7 @@ class CsvReader(object):
             print("All done. I appreciate your patience.")
 
     def extract_feature(self, feature_name):
-        with open(self.csv_file_path, "r", newline="") as csv_file:
+        with open(self.csv_file_path, "r", newline="", encoding="utf8") as csv_file:
             reader = DictReader(csv_file)
             for row in reader:
                 yield row[feature_name]
