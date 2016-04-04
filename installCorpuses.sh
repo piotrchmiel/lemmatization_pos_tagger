@@ -28,7 +28,7 @@ echo "***** Unpacking CorpusPwr *****"
 if ! [ -d "CorpusPWr" ] ; then
     mkdir "CorpusPWr"
 fi
-7z x ./kpwr-1.2.6-disamb.7z -oq./CorpusPWr/ -y -r > /dev/null
+7z x ./kpwr-1.2.6-disamb.7z -o./CorpusPWr/ -y -r > /dev/null
 EXITCODE=$?
 if [ "$EXITCODE" -ne 0 ] ; then
     echo "Error: Unpacking went wrong. 7z returned: $EXITCODE."
