@@ -1,0 +1,4 @@
+#!/bin/bash
+
+. ${PWD}/env/bin/activate
+export PYTHONPATH="${PYTHONPATH}:${PWD}/src"
