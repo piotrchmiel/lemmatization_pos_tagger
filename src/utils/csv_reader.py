@@ -1,7 +1,7 @@
 from csv import DictWriter, DictReader
 
 from src.settings import NATIONAL_CORPUS_CSV, PWR_CORPUS_CSV, NATIONAL_CORPUS_DIR, PWR_CORPUS_DIR
-from src.utils.xml import XmlReader
+from src.utils.xml_reader import XmlReader
 
 
 class CsvReader(object):
