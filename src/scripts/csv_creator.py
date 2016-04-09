@@ -16,8 +16,8 @@ def main():
         reader.convert_xml_to_csv()
     except FileNotFoundError as E:
         print(E)
-
-    print("Done.")
+    else:
+        print("Done.")
 
 
 if __name__ == '__main__':
