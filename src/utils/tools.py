@@ -19,6 +19,5 @@ def train_target(class_object, feature_extractor, csv_reader):
 def save_classifier(file_location, classifier):
     dump(classifier, file_location, 9)
 
-
 def load_classifier(file_location):
     return load(file_location)
