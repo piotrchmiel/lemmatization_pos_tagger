@@ -21,16 +21,10 @@ class TaggerFactory(object):
         self.feature_extractor = PosFeatureExtractor(one_letter_suffixes, two_letters_suffixes,
                                                      three_letters_suffixes, four_letters_suffixes)
 
-    def dump_national_tagger(self, classifier_object, filename):
-        filename += "_nc.pickle"
+    def dump_tagger(self, classifier_object, filename, use_national_corpus):
+        filename = filename + "_nc.pickle" if use_national_corpus else filename + "_pwr.pickle"
         file_location = path.join(CLASSIFIERS_DIR, filename)
-        csv_reader = CsvReader(use_national_corpus=True)
-        save_classifier(file_location, train_target(classifier_object, self.feature_extractor, csv_reader))
-
-    def dump_pwr_tagger(self, classifier_object, filename):
-        filename += "_pwr.pickle"
-        file_location = path.join(CLASSIFIERS_DIR, filename)
-        csv_reader = CsvReader(use_national_corpus=False)
+        csv_reader = CsvReader(use_national_corpus=use_national_corpus)
         save_classifier(file_location, train_target(classifier_object, self.feature_extractor, csv_reader))
 
     def load_national_tagger(self, filename):

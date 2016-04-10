@@ -1,5 +1,5 @@
 from copy import deepcopy
-
+from itertools import chain
 from joblib import Parallel, delayed
 from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import SGDClassifier
@@ -23,12 +23,10 @@ def main():
                                                        Layer("Softmax")],
                                                learning_rate=0.02, n_iter=10)}
 
-    Parallel(n_jobs=-1)(delayed(factory.dump_pwr_tagger)(deepcopy(algorithm), filename)
-                        for filename, algorithm in algorithms.items())
-
-    Parallel(n_jobs=-1)(delayed(factory.dump_national_tagger)(deepcopy(algorithm), filename)
-                        for filename, algorithm in algorithms.items())
-
+    Parallel(n_jobs=-1)(chain((delayed(factory.dump_tagger)(deepcopy(algorithm), filename, True)
+                        for filename, algorithm in algorithms.items()),
+                        (delayed(factory.dump_tagger)(deepcopy(algorithm), filename, False)
+                        for filename, algorithm in algorithms.items())))
 
 if __name__ == '__main__':
     main()
