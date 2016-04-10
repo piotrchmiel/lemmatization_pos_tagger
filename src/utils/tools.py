@@ -1,4 +1,4 @@
-from pickle import load, dump
+from joblib import load, dump
 
 from src.sklearn_wrapper import SklearnWrapper
 
@@ -17,11 +17,8 @@ def train_target(class_object, feature_extractor, csv_reader):
 
 
 def save_classifier(file_location, classifier):
-    with open(file_location, 'wb') as file_handler:
-        dump(classifier, file_handler)
+    dump(classifier, file_location, 9)
 
 
 def load_classifier(file_location):
-    with open(file_location, 'rb') as file_handler:
-        classifier = load(file_handler)
-    return classifier
+    return load(file_location)

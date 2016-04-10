@@ -5,6 +5,7 @@ from sklearn.preprocessing import LabelEncoder
 
 from src.utils.csv_reader import CsvReader
 
+
 class SklearnWrapper(object):
 
     def __init__(self, classifier, dtype=int, sparse=True, sort=False):

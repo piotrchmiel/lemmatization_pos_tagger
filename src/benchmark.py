@@ -1,24 +1,31 @@
-from collections import OrderedDict
+from itertools import chain
+
+from joblib import Parallel, delayed
 
 from src.factories.tagger_factory import TaggerFactory
 from src.settings import TAGGER_FILENAMES
+
+
+def benchmark_result(factory, feature_extractor, filename, is_test_corpus_national, number_of_test_records):
+    tagger = factory.load_pwr_tagger(filename) if is_test_corpus_national else factory.load_national_tagger(filename)
+    name = filename + '_pwr' if is_test_corpus_national else filename + '_nc'
+    return "{0:25} : {1:.3f}".format(name, tagger.accuracy(is_test_corpus_national,
+                                                           number_of_test_records, feature_extractor))
 
 
 def main():
     factory = TaggerFactory()
     feature_extractor = factory.get_feature_extractor()
 
-    taggers = OrderedDict()
+    print("*** Benchmark Start ***")
 
-    for filename in TAGGER_FILENAMES:
-        taggers[filename + '_pwr'] = factory.load_pwr_tagger(filename)
-        taggers[filename + '_nc'] = factory.load_national_tagger(filename)
+    pwr_results = Parallel(n_jobs=-1)(delayed(benchmark_result) (factory, feature_extractor, filename, True, 100)
+                                      for filename in TAGGER_FILENAMES)
 
-    for name, tagger in taggers.items():
-        if "pwr" in name:
-            print("{0:25} : {1:.3f}".format(name, tagger.accuracy(True, 100, feature_extractor)))
-        else:
-            print("{0:25} : {1:.3f}".format(name, tagger.accuracy(False, 100, feature_extractor)))
+    nc_results = Parallel(n_jobs=-1)(delayed(benchmark_result)(factory, feature_extractor, filename, False, 100)
+                                      for filename in TAGGER_FILENAMES)
+
+    print("\n".join(sorted(chain(pwr_results, nc_results))))
 
 if __name__ == '__main__':
     main()

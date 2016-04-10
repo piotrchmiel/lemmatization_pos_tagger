@@ -1,5 +1,6 @@
 from copy import deepcopy
 
+from joblib import Parallel, delayed
 from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import SGDClassifier
 from sklearn.naive_bayes import BernoulliNB
@@ -22,9 +23,11 @@ def main():
                                                        Layer("Softmax")],
                                                learning_rate=0.02, n_iter=10)}
 
-    for filename, algorithm in algorithms.items():
-        factory.dump_pwr_tagger(deepcopy(algorithm), filename)
-        factory.dump_national_tagger(deepcopy(algorithm), filename)
+    Parallel(n_jobs=-1)(delayed(factory.dump_pwr_tagger)(deepcopy(algorithm), filename)
+                        for filename, algorithm in algorithms.items())
+
+    Parallel(n_jobs=-1)(delayed(factory.dump_national_tagger)(deepcopy(algorithm), filename)
+                        for filename, algorithm in algorithms.items())
 
 
 if __name__ == '__main__':
