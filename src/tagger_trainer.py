@@ -15,21 +15,22 @@ from src.factories.tagger_factory import TaggerFactory
 
 def main(argv):
 
-    parallel_option = ''
+    help = 'tagger_trainer.py --n-jobs int (default: 1; all cores: -1)'
+    n_jobs = 1
     try:
-        opts, args = getopt.getopt(argv,'hp:', ['help', 'parallel='])
+        opts, args = getopt.getopt(argv,'hn:', ['help', 'n-jobs='])
     except getopt.GetoptError:
-        print('tagger_trainer.py --parallel <y/n>')
+        print(help)
         sys.exit(2)
     for opt, arg in opts:
         if opt in ("-h", "--help"):
-            print('tagger_trainer.py --parallel <y/n>')
+            print(help)
             sys.exit()
-        elif opt in ("-p", "--parallel"):
-            if arg not in ('y', 'n'):
-                print("--parallel argument takes 'y' or 'n' input. Given: ", arg)
+        elif opt in ("-n", "--n-jobs"):
+            if not arg.isdigit():
+                print("--n-jobs argument takes an integer. Given: ", arg)
                 sys.exit(2)
-            parallel_option = arg
+            n_jobs = int(arg)
 
 
     factory = TaggerFactory()
@@ -42,18 +43,10 @@ def main(argv):
                                                        Layer("Softmax")],
                                                learning_rate=0.02, n_iter=10)}
 
-    if (parallel_option == 'n'):
-        print("Parallelization is disabled")
-        for filename, algorithm in algorithms.items():
-            factory.dump_tagger(deepcopy(algorithm), filename, True)
-            factory.dump_tagger(deepcopy(algorithm), filename, False)
-
-    else:
-        print("Parallelization is enabled")
-        Parallel(n_jobs=-1)(chain((delayed(factory.dump_tagger)(deepcopy(algorithm), filename, True)
-                            for filename, algorithm in algorithms.items()),
-                            (delayed(factory.dump_tagger)(deepcopy(algorithm), filename, False)
-                            for filename, algorithm in algorithms.items())))
+    Parallel(n_jobs=n_jobs)(chain((delayed(factory.dump_tagger)(deepcopy(algorithm), filename, True)
+                        for filename, algorithm in algorithms.items()),
+                        (delayed(factory.dump_tagger)(deepcopy(algorithm), filename, False)
+                        for filename, algorithm in algorithms.items())))
 
 if __name__ == '__main__':
     main(sys.argv[1:])
