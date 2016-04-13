@@ -2,6 +2,7 @@ from nltk import word_tokenize
 
 from src.factories.tagger_factory import TaggerFactory
 from src.settings import TAGGER_FILENAMES
+from src.utils.xml_creator import XmlCreator
 
 
 def main():
@@ -9,17 +10,22 @@ def main():
     taggers = {}
     feature_extractor = factory.get_feature_extractor()
 
-    for filename in TAGGER_FILENAMES:
-        taggers[filename + '_pwr'] = factory.load_pwr_tagger(filename)
-        taggers[filename + '_nc'] = factory.load_national_tagger(filename)
+    for tagger_filename in TAGGER_FILENAMES:
+        taggers[tagger_filename + '_pwr'] = factory.load_pwr_tagger(tagger_filename)
+        taggers[tagger_filename + '_nc'] = factory.load_national_tagger(tagger_filename)
 
-    text = input("Wprowadź tekst: ")
-
+    text = input("Provide a text input: ")
     words = word_tokenize(text)
-    print(words)
+    xml_creator = XmlCreator()
+
     for word in words:
+        xml_creator.create_new_root("token")
+        xml_creator.add_word(word)
         for tagger_name, tagger in taggers.items():
-            print(tagger.classify(feature_extractor.pos_features(word)))
+            tag = tagger.classify(feature_extractor.pos_features(word))
+            print("Word:", word, "Tag:", tag, "Tagger name:", tagger_name)
+            xml_creator.add_tagger(tagger_name, tag)
+        xml_creator.save_xml(word)
 
 
 if __name__ == '__main__':
