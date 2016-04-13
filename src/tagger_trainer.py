@@ -1,6 +1,7 @@
-import sys, getopt
+from argparse import ArgumentParser
 from copy import deepcopy
 from itertools import chain
+
 from joblib import Parallel, delayed
 from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import SGDClassifier
@@ -13,25 +14,11 @@ from sknn.mlp import Classifier, Layer
 from src.factories.tagger_factory import TaggerFactory
 
 
-def main(argv):
+def main():
 
-    help = 'tagger_trainer.py --n-jobs int (default: 1; all cores: -1)'
-    n_jobs = 1
-    try:
-        opts, args = getopt.getopt(argv,'hn:', ['help', 'n-jobs='])
-    except getopt.GetoptError:
-        print(help)
-        sys.exit(2)
-    for opt, arg in opts:
-        if opt in ("-h", "--help"):
-            print(help)
-            sys.exit()
-        elif opt in ("-n", "--n-jobs"):
-            if not arg.isdigit():
-                print("--n-jobs argument takes an integer. Given: ", arg)
-                sys.exit(2)
-            n_jobs = int(arg)
-
+    parser = ArgumentParser("Tagger trainer")
+    parser.add_argument('--n-jobs', '-n', default=-1, type=int, help="Number of used CPU cores. Default: all cores")
+    args = parser.parse_args()
 
     factory = TaggerFactory()
 
@@ -43,10 +30,10 @@ def main(argv):
                                                        Layer("Softmax")],
                                                learning_rate=0.02, n_iter=10)}
 
-    Parallel(n_jobs=n_jobs)(chain((delayed(factory.dump_tagger)(deepcopy(algorithm), filename, True)
+    Parallel(n_jobs=args.n_jobs)(chain((delayed(factory.dump_tagger)(deepcopy(algorithm), filename, True)
                         for filename, algorithm in algorithms.items()),
                         (delayed(factory.dump_tagger)(deepcopy(algorithm), filename, False)
                         for filename, algorithm in algorithms.items())))
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    main()
