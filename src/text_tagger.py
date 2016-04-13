@@ -1,4 +1,5 @@
 from nltk import word_tokenize
+from numpy import ndarray
 
 from src.factories.tagger_factory import TaggerFactory
 from src.settings import TAGGER_FILENAMES
@@ -23,6 +24,8 @@ def main():
         xml_creator.add_word(word)
         for tagger_name, tagger in taggers.items():
             tag = tagger.classify(feature_extractor.pos_features(word))
+            if isinstance(tag, ndarray): # neural network output is nd-array
+                tag = tag[0]
             print("Word:", word, "Tag:", tag, "Tagger name:", tagger_name)
             xml_creator.add_tagger(tagger_name, tag)
         xml_creator.save_xml(word)
