@@ -12,6 +12,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sknn.mlp import Classifier, Layer
 
 from src.factories.tagger_factory import TaggerFactory
+from src.settings import NN_UNITS, NN_LEARNING_RATE, NN_ITERATIONS
 
 
 def main():
@@ -25,10 +26,9 @@ def main():
     algorithms = {'tagger_decision_tree': DecisionTreeClassifier(), 'sdg': SGDClassifier(), 'svm': SVC(),
                   'logistic_regression': LogisticRegression(), 'naive_bayes': BernoulliNB(),
                   'kneighbors': KNeighborsClassifier(),
-                  'neural_network': Classifier(layers=[Layer("Rectifier",
-                                                             units=100),
-                                                       Layer("Softmax")],
-                                               learning_rate=0.02, n_iter=10)}
+                  'neural_network': Classifier(layers=[Layer("Rectifier", units=NN_UNITS), Layer("Softmax")],
+                                               learning_rate=NN_LEARNING_RATE,
+                                               n_iter=NN_ITERATIONS)}
 
     Parallel(n_jobs=args.n_jobs)(chain((delayed(factory.dump_tagger)(deepcopy(algorithm), filename, True)
                         for filename, algorithm in algorithms.items()),

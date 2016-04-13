@@ -13,7 +13,12 @@ OUTPUT_XML_DIR = path.join(BASE_DIR, "OutputXml")
 TAGGER_FILENAMES = ('tagger_decision_tree', 'sgd', 'svm', 'logistic_regression',
                     'naive_bayes', 'kneighbors', 'neural_network')
 SUFFIX_TAGGER = "suffix_tagger.pickle"
+
 N_ONE_LETTER = 15
 N_TWO_LETTERS = 35
 N_THREE_LETTERS = 35
 N_FOUR_LETTERS = 35
+
+NN_UNITS = 100
+NN_LEARNING_RATE = 0.02
+NN_ITERATIONS = 10
