@@ -75,3 +75,6 @@ NationalCorpus/
 
 # Classifiers
 Classifiers/*.pickle
+
+# OutputXml
+OutputXml/

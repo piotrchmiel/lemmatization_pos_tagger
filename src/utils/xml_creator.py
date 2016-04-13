@@ -1,7 +1,7 @@
-from os import path
+from os import path, makedirs
 from lxml.etree import Element, SubElement, ElementTree
 
-from src.settings import BASE_DIR
+from src.settings import OUTPUT_XML_DIR
 
 
 class XmlCreator(object):
@@ -20,6 +20,8 @@ class XmlCreator(object):
         SubElement(tagger, "tag").text = tag_text
 
     def save_xml(self, filename):
-        full_path = path.join(BASE_DIR, filename + ".xml")
+        if not path.exists(OUTPUT_XML_DIR):
+            makedirs(OUTPUT_XML_DIR)
+        full_path = path.join(OUTPUT_XML_DIR, filename + ".xml")
         tree = ElementTree(self.root)
         tree.write(full_path, method="xml")
