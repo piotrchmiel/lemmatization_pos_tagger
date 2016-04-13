@@ -24,4 +24,4 @@ class XmlCreator(object):
             makedirs(OUTPUT_XML_DIR)
         full_path = path.join(OUTPUT_XML_DIR, filename + ".xml")
         tree = ElementTree(self.root)
-        tree.write(full_path, method="xml")
+        tree.write(full_path, method="xml", pretty_print=True)
