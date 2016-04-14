@@ -1,4 +1,5 @@
 from os import path, makedirs
+
 from lxml.etree import Element, SubElement, ElementTree
 
 from src.settings import OUTPUT_XML_DIR

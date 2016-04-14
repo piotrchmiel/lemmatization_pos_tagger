@@ -7,7 +7,6 @@ from src.utils.csv_reader import CsvReader
 
 
 class SklearnWrapper(object):
-
     def __init__(self, classifier, dtype=int, sparse=True, sort=False):
 
         self._classifier = classifier
@@ -37,4 +36,4 @@ class SklearnWrapper(object):
                 good += 1
             total += 1
 
-        return (good/total) * 100
+        return (good / total) * 100

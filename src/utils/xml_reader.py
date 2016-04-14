@@ -43,7 +43,7 @@ class XmlReader(object):
                 ctag = PosFeatureExtractor.tag_mapper(':'.join(
                     token.find('f', attrs={'name': 'disamb'}).find(
                         'f', attrs={'name': 'interpretation'}).find(
-                            'string').string.split(':')[1:]))
+                        'string').string.split(':')[1:]))
             except Exception:
                 pass
             else:

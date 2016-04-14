@@ -16,7 +16,6 @@ from src.settings import NN_UNITS, NN_LEARNING_RATE, NN_ITERATIONS
 
 
 def main():
-
     parser = ArgumentParser("Tagger trainer")
     parser.add_argument('--n-jobs', '-n', default=-1, type=int, help="Number of used CPU cores. Default: all cores")
     args = parser.parse_args()
@@ -31,9 +30,10 @@ def main():
                                                n_iter=NN_ITERATIONS)}
 
     Parallel(n_jobs=args.n_jobs)(chain((delayed(factory.dump_tagger)(deepcopy(algorithm), filename, True)
-                        for filename, algorithm in algorithms.items()),
-                        (delayed(factory.dump_tagger)(deepcopy(algorithm), filename, False)
-                        for filename, algorithm in algorithms.items())))
+                                        for filename, algorithm in algorithms.items()),
+                                       (delayed(factory.dump_tagger)(deepcopy(algorithm), filename, False)
+                                        for filename, algorithm in algorithms.items())))
+
 
 if __name__ == '__main__':
     main()

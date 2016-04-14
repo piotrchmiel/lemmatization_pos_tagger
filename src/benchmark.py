@@ -19,12 +19,13 @@ def main():
 
     print("*** Benchmark Start ***")
 
-    result = Parallel(n_jobs=-1)(chain((delayed(benchmark_result) (factory, feature_extractor, filename, True, 100)
+    result = Parallel(n_jobs=-1)(chain((delayed(benchmark_result)(factory, feature_extractor, filename, True, 100)
                                         for filename in TAGGER_FILENAMES),
-                                        (delayed(benchmark_result)(factory, feature_extractor, filename, False, 100)
+                                       (delayed(benchmark_result)(factory, feature_extractor, filename, False, 100)
                                         for filename in TAGGER_FILENAMES)))
 
     print("\n".join(sorted(result)))
+
 
 if __name__ == '__main__':
     main()

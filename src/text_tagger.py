@@ -1,6 +1,7 @@
+from argparse import ArgumentParser, FileType
+
 from nltk import word_tokenize
 from numpy import ndarray
-from argparse import ArgumentParser, FileType
 
 from src.factories.tagger_factory import TaggerFactory
 from src.utils.xml_creator import XmlCreator

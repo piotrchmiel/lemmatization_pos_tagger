@@ -1,8 +1,8 @@
-from os import path
 from collections import OrderedDict
+from os import path
 
 from src.settings import CLASSIFIERS_DIR, SUFFIX_FILE, N_ONE_LETTER, N_TWO_LETTERS, \
-                        N_THREE_LETTERS, N_FOUR_LETTERS, TAGGER_FILENAMES
+    N_THREE_LETTERS, N_FOUR_LETTERS, TAGGER_FILENAMES
 from src.utils.csv_reader import CsvReader
 from src.utils.extractor import PosFeatureExtractor
 from src.utils.suffix import SuffixUnpacker
@@ -10,7 +10,6 @@ from src.utils.tools import train_target, save_classifier, load_classifier
 
 
 class TaggerFactory(object):
-
     def __init__(self):
         suffix_unpacker = SuffixUnpacker(SUFFIX_FILE)
 

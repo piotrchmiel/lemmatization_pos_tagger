@@ -52,5 +52,6 @@ def main():
     else:
         print("You are trying to cheat on me again. Where's the Corpus directory?")
 
+
 if __name__ == '__main__':
     main()
