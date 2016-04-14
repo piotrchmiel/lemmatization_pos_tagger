@@ -73,8 +73,5 @@ Session.vim
 CorpusPWr/
 NationalCorpus/
 
-# Classifiers
-Classifiers/*.pickle
-
 # OutputXml
 OutputXml/

@@ -22,7 +22,7 @@ def main():
 
     factory = TaggerFactory()
 
-    algorithms = {'tagger_decision_tree': DecisionTreeClassifier(), 'sdg': SGDClassifier(), 'svm': SVC(),
+    algorithms = {'tagger_decision_tree': DecisionTreeClassifier(), 'sgd': SGDClassifier(), 'svm': SVC(),
                   'logistic_regression': LogisticRegression(), 'naive_bayes': BernoulliNB(),
                   'kneighbors': KNeighborsClassifier(),
                   'neural_network': Classifier(layers=[Layer("Rectifier", units=NN_UNITS), Layer("Softmax")],

@@ -24,10 +24,6 @@ Korpusy z powodu takiego, że są ogromnych rozmiarów wyleciały z repo i możn
 
 	installCorpuses.sh
 
-## Rozpakowanie nauczonych modeli:
-
-Ze względu na rozmiar modeli, zostały one spakowane przez xz. Można je rozpakować za pomocą skryptu `unpackClassifiers.sh`.
-
 ## Instalacja NLTK:
 
 Do tokenizacji słów w podanym tekście użyto NLTK. W celu instalacji w interpreterze należy użyć następujących komend:
