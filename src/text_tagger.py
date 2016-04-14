@@ -3,7 +3,6 @@ from numpy import ndarray
 from argparse import ArgumentParser, FileType
 
 from src.factories.tagger_factory import TaggerFactory
-from src.settings import TAGGER_FILENAMES
 from src.utils.xml_creator import XmlCreator
 
 
@@ -13,12 +12,8 @@ def main():
     args = parser.parse_args()
 
     factory = TaggerFactory()
-    taggers = {}
+    taggers = factory.load_all_taggers()
     feature_extractor = factory.get_feature_extractor()
-
-    for tagger_filename in TAGGER_FILENAMES:
-        taggers[tagger_filename + '_pwr'] = factory.load_pwr_tagger(tagger_filename)
-        taggers[tagger_filename + '_nc'] = factory.load_national_tagger(tagger_filename)
 
     if args.f is None:
         text = input("Provide a text input: ")

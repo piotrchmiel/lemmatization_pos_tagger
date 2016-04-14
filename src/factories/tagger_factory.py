@@ -1,7 +1,8 @@
 from os import path
+from collections import OrderedDict
 
 from src.settings import CLASSIFIERS_DIR, SUFFIX_FILE, N_ONE_LETTER, N_TWO_LETTERS, \
-                        N_THREE_LETTERS, N_FOUR_LETTERS
+                        N_THREE_LETTERS, N_FOUR_LETTERS, TAGGER_FILENAMES
 from src.utils.csv_reader import CsvReader
 from src.utils.extractor import PosFeatureExtractor
 from src.utils.suffix import SuffixUnpacker
@@ -34,6 +35,13 @@ class TaggerFactory(object):
     def load_pwr_tagger(self, filename):
         filename += "_pwr.pickle"
         return load_classifier(path.join(CLASSIFIERS_DIR, filename))
+
+    def load_all_taggers(self):
+        taggers = OrderedDict()
+        for tagger_filename in TAGGER_FILENAMES:
+            taggers[tagger_filename + '_pwr'] = self.load_pwr_tagger(tagger_filename)
+            taggers[tagger_filename + '_nc'] = self.load_national_tagger(tagger_filename)
+        return taggers
 
     def get_feature_extractor(self):
         return self.feature_extractor
