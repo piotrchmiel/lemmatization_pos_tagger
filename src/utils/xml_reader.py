@@ -24,10 +24,10 @@ class XmlReader(object):
             else:
                 return self.get_words_pwr(tokens)
 
-    def get_words_pwr(self, tokens):
+    @staticmethod
+    def get_words_pwr(tokens):
         for token in tokens:
             try:
-                word = ctag = None
                 word = token.orth.string
                 ctag = PosFeatureExtractor.tag_mapper(token.find('lex').ctag.string)
             except Exception:
@@ -36,7 +36,8 @@ class XmlReader(object):
                 if ctag is not None and word is not None and len(word) != 1:
                     yield word, ctag
 
-    def get_words_national(self, tokens):
+    @staticmethod
+    def get_words_national(tokens):
         for token in tokens:
             try:
                 word = token.find('f', attrs={'name': 'orth'}).find('string').string
@@ -53,7 +54,6 @@ class XmlReader(object):
     def find_xml_files(self):
         for root, _, files in walk(self.corpus_dir):
             for filename in files:
-                query = False
                 if self.use_national_corpus:
                     query = filename == "ann_morphosyntax.xml"
                 else:

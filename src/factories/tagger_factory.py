@@ -27,11 +27,13 @@ class TaggerFactory(object):
         csv_reader = CsvReader(use_national_corpus=use_national_corpus)
         save_classifier(file_location, train_target(classifier_object, self.feature_extractor, csv_reader))
 
-    def load_national_tagger(self, filename):
+    @staticmethod
+    def load_national_tagger(filename):
         filename += "_nc.pickle"
         return load_classifier(path.join(CLASSIFIERS_DIR, filename))
 
-    def load_pwr_tagger(self, filename):
+    @staticmethod
+    def load_pwr_tagger(filename):
         filename += "_pwr.pickle"
         return load_classifier(path.join(CLASSIFIERS_DIR, filename))
 

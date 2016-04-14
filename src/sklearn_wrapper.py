@@ -16,11 +16,11 @@ class SklearnWrapper(object):
     def __repr__(self):
         return "<SklearnWrapper(%r)>" % self._classifier
 
-    def train(self, X, y):
+    def train(self, x, y):
 
-        X = self._vectorizer.fit_transform(X)
+        x = self._vectorizer.fit_transform(x)
         y = self._encoder.fit_transform(y)
-        self._classifier.fit(X, y)
+        self._classifier.fit(x, y)
 
     def classify(self, feature_set):
         feature_set = self._vectorizer.transform(feature_set)
