@@ -6,11 +6,15 @@ class PosFeatureExtractor(object):
         self.common_suffixes.update({word for word, _ in three_letters_suffixes})
         self.common_suffixes.update({word for word, _ in four_letters_suffixes})
 
-    def pos_features(self, word):
+    def pos_features(self, word, n_1_tag=None, n_2_tag=None):
         features = {}
         for suffix in self.common_suffixes:
             if word.lower().endswith(suffix):
                 features['endswith({})'.format(suffix)] = True
+        if n_1_tag is not None:
+            features['n-1 word'] = n_1_tag
+        if n_2_tag is not None:
+            features['n-2 word'] = n_2_tag
         return features
 
     @staticmethod

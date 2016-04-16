@@ -1,3 +1,4 @@
+from collections import deque
 from itertools import islice
 
 from sklearn.feature_extraction import DictVectorizer
@@ -27,13 +28,18 @@ class SklearnWrapper(object):
         return self._encoder.classes_[self._classifier.predict(feature_set)][0]
 
     def accuracy(self, is_test_corpus_national, number_of_testing_features, feature_extractor):
+        lru_tag_cache = deque([None, None], maxlen=2)
+
         reader = CsvReader(use_national_corpus=is_test_corpus_national)
         total = 0
         good = 0
         for word, tag in islice(zip(reader.extract_feature('word'),
                                     reader.extract_feature('tag')), 0, number_of_testing_features):
-            if self.classify(feature_extractor.pos_features(word)) == tag:
+            tag_prediction = self.classify(feature_extractor.pos_features(word, n_1_tag=lru_tag_cache[0],
+                                                                          n_2_tag=lru_tag_cache[1]))
+            if tag_prediction == tag:
                 good += 1
             total += 1
+            lru_tag_cache.appendleft(tag_prediction)
 
         return (good / total) * 100
