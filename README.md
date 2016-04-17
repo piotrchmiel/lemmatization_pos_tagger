@@ -55,7 +55,7 @@ Zadania znajdują się na Trello: [nasza tablica](https://trello.com/b/XU09b2u5/
 
 ## Wyniki dokładności modeli w bazie
 <br/>
-| **Nazwa Algorytmu**                    |**Dokładność [%]** - korpus uczący PWr|**Dokładność [%]** - korpus uczący national|
+| **Nazwa Algorytmu**                    | **Dokładność [%]** - korpus uczący PWr | **Dokładność [%]** - korpus uczący national |
 |:--------------------------------------:|:------------------------------------:|:-----------------------------------------:|
 | Support Vector Machine                 | 56.468 | 54.949 |
 | Decision Trees                         | 57.246 | 55.671 |
