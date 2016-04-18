@@ -7,7 +7,7 @@ Projekt dotyczy stworzenia modułu znakującego części mowy oraz lematyzatora 
 Wymagany Python 3.5. Opcjonalnie `venv` do pracy w wirtualnym środowisku wbudowany w Pythona3.
 http://docs.python.org/3/library/venv.html
 
-    python3 -m venv myenv
+    python3 -m venv env
     source env/bin/activate
     which pip3 # dla pewności możesz sprawdzić jaką teraz ścieżkę wskazuje pip3
 
@@ -32,7 +32,7 @@ Do tokenizacji słów w podanym tekście użyto NLTK. W celu instalacji w interp
 
 	>>> import nltk
 	>>> nltk.download()
- 
+
 ## Wirtualna maszyna udostępniona przez prowadzącego
 
     IP : 156.17.135.57
