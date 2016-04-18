@@ -4,8 +4,7 @@ Projekt dotyczy stworzenia modułu znakującego części mowy oraz lematyzatora 
 
 ## Rozpoczęcie pracy:
 
-Wymagany Python 3.5. Opcjonalnie `venv` do pracy w wirtualnym środowisku wbudowany w Pythona3.
-http://docs.python.org/3/library/venv.html
+Wymagany Python 3.5. Opcjonalnie `venv` do pracy w wirtualnym środowisku - wbudowany w Pythona 3 (http://docs.python.org/3/library/venv.html).
 
     python3 -m venv env
     source env/bin/activate
@@ -45,7 +44,7 @@ Zadania znajdują się na Trello: [nasza tablica](https://trello.com/b/XU09b2u5/
 ## Technologie
    - Python 3.5 ([Dokumentacja](http://docs.python.org/3.5/))
    - Scikit Learn 0.17.1 ([Dokumentacja](http://http://scikit-learn.org/0.17/documentation.html))
-   - Scikit Neural Network 0.6.1([Dokumentacja](https://scikit-neuralnetwork.readthedocs.org/en/latest/))
+   - Scikit Neural Network 0.6.1 ([Dokumentacja](https://scikit-neuralnetwork.readthedocs.org/en/latest/))
    - Joblib 0.9.4 ([Dokumentacja](https:/pythonhosted.org/joblib/))
    - NLTK 3.2 ([Dokumentacja](http://www.nltk.org))
    - Beautiful Soup 4.4.1 ([Dokumentacja](https://www.crummy.com/software/BeautifulSoup/bs4/doc/))
@@ -55,12 +54,12 @@ Zadania znajdują się na Trello: [nasza tablica](https://trello.com/b/XU09b2u5/
 
 ## Wyniki dokładności modeli w bazie
 
-| **Nazwa Algorytmu**                    | **Dokładność [%]- korpus uczący PWr** | **Dokładność [%]- korpus uczący national** |
-|:--------------------------------------:|:------------------------------------:|:-----------------------------------------:|
-| Support Vector Machine                 | 56.468 | 54.949 |
-| Decision Trees                         | 57.246 | 55.671 |
-| Stochastic Gradient Descent            | 53.627 | 53.121 |
-| Logistic Regression                    | 55.571 | 55.307 |
-| Naive Bayes                            | 54.141 | 52.813 |
-| K Neighbors                            | 50.168 | 50.255 |
-| Neural Networks                        | 55.801 | 54.692 |
+| **Nazwa Algorytmu**          | **Dokładność [%] - korpus uczący PWr** | **Dokładność [%] - korpus uczący national** |
+|:----------------------------:|:--------------------------------------:|:-------------------------------------------:|
+| Support Vector Machine       | 56.468 | 54.949 |
+| Decision Trees               | 57.246 | 55.671 |
+| Stochastic Gradient Descent  | 53.627 | 53.121 |
+| Logistic Regression          | 55.571 | 55.307 |
+| Naive Bayes                  | 54.141 | 52.813 |
+| K Neighbors                  | 50.168 | 50.255 |
+| Neural Networks              | 55.801 | 54.692 |
