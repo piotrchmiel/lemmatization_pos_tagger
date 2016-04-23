@@ -1,5 +1,6 @@
 from collections import OrderedDict
 from os import path
+import logging
 
 from src.settings import CLASSIFIERS_DIR, SUFFIX_FILE, N_ONE_LETTER, N_TWO_LETTERS, \
     N_THREE_LETTERS, N_FOUR_LETTERS, TAGGER_FILENAMES
@@ -11,6 +12,7 @@ from src.utils.tools import train_target, save_classifier, load_classifier
 
 class TaggerFactory(object):
     def __init__(self):
+        logging.basicConfig(filename='tagger_factory.log', level=logging.INFO)
         suffix_unpacker = SuffixUnpacker(SUFFIX_FILE)
 
         one_letter_suffixes = suffix_unpacker.extract_n_best_one_letter(N_ONE_LETTER)
@@ -25,7 +27,11 @@ class TaggerFactory(object):
         filename = filename + "_nc.pickle" if use_national_corpus else filename + "_pwr.pickle"
         file_location = path.join(CLASSIFIERS_DIR, filename)
         csv_reader = CsvReader(use_national_corpus=use_national_corpus)
-        save_classifier(file_location, train_target(classifier_object, self.feature_extractor, csv_reader))
+        classifier, elapsed_time = train_target(classifier_object, self.feature_extractor, csv_reader)
+        save_classifier(file_location, classifier)
+        logging.info('--> Trained model' + str(classifier_object) +
+                  '\n---> Training time: ' + elapsed_time +
+                  '\n---> Saved in: ' + file_location)
 
     @staticmethod
     def load_national_tagger(filename):
