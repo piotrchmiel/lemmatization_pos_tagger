@@ -6,14 +6,10 @@ class SuffixUnpacker(object):
         with open(name_of_pickle_file, "rb") as file_handler:
             self.suffixes = load(file_handler)
 
-    def extract_n_best_one_letter(self, n):
-        return self.suffixes[0].most_common(n)
+    def get_number_of_suffixes(self):
+        return len(self.suffixes)
 
-    def extract_n_best_two_letters(self, n):
-        return self.suffixes[1].most_common(n)
-
-    def extract_n_best_three_letters(self, n):
-        return self.suffixes[2].most_common(n)
-
-    def extract_n_best_four_letters(self, n):
-        return self.suffixes[3].most_common(n)
+    def extract_n_best_k_letters(self, k, n):
+        if k - 1 > len(self.suffixes):
+            return {}
+        return self.suffixes[k - 1].most_common(n)

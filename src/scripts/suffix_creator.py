@@ -3,12 +3,13 @@ from os import path, walk, mkdir
 from pickle import dump
 
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse
 
 from src.settings import PWR_CORPUS_DIR, SUFFIX_FILE, SUFFIX_DIR
 
 
 def get_words(filename):
-    with open(filename) as file_handler:
+    with open(filename, encoding="utf8") as file_handler:
         tokens = BeautifulSoup(file_handler.read(), 'xml').find_all('tok')
         for token in tokens:
             word = token.orth.string
@@ -27,28 +28,23 @@ def find_xml_files(folder_name):
 
 
 def main():
-    one_letter_suffixes = Counter()
-    two_letter_suffixes = Counter()
-    three_letter_suffixes = Counter()
-    four_letter_suffixes = Counter()
+    suffixes = []
 
     if path.exists(PWR_CORPUS_DIR):
         for filename in find_xml_files(PWR_CORPUS_DIR):
             for word in get_words(filename):
-                one_letter_suffixes[word[-1:]] += 1
-                if len(word) > 2:
-                    two_letter_suffixes[word[-2:]] += 1
-                if len(word) > 3:
-                    three_letter_suffixes[word[-3:]] += 1
-                if len(word) > 4:
-                    four_letter_suffixes[word[-4:]] += 1
+                if bool(urlparse(word).scheme):  # we do not want URLs contaminating suffixes
+                    continue
+                for suffix_length in range(1, len(word)):
+                    if len(suffixes) < suffix_length:
+                        suffixes.append(Counter())
+                    suffixes[suffix_length - 1][word[-suffix_length:]] += 1
 
         if not path.exists(SUFFIX_DIR):
             mkdir(SUFFIX_DIR)
 
         with open(SUFFIX_FILE, 'wb') as file_handler:
-            dump([one_letter_suffixes, two_letter_suffixes, three_letter_suffixes,
-                  four_letter_suffixes], file_handler)
+            dump(suffixes, file_handler)
     else:
         print("You are trying to cheat on me again. Where's the Corpus directory?")
 

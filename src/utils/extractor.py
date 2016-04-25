@@ -1,10 +1,12 @@
+from src.settings import N_ONE_LETTER, N_OTHER_LETTERS
+
+
 class PosFeatureExtractor(object):
-    def __init__(self, one_letter_suffixes, two_letters_suffixes, three_letters_suffixes,
-                 four_letters_suffixes):
-        self.common_suffixes = {word for word, _ in one_letter_suffixes}
-        self.common_suffixes.update({word for word, _ in two_letters_suffixes})
-        self.common_suffixes.update({word for word, _ in three_letters_suffixes})
-        self.common_suffixes.update({word for word, _ in four_letters_suffixes})
+    def __init__(self, suffix_unpacker):
+        self.common_suffixes = {word for word, _ in suffix_unpacker.extract_n_best_k_letters(1, N_ONE_LETTER)}
+        for length in range(1, suffix_unpacker.get_number_of_suffixes()):
+            self.common_suffixes.update({word for word, _ in suffix_unpacker.extract_n_best_k_letters(
+                length, N_OTHER_LETTERS)})
 
     def pos_features(self, word, n_1_tag=None, n_2_tag=None):
         features = {}
