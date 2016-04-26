@@ -1,4 +1,4 @@
-# Zastotoswanie Informatyki W Gospodarce
+# Zastosowania informatyki w gospodarce
 
 Projekt dotyczy stworzenia modułu znakującego części mowy oraz lematyzatora języka polskiego przy wykorzystaniu metody "deeplearning".
 
