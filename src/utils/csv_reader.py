@@ -22,10 +22,7 @@ class CsvReader(object):
 
         with open(self.csv_file_path, "w", newline="", encoding="utf8") as csv_file:
             reader = XmlReader(self.corpus_dir, use_national_corpus=self.use_national_corpus)
-            if not self.extract_base_words:
-                fieldnames = ['word', 'tag']
-            else:
-                fieldnames = ['word', 'base']
+            fieldnames = ['word', 'tag' if not self.extract_base_words else 'base']
             writer = DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()
             for word, tag, base in reader.extract_words_and_tags():
