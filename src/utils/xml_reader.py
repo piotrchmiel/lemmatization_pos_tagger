@@ -12,11 +12,11 @@ class XmlReader(object):
 
     def extract_words_and_tags(self):
         for filename in self.find_xml_files():
-            for word, ctag in self.get_words(filename):
-                yield word, ctag
+            for word, ctag, base in self.get_words(filename):
+                yield word, ctag, base
 
     def get_words(self, filename):
-        with open(filename) as file_handler:
+        with open(filename, encoding='utf8') as file_handler:
             tokens_str = 'seg' if self.use_national_corpus else 'tok'
             tokens = BeautifulSoup(file_handler.read(), 'xml').find_all(tokens_str)
             if self.use_national_corpus:
@@ -30,11 +30,12 @@ class XmlReader(object):
             try:
                 word = token.orth.string
                 ctag = PosFeatureExtractor.tag_mapper(token.find('lex').ctag.string)
+                base = token.find('lex', {'disamb': '1'}).base.string
             except Exception:
                 pass
             else:
-                if ctag is not None and word is not None and len(word) != 1:
-                    yield word, ctag
+                if ctag is not None and word is not None and len(word) != 1 and base is not None:
+                    yield word, ctag, base
 
     @staticmethod
     def get_words_national(tokens):
@@ -45,11 +46,13 @@ class XmlReader(object):
                     token.find('f', attrs={'name': 'disamb'}).find(
                         'f', attrs={'name': 'interpretation'}).find(
                         'string').string.split(':')[1:]))
+                base = token.find('f', attrs={'name': 'disamb'}).find('f', attrs={'name': 'interpretation'}).\
+                             find('string').string.split(':')[0]
             except Exception:
                 pass
             else:
-                if ctag is not None and word is not None and len(word) != 1:
-                    yield word, ctag
+                if ctag is not None and word is not None and len(word) != 1 and base is not None:
+                    yield word, ctag, base
 
     def find_xml_files(self):
         for root, _, files in walk(self.corpus_dir):
