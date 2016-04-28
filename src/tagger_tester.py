@@ -9,7 +9,7 @@ def main():
     word = input("Please provide a word to tag: ")
 
     for name, tagger in taggers.items():
-        print("{0:25} : {1}".format(name, tagger.classify(feature_extractor.pos_features(word))))
+        print("{0:25} : {1}".format(name, tagger.classify(feature_extractor.extract_suffixes(word))))
 
 
 if __name__ == '__main__':

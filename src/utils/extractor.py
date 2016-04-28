@@ -19,6 +19,16 @@ class PosFeatureExtractor(object):
             features['n-2 word'] = n_2_tag
         return features
 
+    def extract_suffixes(self, word, n_1_tag=None, n_2_tag=None):
+        features = {}
+        for suffix_length in range(len(word) - 1):
+            features['endswith({})'.format(word[-(suffix_length + 1):])] = True
+        if n_1_tag is not None:
+            features['n-1 word'] = n_1_tag
+        if n_2_tag is not None:
+            features['n-2 word'] = n_2_tag
+        return features
+
     @staticmethod
     def tag_mapper(word):
         parts_of_speech = {

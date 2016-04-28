@@ -8,11 +8,10 @@ from src.sklearn_wrapper import SklearnWrapper
 
 
 def feature_generator(feature_extractor, csv_reader):
-
     last_tag_cache = deque([None, None], maxlen=2)
 
     for word, tag in zip(csv_reader.extract_feature('word'), csv_reader.extract_feature('tag')):
-        yield feature_extractor.pos_features(word, n_1_tag=last_tag_cache[0], n_2_tag=last_tag_cache[1])
+        yield feature_extractor.extract_suffixes(word, n_1_tag=last_tag_cache[0], n_2_tag=last_tag_cache[1])
 
         last_tag_cache.appendleft(tag)
 
