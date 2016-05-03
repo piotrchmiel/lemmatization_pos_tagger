@@ -10,7 +10,7 @@ class GPUClassifier:
 
     def __init__(self, n_classes=10):
         GPUClassifier.N_CLASSES = n_classes
-        self.classifier = skflow.TensorFlowEstimator(model_fn=self.rnn_model, n_classes=15,
+        self.classifier = skflow.TensorFlowEstimator(model_fn=self.rnn_model, n_classes=GPUClassifier.N_CLASSES,
                                                      steps=1000, optimizer='Adam', learning_rate=0.01,
                                                      continue_training=True)
 
