@@ -11,6 +11,7 @@ from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sknn.mlp import Classifier, Layer
 
+from src.classifiers.gpu_classifier import GPUClassifier
 from src.factories.tagger_factory import TaggerFactory
 from src.settings import NN_UNITS, NN_LEARNING_RATE, NN_ITERATIONS
 
@@ -27,7 +28,8 @@ def main():
                   'kneighbors': KNeighborsClassifier(),
                   'neural_network': Classifier(layers=[Layer("Rectifier", units=NN_UNITS), Layer("Softmax")],
                                                learning_rate=NN_LEARNING_RATE,
-                                               n_iter=NN_ITERATIONS)}
+                                               n_iter=NN_ITERATIONS),
+                  'gpu_classifier': GPUClassifier()}
 
     Parallel(n_jobs=args.n_jobs)(chain((delayed(factory.dump_tagger)(deepcopy(algorithm), filename, True)
                                         for filename, algorithm in algorithms.items()),
