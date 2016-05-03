@@ -35,7 +35,7 @@ class SklearnWrapper(object):
         good = 0
         for word, tag in islice(zip(reader.extract_feature('word'),
                                     reader.extract_feature('tag')), 0, number_of_testing_features):
-            tag_prediction = self.classify(feature_extractor.extract_suffixes(word, n_1_tag=lru_tag_cache[0],
+            tag_prediction = self.classify(feature_extractor.pos_features(word, n_1_tag=lru_tag_cache[0],
                                                                               n_2_tag=lru_tag_cache[1]))
             if tag_prediction == tag:
                 good += 1

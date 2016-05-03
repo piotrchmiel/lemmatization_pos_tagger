@@ -30,7 +30,7 @@ def main():
         xml_creator.create_new_root("token")
         xml_creator.add_word(word)
         for tagger_name, tagger, last_run_tag in taggers:
-            tag = tagger.classify(feature_extractor.extract_suffixes(
+            tag = tagger.classify(feature_extractor.pos_features(
                 word, n_1_tag=last_run_tag[0], n_2_tag=last_run_tag[1]))
             if isinstance(tag, ndarray):  # neural network output is nd-array
                 tag = tag[0]

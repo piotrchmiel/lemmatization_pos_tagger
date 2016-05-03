@@ -8,7 +8,7 @@ class GPUClassifier:
     N_CLASSES = 10
     MAX_DOCUMENT_LENGTH = 133
 
-    def __init__(self, n_classes):
+    def __init__(self, n_classes=10):
         GPUClassifier.N_CLASSES = n_classes
         self.classifier = skflow.TensorFlowEstimator(model_fn=self.rnn_model, n_classes=15,
                                                      steps=1000, optimizer='Adam', learning_rate=0.01,
@@ -39,8 +39,9 @@ class GPUClassifier:
 
     def fit(self, X, y):
         GPUClassifier.MAX_DOCUMENT_LENGTH = X.shape[1]
-        X = X.toarray()
+        X = X.toarray()  # this won't work with bigger matrices
         return self.classifier.fit(X, y)
 
     def predict(self, thing):
+        thing = thing.toarray()
         return self.classifier.predict(thing)
