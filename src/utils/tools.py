@@ -1,9 +1,11 @@
 from collections import deque
 from datetime import timedelta
+from os import path
 from time import time
 
 from joblib import load, dump
 
+from src.classifiers.gpu_classifier import GPUClassifier
 from src.sklearn_wrapper import SklearnWrapper
 
 
@@ -32,8 +34,16 @@ def train_target(class_object, feature_extractor, csv_reader):
 
 
 def save_classifier(file_location, classifier):
-    dump(classifier, file_location, 9)
+    if 'gpu' in path.basename(file_location) or 'gpu' in str(classifier):
+        classifier._classifier.save_classifier(file_location)
+    else:
+        dump(classifier, file_location, 9)
 
 
 def load_classifier(file_location):
-    return load(file_location)
+    if 'gpu' in path.basename(file_location):
+        gpu_classifier = GPUClassifier()
+        gpu_classifier.load_classifier(file_location)
+        return SklearnWrapper(gpu_classifier)
+    else:
+        return load(file_location)

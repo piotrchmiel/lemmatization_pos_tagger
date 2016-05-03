@@ -45,3 +45,9 @@ class GPUClassifier:
     def predict(self, thing):
         thing = thing.toarray()
         return self.classifier.predict(thing)
+
+    def save_classifier(self, file_location):
+        return self.classifier.save(file_location)
+
+    def load_classifier(self, file_location):
+        self.classifier = skflow.TensorFlowEstimator.restore(file_location)
