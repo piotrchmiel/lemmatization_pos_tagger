@@ -36,6 +36,8 @@ def train_target(class_object, feature_extractor, csv_reader):
 def save_classifier(file_location, classifier):
     if 'gpu' in path.basename(file_location) or 'gpu' in str(classifier):
         classifier._classifier.save_classifier(file_location)
+        classifier._classifier = None
+        dump(classifier, file_location + '_skl', 9)
     else:
         dump(classifier, file_location, 9)
 
@@ -44,6 +46,8 @@ def load_classifier(file_location):
     if 'gpu' in path.basename(file_location):
         gpu_classifier = GPUClassifier()
         gpu_classifier.load_classifier(file_location)
-        return SklearnWrapper(gpu_classifier)
+        skl = load(file_location + '_skl')
+        skl._classifier = gpu_classifier
+        return skl
     else:
         return load(file_location)
