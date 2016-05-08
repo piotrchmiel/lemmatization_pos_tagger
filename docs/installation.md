@@ -26,7 +26,16 @@ Należy uruchomić skrypt instalacyjny, który rozpakowywuje korpus PWr z pliku 
 
 
 ## Instalacja NLTK
-Do tokenizacji słów w podanym tekście użyto NLTK. W celu instalacji w interpreterze należy użyć następujących komend:
+Do tokenizacji słów w podanym tekście użyto NLTK. Dwie opcje instalacji:
 
-	>>> import nltk
-	>>> nltk.download()
+1. Interaktywna instalacja w interpreterze:
+```
+>>> import nltk
+>>> nltk.download()
+```
+
+2. Instalacja poprzez linię komend:
+```
+sudo python -m nltk.downloader -d /usr/local/share/nltk_data all
+```
+Dane NTLK zostaną zainstalowane w katalogu `/usr/local/share/nltk_data`.
