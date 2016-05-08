@@ -12,7 +12,20 @@ Aby wykonać powyższą komendę wraz z włączeniem `venv`, wystarczy pobrać z
 
 ## Tagger - uczenie klasyfikatorów
 
-    $ python src/tagger_trainer.py -h  # więcej o ustawianiu ilości rdzeni
-    $ python src/tagger_trainer.py
+    $ python3 src/tagger_trainer.py -h  # więcej o ustawianiu ilości rdzeni
+    $ python3 src/tagger_trainer.py
 
 Domyślnie podczas uczenia używane są wszystkie rdzenie procesora - jeden rdzeń na algorytm. Logi związane z uczeniem zapisywane są do pliku `tagger_factory.log`.
+
+
+## Testowanie taggera
+
+    $ python3 src/tagger_tester.py  # pojedyncze słowo
+    $ python3 src/text_tagger.py    # tekst
+
+Skrypt zapyta się o słowo/tekst do klasyfikacji.
+
+
+## Uruchomienie benchmarka
+
+    $ python3 src/benchmark.py
