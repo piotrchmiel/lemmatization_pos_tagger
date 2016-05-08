@@ -38,4 +38,19 @@ Do tokenizacji słów w podanym tekście użyto NLTK. Dwie opcje instalacji:
 ```
 sudo python -m nltk.downloader -d /usr/local/share/nltk_data all
 ```
-Dane NTLK zostaną zainstalowane w katalogu `/usr/local/share/nltk_data`.
+Dane NLTK zostaną zainstalowane w katalogu `/usr/local/share/nltk_data`.
+
+
+## Instalacja CUDA
+1. Pobranie paczki instalującej repozytorium Nvidii ze strony: https://developer.nvidia.com/cuda-downloads, testowana wersja: Linux Ubuntu 14.04, architektura x86_64, paczka deb (local).
+2. Instalacja repozytorium w systemie:
+```
+$ dpkg -i cuda-repo-ubuntu1404-7-5-local_7.5-18_amd64.deb`
+```
+3. Instalacja sterowników i środowiska CUDA:
+```
+apt-get update && apt-get install -y cuda
+```
+4. Restart maszyny w celu załadowania sterowników Nvidii zamiast Nouveau.
+5. Instalacja Nvidia cuDNN (biblioteki wspomagające sieci neuronowe): należy umieścić zawartość archiwum `cudnn-7.0-linux-x64-v4.0-prod.tgz` w folderze `/usr/local/cuda`. Do ściągnięcia ze strony https://developer.nvidia.com/rdp/form/cudnn-download-survey.
+6. Instalacja modułu `tensorflow`. 
