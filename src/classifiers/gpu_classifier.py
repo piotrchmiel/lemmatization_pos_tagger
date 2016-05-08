@@ -7,11 +7,13 @@ class GPUClassifier:
     EMBEDDING_SIZE = 50
     N_CLASSES = 10
     MAX_DOCUMENT_LENGTH = 133
+    SPLIT_STEP = 10000
 
-    def __init__(self, n_classes=10):
+    def __init__(self, n_classes=10, split_step=10000, train_steps=1000, learning_rate=0.01):
         GPUClassifier.N_CLASSES = n_classes
+        GPUClassifier.SPLIT_STEP = split_step
         self.classifier = skflow.TensorFlowEstimator(model_fn=self.rnn_model, n_classes=GPUClassifier.N_CLASSES,
-                                                     steps=1000, optimizer='Adam', learning_rate=0.01,
+                                                     steps=train_steps, optimizer='Adam', learning_rate=learning_rate,
                                                      continue_training=True)
 
     @staticmethod
@@ -39,8 +41,13 @@ class GPUClassifier:
 
     def fit(self, X, y):
         GPUClassifier.MAX_DOCUMENT_LENGTH = X.shape[1]
-        X = X.toarray()  # this won't work with bigger matrices
-        return self.classifier.fit(X, y)
+        for i in range(0, X.shape[0], GPUClassifier.SPLIT_STEP):
+            if X.shape[0] - i > GPUClassifier.SPLIT_STEP:
+                j = i + GPUClassifier.SPLIT_STEP - 1
+            else:
+                j = X.shape[0]
+            self.classifier.partial_fit(X[i:j].toarray(), y[i:j])
+        return self.classifier
 
     def predict(self, thing):
         thing = thing.toarray()
