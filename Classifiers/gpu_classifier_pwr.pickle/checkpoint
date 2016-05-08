@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/tomekw/lemmatization_pos_tagger/Classifiers/gpu_classifier_pwr.pickle/model-2000"
+all_model_checkpoint_paths: "/home/tomekw/lemmatization_pos_tagger/Classifiers/gpu_classifier_pwr.pickle/model-2000"
