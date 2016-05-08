@@ -1,6 +1,6 @@
 # Przygotowanie środowiska
 
-Wymagany [Python 3.5](http://docs.python.org/3.5/) oraz [PIP](https://pip.pypa.io/en/stable/).
+Wymagany [Python 3.5](https://www.python.org/downloads/) oraz [PIP](https://pip.pypa.io/en/stable/).
 
 
 ## Wirtualne środowisko (opcjonalnie)

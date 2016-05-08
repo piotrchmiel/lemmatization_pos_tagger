@@ -1,9 +1,8 @@
 # Wyniki pomiarów działania programu
 
-## Wyniki dokładności modeli w bazie
-
-| **Nazwa algorytmu**          | **Dokładność [%] - korpus uczący PWr** | **Dokładność [%] - korpus uczący national** |
-|:----------------------------:|:--------------------------------------:|:-------------------------------------------:|
+## Dokładność modeli w bazie
+| Nazwa algorytmu              | Dokładność [%] - korpus uczący PWr | Dokładność [%] - korpus uczący national |
+|:----------------------------:|:------:|:------:|
 | Support Vector Machine       | 56.468 | 54.949 |
 | Decision Trees               | 57.246 | 55.671 |
 | Stochastic Gradient Descent  | 53.627 | 53.121 |
@@ -14,8 +13,8 @@
 
 
 ## Czas uczenia
-| **Nazwa algorytmu**          | **Korpus uczący PWr `(h:m:s)`** | **Korpus uczący national `(h:m:s)`** |
-|:----------------------------:|:-------------------------------:|:------------------------------------:|
+| Nazwa algorytmu              | Korpus uczący PWr `(h:m:s)` | Korpus uczący national `(h:m:s)` |
+|:----------------------------:|:--------:|:--------:|
 | Support Vector Machine       |  2:05:03 | 45:46:28 |
 | Decision Trees               |  0:00:30 |  0:02:24 |
 | Stochastic Gradient Descent  |  0:00:29 |  0:02:09 |
