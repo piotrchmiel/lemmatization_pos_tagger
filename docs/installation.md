@@ -1,6 +1,6 @@
 # Przygotowanie środowiska
 
-Wymagany [Python 3.5](https://www.python.org/downloads/) oraz [PIP](https://pip.pypa.io/en/stable/).
+Wymagany [Python 3.5](https://www.python.org/downloads/).
 
 
 ## Wirtualne środowisko (opcjonalnie)
@@ -33,10 +33,9 @@ Do tokenizacji słów w podanym tekście użyto NLTK. Dwie opcje instalacji:
 >>> import nltk
 >>> nltk.download()
 ```
-
 2. Instalacja poprzez linię komend:
 ```
-sudo python -m nltk.downloader -d /usr/local/share/nltk_data all
+$ sudo python -m nltk.downloader -d /usr/local/share/nltk_data all
 ```
 Dane NLTK zostaną zainstalowane w katalogu `/usr/local/share/nltk_data`.
 
@@ -49,8 +48,8 @@ $ dpkg -i cuda-repo-ubuntu1404-7-5-local_7.5-18_amd64.deb`
 ```
 3. Instalacja sterowników i środowiska CUDA:
 ```
-apt-get update && apt-get install -y cuda
+$ apt-get update && apt-get install -y cuda
 ```
 4. Restart maszyny w celu załadowania sterowników Nvidii zamiast Nouveau.
 5. Instalacja Nvidia cuDNN (biblioteki wspomagające sieci neuronowe): należy umieścić zawartość archiwum `cudnn-7.0-linux-x64-v4.0-prod.tgz` w folderze `/usr/local/cuda`. Do ściągnięcia ze strony https://developer.nvidia.com/rdp/form/cudnn-download-survey.
-6. Instalacja modułu `tensorflow`. 
+6. Instalacja modułu [tensorflow](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html) dla Pythona.
