@@ -1,9 +1,11 @@
 # Korzystanie z programu
 
 ## Konfiguracja środowiska
-Należy dodać folder `src` z kodem programu do zmiennej środowiskowej `PYTHONPATH`:
+Należy dodać folder zawierający projekt do zmiennej środowiskowej `PYTHONPATH`.
+Jeśli akurat się w nim znajdujemy (jest on katalogiem bieżącym), można to zrobić np. poprzez:
 
-    $ export PYTHONPATH="${PYTHONPATH}:${PWD}/src"
+    $ export PYTHONPATH="${PYTHONPATH}:${PWD}"
+
 
 Aby wykonać powyższą komendę wraz z włączeniem `venv`, wystarczy pobrać zawartość pliku `prepare` do shella poprzez:
 
@@ -23,7 +25,7 @@ Projekt zawiera skrypt umożliwiający konwersję plików xmlowych do formatu cs
 
 ## Tagger - uczenie klasyfikatorów
 
-    $ python3 src/tagger_trainer.py -h  # więcej o ustawianiu ilości rdzeni
+    $ python3 src/tagger_trainer.py -h  # więcej o ustawianiu liczby rdzeni
     $ python3 src/tagger_trainer.py
 
 Domyślnie podczas uczenia używane są wszystkie rdzenie procesora - jeden rdzeń na algorytm. Logi związane z uczeniem zapisywane są do pliku `tagger_factory.log`.
