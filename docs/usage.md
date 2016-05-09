@@ -9,6 +9,17 @@ Aby wykonać powyższą komendę wraz z włączeniem `venv`, wystarczy pobrać z
 
     $ source prepare
 
+## Konwersja plików xml do csv
+Projekt zawiera skrypt umożliwiający konwersję plików xmlowych do formatu csv:
+
+    $ python3 src/scripts/csv_creator.py -h
+    usage: csv_creator.py [-h] (--use_pwr | --use_national) [--extract_base_words]
+    optional arguments:
+    -h, --help            show this help message and exit
+    --use_pwr             Use pwr corpus
+    --use_national        Use national corpus
+    --extract_base_words  Save words with their base form
+
 
 ## Tagger - uczenie klasyfikatorów
 
