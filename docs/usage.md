@@ -10,6 +10,9 @@ Jeśli akurat się w nim znajdujemy (jest on katalogiem bieżącym), można to z
 Aby wykonać powyższą komendę wraz z włączeniem `venv`, wystarczy pobrać zawartość pliku `prepare` do shella poprzez:
 
     $ source prepare
+    
+## Ustawienia ścieżek
+Skrypty korzystają ze ścieżek konfigurowalnych za pomocą pliku src/settings.py.
 
 ## Konwersja plików xml do csv
 Projekt zawiera skrypt umożliwiający konwersję plików xmlowych do formatu csv:
@@ -22,6 +25,8 @@ Projekt zawiera skrypt umożliwiający konwersję plików xmlowych do formatu cs
     --use_national        Use national corpus
     --extract_base_words  Save words with their base form
 
+## Tworzenie bazy końcówek
+Do stworzenia bazy końcówek służy plik src/scripts/suffix_creator.py.
 
 ## Tagger - uczenie klasyfikatorów
 
