@@ -9,10 +9,12 @@ Pliki pośrednie można usunąć komendą `make clean`.
 
 ## Kompilacja dokumentu
 ```
-frontpage.tex -----------------\
-project-docs.tex ---------------\
-                                 \
-installation.md -\                \
-usage.md        --> app-docs.tex --> report.pdf
-results.md      -/
+frontpage.tex ------------------\
+project-docs.tex ----------------\
+                                  \
+installation.md --\                \
+usage.md ----------> app-docs.tex --> report.pdf
+results.md -------/                /
+                                  /
+data-and-classifiers.tex --------/
 ```
