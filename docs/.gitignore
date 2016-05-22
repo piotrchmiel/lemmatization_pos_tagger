@@ -21,3 +21,6 @@
 *.mtc1
 *.out
 *.synctex.gz
+
+# files
+app-docs.tex
