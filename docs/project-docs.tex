@@ -1,0 +1,89 @@
+\section{Cel projektu}
+
+\textbf{Temat projektu:} {\large \textit{Deeplearning -- tagger (POS, lematyzacja)}.}
+\medskip
+
+Zadaniem realizowanego przedsięwzięcia jest stworzenie programu głębokiego uczenia (ang. \textit{deep learning}) z zakresu przetwarzania języka naturalnego. Jego celem jest przypisywanie każdemu wyrazowi w tekście wejściowym odpowiadającej mu części mowy (ang. \textit{part-of-speech, POS}). Wykonanie zadania tagowania zostanie poprzedzone procesem lematyzacji tekstu.
+
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[node distance=3cm,auto,>=latex']
+		\tikzstyle{box} = [rectangle, draw, fill=blue!10, rounded corners, inner sep=.5em]
+		\tikzstyle{ball} = [ellipse, draw, fill=blue!10, align=center, anchor=north, inner sep=.5em]
+		\node (a) {\textit{,,Ala ma kota''}};
+		\node (b) [box, right of=a, node distance=3.5cm] {lematyzator};
+		\node (c) [box, right of=b, node distance=5.5cm] {POS tagger};
+		\node (d) [right of=c, node distance=3.8cm] {
+			\tabcolsep=1.5pt
+			\renewcommand{\arraystretch}{1}
+			\begin{tabular}{ccc}
+				{\footnotesize RZ} & {\footnotesize CZ} & {\footnotesize RZ} \\
+				\textit{,,Ala} & \textit{mieć} & \textit{kot''}
+			\end{tabular}
+		};
+		\node (c1) [box, above of=c, node distance=2cm] {lematyzator};
+		\node (c2) [ball, above of=c1, node distance=1.5cm] {zbiór uczący};
+		\path[->] (a) edge node {} (b);
+		\path[->] (b) edge node {\textit{,,Ala mieć kot''}} (c);
+		\draw[->] (c) edge node {} (d);
+		\draw[->] (c1) edge node [anchor=center,fill=white]{uczenie} (c);
+		\draw[->] (c2) edge node {} (c1);
+	\end{tikzpicture}
+	\caption{Uproszczony schemat działania programu.}		
+\end{figure}
+
+Realizacja powinna posiadać formę aplikacji desktopowej lub skryptu. Cel projektu zostanie osiągnięty, jeśli przygotowane oprogramowanie (wyposażone w odpowiedni zbiór uczący) będzie w stanie przetwarzać tekst w języku polskim w czasie i dokładności, które zostaną sprecyzowane przez prowadzącego.
+
+	
+\section{Koszty}
+\subsection*{Szacunkowy czas wykonania}
+Biorąc pod uwagę zakres tematyczny projektu szacuję się, że do jego wykonania potrzebnych jest 400 godzin roboczych. Około 1/8 czasu poświęcone będzie na zebranie i analizę materiałów dotyczących projektu, ogólne poznanie możliwości i technologii. Największa część czasu zużyta zostanie na implementację projektu (stworzenie lematyzatora oraz taggera). Szacuje się, że będzie to 6/8 czasu. Pozostała część przeznaczona jest na kontakty z prowadzącym oraz testy zaimplementowanego rozwiązania.
+
+\subsection*{Szacunkowy koszt projektu}
+Mając na uwadze poziom skomplikowania zadania projektowego stawka za godzinę pracy wynosi 30 zł. Przy szacowaniu kosztów projektu nie uwzględniamy dodatkowych wydatków, które trzeba będzie ponieść w przypadku, gdy np. zajdzie potrzeba wykupienia domeny WWW. Nie są uwzględnione także koszty wdrożenia projektu w środowisku produkcyjnym. W związku z powyższym szacunkowy koszt wykonania projektu jest równy 12 000 zł netto. 
+
+Usługi, o których mowa w poprzednich punktach opodatkowane są 23\% stawką podatku VAT (podatek od towarów i usług). Szacowana cena brutto wynosi \textbf{14 760 zł}.
+
+\begin{table}[H]
+	\centering
+	\caption{Kosztorys.}
+	\smallskip
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline
+		\textbf{Nazwa} & \textbf{Jedn.} & \textbf{Ilość} & \textbf{Cena jedn.} & \textbf{Wart. netto} & \textbf{Stawka} & \textbf{Podatek} & \textbf{Wart. brutto} \\\hline
+		Robocizna & r-g & 400 & 30 & 12 000 & 23 \% & 2 760 zł & 14 760 zł \\\hline
+		\multicolumn{7}{r|}{\bf Razem:} & \textbf{14 760 zł} \\\cline{8-8}
+	\end{tabular}
+\end{table}
+	
+\section{Terminy i harmonogram projektu}
+Granicznym terminem realizacji projektu jest \textbf{7 czerwca 2016 r}. W tym dniu nastąpi prezentacja rezultatów projektu wraz z przekazaniem jego pełnej dokumentacji.
+
+\begin{table}[H]
+	\centering
+	\caption{Harmonogram projektu.}
+	\smallskip
+	\begin{tabular}{p{4cm}p{8cm}}
+		\textbf{Data}& \textbf{Opis} \\\hline
+		23.02.2016 & Wybór tematu projektu. \\\hline
+		1.03.2016 & Określenie zakresu tematycznego projektu. \\\hline
+		8.03.2016 & Przekazanie specyfikacji projektu (wstępna funkcjonalność, określenie kamieni milowych). \\\hline
+		9.03.2016 -- 06.06.2016 & Konsultacja wyników pracy po osiągnięciu kolejnych kamieni milowych projektu. \\\hline
+		\textbf{7.06.2016} & Prezentacja rezultatów projektu i przekazanie dokumentacji projektowej. \\\hline
+	\end{tabular}
+\end{table}
+
+	\begin{table}[H]
+	\centering
+	\caption{Kamienie milowe.}
+	\smallskip
+	\begin{tabular}{p{4cm}p{8cm}}
+		\textbf{Data}& \textbf{Opis} \\\hline
+		29.03.2016 & Instalacja środowiska \\\hline
+		19.04.2016 & Stworzenie lematyzatora \\\hline
+		10.05.2016 & Stworzenie taggera \\\hline
+		31.05.2016 & Stworzenie instrukcji użytkowania \\\hline
+		07.06.2016 & Prezentacja projektu \\\hline		
+	\end{tabular}
+\end{table}
