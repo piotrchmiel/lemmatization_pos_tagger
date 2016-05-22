@@ -93,12 +93,14 @@
 	\begin{itemize}
 	\item \texttt{DecisionTreeClassifier} -- Klasyfikator oparty na drzewie decyzyjnym.
 	\item \texttt{SGDClassifier} -- Klasyfikator oparty na liniowym modelu z metodą stochastycznego gradientu prostego.
-	\item \texttt{SVC} -- Klasyfikator reprezentuje model maszyny wektorów nośnych.
-	\item \texttt{LogisticRegression} -- Klasyfikator oparty na regresji logistycznej.
-	\item \texttt{BernoulliNB} -- Klasyfikator wykorzystujący model naiwnego klasyfikatora bayesowskiego z rozkładem Bernoulliego.
+	\item \texttt{SVC} -- klasyfikator reprezentuje model maszyny wektorów nośnych.
+	\item \texttt{LogisticRegression} -- klasyfikator oparty na regresji logistycznej.
+	\item \texttt{BernoulliNB} -- klasyfikator wykorzystujący model naiwnego klasyfikatora bayesowskiego z rozkładem Bernoulliego.
 	\item \texttt{KNeighborsClassifier} -- Klasyfikator implementujący mechanizm k-najbliższych sąsiadów.
-	\item Sieć neuronowa -- Klasyfikator wykorzystujący sieć neuronową opartą na bibliotece \texttt{sknn}. Posiada dwie warstwy: \texttt{Rectifier} (z liczbą 100 neuronów) i \texttt{Softmax}. Współczynnik uczenia wynosi 0.01, a liczba iteracji wynosi 10.
-	\item Sieć neuronowa wykorzystująca kartę graficzną -- Klasyfikator ten, podobnie jak powyższy wykorzystuje sieć neuronową, jednakże do implementacji wykorzystano bibliotekę \texttt{TensorFlow}, ponieważ wspiera wykorzystanie karty graficznej. Podobnie jak w poprzednim klasyfikatorze, sieć ta posiada dwie warstwy -- \texttt{Gated Recurrent Unit} z liczbą 50 neuronów oraz warstwę regresji logistycznej, współczynnik uczenia również wynosi 0.01, liczba iteracji wynosi 1000.
+	\item Sieć neuronowa -- klasyfikator wykorzystujący sieć neuronową opartą na bibliotece \texttt{sknn}. Posiada dwie warstwy: \texttt{Rectifier} (z liczbą 100 neuronów) i \texttt{Softmax}. Współczynnik uczenia wynosi 0.01, a liczba iteracji wynosi 10.
+	\item Sieć neuronowa wykorzystująca kartę graficzną -- klasyfikator, podobnie jak powyższy wykorzystuje sieć neuronową, jednakże do implementacji wykorzystano bibliotekę \texttt{TensorFlow}, ponieważ wspiera wykorzystanie karty graficznej. Podobnie jak w poprzednim klasyfikatorze, sieć ta posiada dwie warstwy -- \texttt{Gated Recurrent Unit} z liczbą 50 neuronów oraz warstwę regresji logistycznej, współczynnik uczenia również wynosi 0.01, liczba iteracji wynosi 1000.
+	
+	Klasyfikator wykorzystuje klasę biblioteki \texttt{TensorFlow} -- \texttt{tf.nn.rnn} -- rekurencyjną sieć neuronową. Ze względu na ograniczoną pamięć kart graficznych, dane uczące dzielone są na części, domyślnie po 10 tysięcy próbek.
 	\end{itemize}
 	
 	\section{Przetwarzanie danych}
@@ -107,9 +109,11 @@
 Proces zamiany plików XML odbywa się dla obydwu korpusów -- PWr oraz podkorpusu milionowego.
 	Niestety, ze względu na rozbieżność struktur, nie mogą one być przetworzone w ten sam sposób.
 	
+\begin{sloppypar}
 Do pliku CSV zapisywane są dwie informacje -- słowo oraz część mowy.
-Przykładowe wyrażenie XPath służące do wydobycia tych danych wygląda następująco:
-\texttt{//tok/orth} -- dla wyrazu, oraz \texttt{//tok/lex[disamb='1']} dla części mowy.
+Wyrażenia XPath służące do wydobycia tych danych z korpusu PWr wyglądają następująco:
+\texttt{//tok/orth} -- dla wyrazu, oraz \texttt{//tok/lex[disamb='1']} dla części mowy. Dla podkorpusu milionowego zapytania XPath prezentują się w sposób następujący: \texttt{//f[name='orth']/string} dla wyrazu, oraz \texttt{//f[name='disamb']/f[name='interpretation']/string} dla części mowy.
+\end{sloppypar}
 
 	\subsection{Mapowanie klas NKJP}
 Oba korpusy wykorzystują zestaw znaczników morfosyntaktycznych NKJP, który wyróżnia 36 rodzajów klas.
