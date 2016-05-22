@@ -25,6 +25,15 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 
+\usepackage{lscape}
+\usepackage{ifxetex}
+\ifxetex
+\usepackage{fontspec}
+\usepackage{xunicode}
+\setmainfont{TeX Gyre Pagella}
+\else
+\fi
+
 
 \begin{document}
 	
@@ -44,5 +53,6 @@
 	\newpage
 	\input{project-docs}
 	\input{app-docs}
+	\input{data-and-classifiers}
 	
 \end{document}

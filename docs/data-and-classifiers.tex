@@ -1,0 +1,128 @@
+\section{Opis danych}
+	System operuje na danych wejściowych, którymi są słowa w języku polskim.
+	Istnieje możliwość wprowadzenia zarówno pojedynczego słowa, jak i wielu (np. epitety czy całe zdania).
+	
+	\subsection{Sposób wybierania cech}
+	Cechy wybierane są na podstawie budowy słowa oraz kontekstu, w którym zostało użyte.
+	W celu wyekstrahowania cech ze słowa, system bada $N$ ostatnich liter wyrazu oraz to, jakie części zdania wystąpiły wcześniej.
+	
+	W zależności od wyboru użytkownika, system potrafi zebrać dane uczące z korpusu PWr lub z korpusu podmilionowego.
+	
+	\subsubsection{Zaimplementowana metoda wybierania cech}
+	Metoda ekstrakcji cech zaimplementowana w systemie opiera się na wyodrębnianiu końcówek wyrazów.
+	
+	Możliwe jest wybranie od jednej do czterech ostatnich liter, z których następnie jest tworzona macierz cech -- wybierane są najczęściej występujące końcówki, wraz z etykietą, którą część mowy stanowią.
+	
+	Liczba najczęściej występujących końcówek zależy od ich długości:
+	\begin{itemize}
+		\item 15 najczęstszych końcówek jednoliterowych,
+		\item 35 najczęstszych końcówek mających od dwóch do czterech liter.
+	\end{itemize}
+	
+	Oprócz końcówek wyrazów, dla zdań występujących w korpusach, podawane są etykiety poprzednich dwóch wyrazów.
+	
+	\subsubsection{Przykład macierzy cech}
+	Przykładowy zbiór uczący:
+	\begin{itemize}
+		\item jabłkami -- rzeczownik,
+		\item niepoważny -- przymiotnik,
+		\item kierunku -- rzeczownik,
+		\item istnieje -- czasownik,
+		\item wolność -- rzeczownik,
+	\end{itemize}
+	
+	Podane wyrazy nie posiadają danych na temat poprzednich etykiet wyrazów. Można wyróżnić tutaj następujące końcówki:
+	
+	\begin{itemize}
+		\item i -- rzeczownik,
+		\item y -- przymiotnik,
+		\item u -- rzeczownik,
+		\item e -- czasownik,
+		\item ć -- rzeczownik,
+		\item mi -- rzeczownik,
+		\item ny -- przymiotnik,
+		\item ku -- rzeczownik,
+		\item je -- czasownik,
+		\item ść -- rzeczownik,
+		\item ami -- rzeczownik,
+		\item żny -- przymiotnik,
+		\item nku -- rzeczownik,
+		\item eje -- czasownik,
+		\item ość -- rzeczownik,
+		\item kami -- rzeczownik,
+		\item ażny -- przymiotnik,
+		\item unku -- rzeczownik,
+		\item ieje -- czasownik,
+		\item ność -- rzeczownik.
+	\end{itemize}
+	
+	Etykiety są zamieniane na format wykorzystywany przez pakiet \texttt{scikit-learn} przy pomocy klasy \texttt{DictVectorizer}:
+	\begin{itemize}
+		\item rzeczownik $\rightarrow$ 0
+		\item przymiotnik $\rightarrow$ 1
+		\item czasownik $\rightarrow$ 2
+		\item --- (b.d.) $\rightarrow$ 3
+	\end{itemize}
+	
+	\begin{landscape}
+	Dla podanego zbioru uczącego można wyróżnić macierz cech (końcówki liter $\rightarrow$ czy dany wyraz kończy się na daną końcówkę):
+	\begin{table}[H]
+	\caption{Przykładowa macierz cech}
+	\footnotesize
+	%\hskip-1.2cm
+	\centering
+	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|l|}
+	\hline
+	& i & y & u & e & ć & mi & ny & ku & je & ść & ami & żny & nku & eje & ość & kami & ażny & unku & ieje & ność & etykieta w. n-1 & etykieta w. n-2 & etykieta \\ \hline
+	jabłkami & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 3 & 3 & 0 \\ \hline
+	niepoważny & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 3 & 3 & 1\\ \hline
+	kierunku & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 3 & 3 & 0\\ \hline
+	istnieje & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 3 & 3 & 2 \\ \hline
+	wolność & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 3 & 3 & 0\\ \hline
+	\end{tabular}
+	\end{table}
+	\normalsize
+	Legenda:\\
+	0 -- brak danej cechy w obiekcie; \\
+	1 -- dana cecha występuje dla obiektu;\\
+	\end{landscape}
+	
+	\subsection{Wykorzystane klasyfikatory}
+	Projekt wykorzystuje wiele klasyfikatorów. Wszystkie klasyfikatory z pakietu \texttt{scikit-learn} podczas procesu uczenia używają domyślnych parametrów. Więcej informacji można uzyskać w dokumentacji projektu, dostępnej pod adresem: \url{http://scikit-learn.org/stable/modules/classes.html}.
+	
+	\begin{itemize}
+	\item \texttt{DecisionTreeClassifier} -- Klasyfikator oparty na drzewie decyzyjnym.
+	\item \texttt{SGDClassifier} -- Klasyfikator oparty na liniowym modelu z metodą stochastycznego gradientu prostego.
+	\item \texttt{SVC} -- Klasyfikator reprezentuje model maszyny wektorów nośnych.
+	\item \texttt{LogisticRegression} -- Klasyfikator oparty na regresji logistycznej.
+	\item \texttt{BernoulliNB} -- Klasyfikator wykorzystujący model naiwnego klasyfikatora bayesowskiego z rozkładem Bernoulliego.
+	\item \texttt{KNeighborsClassifier} -- Klasyfikator implementujący mechanizm k-najbliższych sąsiadów.
+	\item Sieć neuronowa -- Klasyfikator wykorzystujący sieć neuronową opartą na bibliotece \texttt{sknn}. Posiada dwie warstwy: \texttt{Rectifier} (z liczbą 100 neuronów) i \texttt{Softmax}. Współczynnik uczenia wynosi 0.01, a liczba iteracji wynosi 10.
+	\item Sieć neuronowa wykorzystująca kartę graficzną -- Klasyfikator ten, podobnie jak powyższy wykorzystuje sieć neuronową, jednakże do implementacji wykorzystano bibliotekę \texttt{TensorFlow}, ponieważ wspiera wykorzystanie karty graficznej. Podobnie jak w poprzednim klasyfikatorze, sieć ta posiada dwie warstwy -- \texttt{Gated Recurrent Unit} z liczbą 50 neuronów oraz warstwę regresji logistycznej, współczynnik uczenia również wynosi 0.01, liczba iteracji wynosi 1000.
+	\end{itemize}
+	
+	\section{Przetwarzanie danych}
+	\subsection{Konwersja plików XML do formatu CSV}
+	Ze względu na nieefektywność przetwarzania plików XML oraz na dużą ilość niepotrzebnych danych znajdujących się w korpusach, postanowiono przetworzyć je do formy plików CSV.
+Proces zamiany plików XML odbywa się dla obydwu korpusów -- PWr oraz podkorpusu milionowego.
+	Niestety, ze względu na rozbieżność struktur, nie mogą one być przetworzone w ten sam sposób.
+	
+Do pliku CSV zapisywane są dwie informacje -- słowo oraz część mowy.
+Przykładowe wyrażenie XPath służące do wydobycia tych danych wygląda następująco:
+\texttt{//tok/orth} -- dla wyrazu, oraz \texttt{//tok/lex[disamb='1']} dla części mowy.
+
+	\subsection{Mapowanie klas NKJP}
+Oba korpusy wykorzystują zestaw znaczników morfosyntaktycznych NKJP, który wyróżnia 36 rodzajów klas.
+Na potrzeby projektu liczba ta została ograniczona do 10 podstawowych części mowy. Poniżej zostało przedstawione mapowanie z klas NKJP na uproszczony model:
+\begin{itemize}
+\item \texttt{rzeczownik} $\leftarrow$ rzeczownik, rzeczownik deprecjatywny,
+\item \texttt{liczebnik} $\leftarrow$ liczebnik główny, liczebnik zbiorowy,
+\item \texttt{przymiotnik} $\leftarrow$ przymiotnik, przymiotnik przyprzym., przymiotnik poprzyimkowy, przymiotnik predykatywny,
+\item \texttt{przysłówek} $\leftarrow$ przysłówek,
+\item \texttt{zaimek} $\leftarrow$ zaimek nietrzecioosobowy, zaimek trzecioosobowy, zaimek siebie,
+\item \texttt{czasownik} $\leftarrow$ forma nieprzeszła, forma przyszła być, aglutynant być, pseudoimiesłów, rozkaźnik, bezosobnik, bezokolicznik, im. przys. współczesny, im. przys. uprzedni, odsłownik, im. przym. czynny, im. przym. biern, winien, predykatyw,
+\item \texttt{przyimek} $\leftarrow$ przyimek, wykrzyknik,
+\item \texttt{spójnik} $\leftarrow$ spójnik współrzędny, spójnik podrzędny,
+\item \texttt{partykuła} $\leftarrow$ kublik,
+\item \texttt{forma nierozpoznana} $\leftarrow$ skrót, burkinostka, interpunkcja, ciało obce, forma nierozpoznana.
+\end{itemize}
