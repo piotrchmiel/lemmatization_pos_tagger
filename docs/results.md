@@ -1,17 +1,5 @@
 # Wyniki pomiarów działania programu
 
-## Dokładność modeli w bazie
-| Nazwa algorytmu              | Dokładność [%] - korpus uczący PWr | Dokładność [%] - korpus uczący national |
-|:----------------------------:|:------:|:------:|
-| Support Vector Machine       | 56.468 | 54.949 |
-| Decision Trees               | 57.246 | 55.671 |
-| Stochastic Gradient Descent  | 53.627 | 53.121 |
-| Logistic Regression          | 55.571 | 55.307 |
-| Naive Bayes                  | 54.141 | 52.813 |
-| K Neighbors                  | 50.168 | 50.255 |
-| Neural Networks              | 55.801 | 54.692 |
-
-
 ## Czas uczenia
 | Nazwa algorytmu              | Korpus uczący PWr `(h:m:s)` | Korpus uczący national `(h:m:s)` |
 |:----------------------------:|:--------:|:--------:|
