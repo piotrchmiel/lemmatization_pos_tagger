@@ -32,7 +32,6 @@
 	\end{itemize}
 	
 	Podane wyrazy nie posiadają danych na temat poprzednich etykiet wyrazów. Można wyróżnić tutaj następujące końcówki:
-	
 	\begin{itemize}
 		\item i -- rzeczownik,
 		\item y -- przymiotnik,
@@ -65,26 +64,31 @@
 	\end{itemize}
 	
 	\begin{landscape}
-	Dla podanego zbioru uczącego można wyróżnić macierz cech (końcówki liter $\rightarrow$ czy dany wyraz kończy się na daną końcówkę):
+	\newcommand{\hl}[1]{\colorbox{black!20!white}{#1}}
+	\noindent Dla podanego zbioru uczącego można wyróżnić macierz cech (końcówki liter $\rightarrow$ czy dany wyraz kończy się na daną końcówkę):
 	\begin{table}[H]
-	\caption{Przykładowa macierz cech}
+	\caption{Przykładowa macierz cech.}
 	\footnotesize
 	%\hskip-1.2cm
 	\centering
-	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|l|}
-	\hline
-	& i & y & u & e & ć & mi & ny & ku & je & ść & ami & żny & nku & eje & ość & kami & ażny & unku & ieje & ność & etykieta w. n-1 & etykieta w. n-2 & etykieta \\ \hline
-	jabłkami & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 3 & 3 & 0 \\ \hline
-	niepoważny & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 3 & 3 & 1\\ \hline
-	kierunku & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 3 & 3 & 0\\ \hline
-	istnieje & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 3 & 3 & 2 \\ \hline
-	wolność & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 3 & 3 & 0\\ \hline
+	\begin{tabular}{l|cccccccccccccccccccc|ccc}
+	\toprule
+	& i & y & u & e & ć & mi & ny & ku & je & ść & ami & żny & nku & eje & ość & kami & ażny & unku & ieje & ność & etykieta w. n-1 & etykieta w. n-2 & etykieta \\
+	\midrule
+	jabłkami & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 0 & 0 & 0 & 0 & 3 & 3 & 0 \\
+	niepoważny & 0 & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 0 & 0 & 0 & 3 & 3 & 1 \\
+	kierunku & 0 & 0 & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 0 & 0 & 3 & 3 & 0 \\
+	istnieje & 0 & 0 & 0 & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 0 & 3 & 3 & 2 \\
+	wolność & 0 & 0 & 0 & 0 & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 0 & 0 & 0 & 0 & \hl{1} & 3 & 3 & 0 \\
+	\bottomrule
 	\end{tabular}
 	\end{table}
 	\normalsize
 	Legenda:\\
-	0 -- brak danej cechy w obiekcie; \\
-	1 -- dana cecha występuje dla obiektu;\\
+	\begin{tabular}{lcl}
+		\colorbox{white}{0} & -- & brak danej cechy w obiekcie \\
+		\hl{1} & -- & dana cecha występuje dla obiektu \\
+	\end{tabular}
 	\end{landscape}
 	
 	\subsection{Wykorzystane klasyfikatory}
