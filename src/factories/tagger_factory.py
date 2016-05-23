@@ -36,11 +36,25 @@ class TaggerFactory(object):
         filename += "_pwr.pickle"
         return load_classifier(path.join(CLASSIFIERS_DIR, filename))
 
+    def load_pwr_taggers(self):
+        taggers = OrderedDict()
+        for tagger_filename in TAGGER_FILENAMES:
+            taggers[tagger_filename] = self.load_pwr_tagger(tagger_filename)
+        return taggers
+        
+    def load_nc_taggers(self):
+        taggers = OrderedDict()
+        for tagger_filename in TAGGER_FILENAMES:
+            if not "gpu" in tagger_filename:
+                taggers[tagger_filename] = self.load_national_tagger(tagger_filename)
+        return taggers
+        
     def load_all_taggers(self):
         taggers = OrderedDict()
         for tagger_filename in TAGGER_FILENAMES:
             taggers[tagger_filename + '_pwr'] = self.load_pwr_tagger(tagger_filename)
-            taggers[tagger_filename + '_nc'] = self.load_national_tagger(tagger_filename)
+            if not "gpu" in tagger_filename:
+                taggers[tagger_filename + '_nc'] = self.load_national_tagger(tagger_filename)
         return taggers
 
     def get_feature_extractor(self):

@@ -58,3 +58,26 @@ Najlepszym klasyfikatorem okazał się być Support Vector Machine, a najgorszym
 	\caption{Skuteczność modeli -- Korpus National}
 \end{figure}
 
+\newpage
+
+\subsection{Pomiary czasów klasyfikacji}
+
+Pomiary czasów klasyfikacji przeprowadzono na próbie 10 zbiorów tekstów zawierających kolejno od 10 do 100 wyrazów. Wyniki rozdzielono na osobne wykresy przedstawiające odpowiednio klasyfikatory nauczone na korpusie PWr oraz na korpusie podmilionowym.
+
+Zauważyć można, iż na pierwszym wykresie przedstawiającym korpus PWr, najdłuższym czasem klasyfikacji wyróżnił się ten wykorzystujący kartę graficzną, osiągając przy 100 wyrazach czas 11.381 s. Dwukrotnie lepszy czas osiągnął algorytm \texttt{SVM}, osiągając 4.167 s. Trzecim, dziecięciokrotnie szybszym od pierwszego był algorytm K Neighbors -- 1.109 s. Reszta algorytmów może się pochwalić bardzo niskimi czasami, rzędu setnych sekundy, dlatego też na wykresie są prawie niewidoczne.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[scale=0.8]{czasy\_pwr.pdf}
+	\label{Rysunek}
+	\caption{Czasy klasyfikacji w zależności od ilości słów w tekście -- Korpus PWr}
+\end{figure}
+
+W przypadku korpusu podmilionowego sytuacja jest bardzo podobna z tą różnicą, iż pominięty został algorytm bazujący na karcie graficznej albowiem nie można go było uruchomić na udostępnionej maszynie testowej z powodu niewystarczającej ilości pamięci operacyjnej.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[scale=0.8]{czasy\_nc.pdf}
+	\label{Rysunek}
+	\caption{Czasy klasyfikacji w zależności od ilości słów w tekście -- Korpus National}
+\end{figure}
