@@ -14,7 +14,8 @@ Badania przeprowadzono dla różnych liczb n-literowych końcówek wyrazów. Aby
 		Logistic Regression & 55,57 & 56,68 & 57,93 & 58,82 & 59,93 & 58,79 & 57,84 \\
 		Naive Bayes & 54,14 & 55,42 & 56,69 & 57,72 & 58,89 & 57,58 & 56,56 \\
 		K Neighbors & 50,17 & 51,35 & 52,18 & 53,30 & 54,22 & 53,12 & 52,20 \\
-		Neural Networks & 55,80 & 57,08 & 57,91 & 58,88 & 60,04 & 58,72 & 57,75 \\ \hline
+		Neural Networks & 55,80 & 57,08 & 57,91 & 58,88 & 60,04 & 58,72 & 57,75 \\ 
+		Klasyfikator GPU & 56,24 & 57,46 & 58,34 & 59,23 & 60,51 & 59,1 & 58,22 \\ \hline
 	\end{tabular}
 	}
 \end{table}
@@ -32,10 +33,13 @@ Badania przeprowadzono dla różnych liczb n-literowych końcówek wyrazów. Aby
 		Logistic Regression & 55,48 & 56,55 & 57,82 & 58,76 & 59,86 & 58,64 & 57,77 \\
 		Naive Bayes & 53,11 & 54,28 & 55,70 & 56,61 & 58,06 & 56,59 & 55,39 \\
 		K Neighbors & 50,02 & 51,29 & 52,03 & 53,25 & 54,13 & 53,00 & 52,08 \\
-		Neural Networks & 54,69 & 56,17 & 56,95 & 57,81 & 58,87 & 57,73 & 56,77 \\ \hline
+		Neural Networks & 54,69 & 56,17 & 56,95 & 57,81 & 58,87 & 57,73 & 56,77 \\
+		Klasyfikator GPU & 56,04 & 57,3 & 58,02 & 58,93 & 60,22 & 58,88 & 57,96 \\ \hline 
 	\end{tabular}
 	}
 \end{table}
+
+Najlepszym klasyfikatorem okazał się być Support Vector Machine, a najgorszym K Neighbors. Konfiguracje końcówek, w których liczba dwu i więcej literowych końcówek była mniejsza niż 35 nie dawały satysfakcjonujących rezultatów. (co najmniej 50\% skuteczności) Dla konfiguracji, w których liczba tych końcówek przekracza 42 zauważono trend ku obniżaniu się skuteczności klasyfikacji dlatego też zaprzestano dalszych badań.
 
 \begin{figure}[!htbp]
 	\centering
@@ -51,4 +55,3 @@ Badania przeprowadzono dla różnych liczb n-literowych końcówek wyrazów. Aby
 	\caption{Skuteczność modeli -- Korpus National}
 \end{figure}
 
-Najlepszym klasyfikatorem okazał się być Support Vector Machine, a najgorszym K Neighbors. Konfiguracje końcówek, w których liczba dwu i więcej literowych końcówek była mniejsza niż 35 nie dawały satysfakcjonujących rezultatów. (co najmniej 50\% skuteczności) Dla konfiguracji, w których liczba tych końcówek przekracza 42 zauważono trend ku obniżaniu się skuteczności klasyfikacji dlatego też zaprzestano dalszych badań.
