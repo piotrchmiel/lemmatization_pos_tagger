@@ -127,16 +127,22 @@ Wyrażenia XPath służące do wydobycia tych danych z korpusu PWr wyglądają n
 
 	\subsection{Mapowanie klas NKJP}
 Oba korpusy wykorzystują zestaw znaczników morfosyntaktycznych NKJP, który wyróżnia 36 rodzajów klas.
-Na potrzeby projektu liczba ta została ograniczona do 10 podstawowych części mowy. Poniżej zostało przedstawione mapowanie z klas NKJP na uproszczony model:
-\begin{itemize}
-\item \texttt{rzeczownik} $\leftarrow$ rzeczownik, rzeczownik deprecjatywny,
-\item \texttt{liczebnik} $\leftarrow$ liczebnik główny, liczebnik zbiorowy,
-\item \texttt{przymiotnik} $\leftarrow$ przymiotnik, przymiotnik przyprzym., przymiotnik poprzyimkowy, przymiotnik predykatywny,
-\item \texttt{przysłówek} $\leftarrow$ przysłówek,
-\item \texttt{zaimek} $\leftarrow$ zaimek nietrzecioosobowy, zaimek trzecioosobowy, zaimek siebie,
-\item \texttt{czasownik} $\leftarrow$ forma nieprzeszła, forma przyszła być, aglutynant być, pseudoimiesłów, rozkaźnik, bezosobnik, bezokolicznik, im. przys. współczesny, im. przys. uprzedni, odsłownik, im. przym. czynny, im. przym. biern, winien, predykatyw,
-\item \texttt{przyimek} $\leftarrow$ przyimek, wykrzyknik,
-\item \texttt{spójnik} $\leftarrow$ spójnik współrzędny, spójnik podrzędny,
-\item \texttt{partykuła} $\leftarrow$ kublik,
-\item \texttt{forma nierozpoznana} $\leftarrow$ skrót, burkinostka, interpunkcja, ciało obce, forma nierozpoznana.
-\end{itemize}
+Na potrzeby projektu liczba ta została ograniczona do 10 podstawowych części mowy. Poniżej zostało przedstawione mapowanie z klas NKJP na uproszczony model.
+\begin{table}[ht!]
+	\centering
+	\caption{Mapowanie klas NKJP.}
+	\begin{tabular}{p{3cm}p{.5cm}p{11cm}}
+		\toprule
+		\texttt{rzeczownik} & $\leftarrow$ & rzeczownik, rzeczownik deprecjatywny. \\
+		\texttt{liczebnik} & $\leftarrow$ & liczebnik główny, liczebnik zbiorowy. \\
+		\texttt{przymiotnik} & $\leftarrow$ & przymiotnik, przymiotnik przyprzym., przymiotnik poprzyimkowy, przymiotnik predykatywny. \\
+		\texttt{przysłówek} & $\leftarrow$ & przysłówek. \\
+		\texttt{zaimek} & $\leftarrow$ & zaimek nietrzecioosobowy, zaimek trzecioosobowy, zaimek siebie. \\
+		\texttt{czasownik} & $\leftarrow$ & forma nieprzeszła, forma przyszła być, aglutynant być, pseudoimiesłów, rozkaźnik, bezosobnik, bezokolicznik, im. przys. współczesny, im. przys. uprzedni, odsłownik, im. przym. czynny, im. przym. biern, winien, predykatyw. \\
+		\texttt{przyimek} & $\leftarrow$ & przyimek, wykrzyknik. \\
+		\texttt{spójnik} & $\leftarrow$ & spójnik współrzędny, spójnik podrzędny. \\
+		\texttt{partykuła} & $\leftarrow$ & kublik. \\
+		\texttt{forma nierozpoznana} & $\leftarrow$ & skrót, burkinostka, interpunkcja, ciało obce, forma nierozpoznana. \\
+		\bottomrule
+	\end{tabular}
+\end{table}
