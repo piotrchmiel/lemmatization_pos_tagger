@@ -6,8 +6,8 @@ Projekt dotyczy stworzenia modułu znakującego części mowy oraz lematyzatora 
 ## Dokumentacja
 - Dokumentacja projektowa: [PDF](docs/report.pdf)
 - Dokumentacja programu:
-  - Przygotowanie środowiska: [MD](docs/installation.md)
-  - Korzystanie z programu: [MD](docs/usage.md)
+  - Przygotowanie środowiska: [MD](docs/app/installation.md)
+  - Korzystanie z programu: [MD](docs/app/usage.md)
 
 ## Technologie
 | Nazwa | Opis |
