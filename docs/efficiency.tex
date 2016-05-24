@@ -48,18 +48,43 @@ Najlepszym klasyfikatorem okazał się być Support Vector Machine, a najgorszym
 	\centering
 	\includegraphics[width=\linewidth]{korpuspwrwykres}
 	\label{Rysunek}
-	\caption{Skuteczność modeli -- Korpus PWr}
+	\caption{Skuteczność modeli -- korpus PWr.}
 \end{figure}
 
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\linewidth]{korpusnationalwykres}
 	\label{Rysunek}
-	\caption{Skuteczność modeli -- Korpus National}
+	\caption{Skuteczność modeli -- korpus National.}
 \end{figure}
 
 \newpage
+\subsection{Pomiary czasów uczenia}
 
+\begin{table}[H]
+	\centering
+	\caption{Pomiary czasów uczenia.}
+	\smallskip
+	\begin{tabular}{lcc}
+		\toprule
+		\textbf{Nazwa algorytmu} & \textbf{Korpus uczący PWr (h:m:s)} &  \textbf{Korpus uczący national (h:m:s)} \\
+		\midrule
+		Support Vector Machine & 2:05:03 & 45:46:28 \\
+		Decision Trees & 0:00:30 & 0:02:24 \\
+		Stochastic Gradient Descent & 0:00:29 & 0:02:09 \\
+		Logistic Regression & 0:01:02 & 0:05:41 \\
+		Naive Bayes & 0:00:21 & 0:01:51 \\
+		K Neighbors & 0:00:23 & 0:01:49 \\
+		Neural Networks & 0:35:20 & 2:21:40 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+Pomiar czasowy wykonany na procesorze Intel(R) Core(TM) i5-2540M CPU @ 2.60GHz.
+
+
+\newpage
 \subsection{Pomiary czasów klasyfikacji}
 
 Pomiary czasów klasyfikacji przeprowadzono na próbie 10 zbiorów tekstów zawierających kolejno od 10 do 100 wyrazów. Wyniki rozdzielono na osobne wykresy przedstawiające odpowiednio klasyfikatory nauczone na korpusie PWr oraz na korpusie podmilionowym.
@@ -68,16 +93,16 @@ Zauważyć można, iż na pierwszym wykresie przedstawiającym korpus PWr, najd�
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.8]{czasy\_pwr.pdf}
+	\includegraphics[scale=0.8]{czasy_pwr.pdf}
 	\label{Rysunek}
-	\caption{Czasy klasyfikacji w zależności od ilości słów w tekście -- Korpus PWr}
+	\caption{Czasy klasyfikacji w zależności od ilości słów w tekście -- korpus PWr.}
 \end{figure}
 
 W przypadku korpusu podmilionowego sytuacja jest bardzo podobna z tą różnicą, iż pominięty został algorytm bazujący na karcie graficznej albowiem nie można go było uruchomić na udostępnionej maszynie testowej z powodu niewystarczającej ilości pamięci operacyjnej.
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[scale=0.8]{czasy\_nc.pdf}
+	\includegraphics[scale=0.8]{czasy_nc.pdf}
 	\label{Rysunek}
-	\caption{Czasy klasyfikacji w zależności od ilości słów w tekście -- Korpus National}
+	\caption{Czasy klasyfikacji w zależności od ilości słów w tekście -- korpus National.}
 \end{figure}
