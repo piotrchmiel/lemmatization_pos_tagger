@@ -3,7 +3,7 @@
 Badania przeprowadzono dla różnych liczb n-literowych końcówek wyrazów. 
 \begin{landscape}
 	\noindent Aby lepiej zobrazować otrzymane wyniki użyto notacji:\\ (liczba 1 literowych końcówek, liczba 2 literowych końcówek, liczba 3 literowych końcówek, liczba 4 literowych końcówek).
-	\begin{table}[!htbp]
+	\begin{table}[H]
 		\centering
 		\caption{Skuteczność modeli -- Korpus PWr.}
 		\begin{tabular}{cccccccc}
@@ -22,7 +22,7 @@ Badania przeprowadzono dla różnych liczb n-literowych końcówek wyrazów.
 		\end{tabular}
 	\end{table}
 	
-	\begin{table}[!htbp]
+	\begin{table}[H]
 		\centering
 		\caption{Skuteczność modeli -- korpus National.}
 		\begin{tabular}{cccccccc}
@@ -42,16 +42,16 @@ Badania przeprowadzono dla różnych liczb n-literowych końcówek wyrazów.
 	\end{table}
 \end{landscape}
 
-Najlepszym klasyfikatorem okazał się być Support Vector Machine, a najgorszym K Neighbors. Konfiguracje końcówek, w których liczba dwu i więcej literowych końcówek była mniejsza niż 35 nie dawały satysfakcjonujących rezultatów. (co najmniej 50\% skuteczności) Dla konfiguracji, w których liczba tych końcówek przekracza 42 zauważono trend ku obniżaniu się skuteczności klasyfikacji dlatego też zaprzestano dalszych badań.
+Najlepszym klasyfikatorem okazał się być \texttt{Support Vector Machine}, a najgorszym \texttt{K Neighbors}. Konfiguracje końcówek, w których liczba dwu i więcej literowych końcówek była mniejsza niż 35 nie dawały satysfakcjonujących rezultatów. (co najmniej 50\% skuteczności) Dla konfiguracji, w których liczba tych końcówek przekracza 42 zauważono trend ku obniżaniu się skuteczności klasyfikacji dlatego też zaprzestano dalszych badań.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{charts/korpuspwrwykres}
 	\label{Rysunek}
 	\caption{Skuteczność modeli -- korpus PWr.}
 \end{figure}
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{charts/korpusnationalwykres}
 	\label{Rysunek}
@@ -67,31 +67,34 @@ Najlepszym klasyfikatorem okazał się być Support Vector Machine, a najgorszym
 	\smallskip
 	\begin{tabular}{lcc}
 		\toprule
-		\textbf{Nazwa algorytmu} & \textbf{Korpus uczący PWr (h:m:s)} &  \textbf{Korpus uczący national (h:m:s)} \\
+		\textbf{Algorytm} & \textbf{Korpus uczący PWr (h:m:s)} &  \textbf{Korpus uczący National (h:m:s)} \\
 		\midrule
-		Support Vector Machine & 2:05:03 & 45:46:28 \\
-		Decision Trees & 0:00:30 & 0:02:24 \\
-		Stochastic Gradient Descent & 0:00:29 & 0:02:09 \\
-		Logistic Regression & 0:01:02 & 0:05:41 \\
-		Naive Bayes & 0:00:21 & 0:01:51 \\
-		K Neighbors & 0:00:23 & 0:01:49 \\
-		Neural Networks & 0:35:20 & 2:21:40 \\
+		Support Vector Machine & 0:44:52 & 16:35:24 \\
+		Decision Trees & 0:01:22 & 0:05:48 \\
+		Stochastic Gradient Descent & 0:01:20 & 0:04:56 \\
+		Logistic Regression & 0:01:32 & 0:07:10 \\
+		Naive Bayes & 0:01:18 & 0:04:32 \\
+		K Neighbors & 0:01:18 & 0:05:20 \\
+		Neural Networks & 0:20:28 & 1:21:04 \\
+		GPU Classifier & 0:14:55 & --- \\
 		\bottomrule
 	\end{tabular}
 \end{table}
+Do testów został użyty procesor Intel(R) Core(TM) i7-4930K CPU @ 3.40GHz. Jest to wydajna jednostka z 2013 roku pracująca na 6 rdzeniach w technologi Hyper-Threading (12 wątków).
+W przypadku klasyfikatora opartego na GPU została wykorzystana karta graficzna NVIDIA GeForce GT 740 (chip GK107) -- model z średniej półki z 2014 roku.
 
+W testach każdy algorytm korzystał z jednego wątku procesora.
 
-Pomiar czasowy wykonany na procesorze Intel(R) Core(TM) i5-2540M CPU @ 2.60GHz.
-
+Uczenie algorytmów: drzew decyzyjnych, stochastycznego spadku gradientu, regresji logistycznej, naiwnego klasyfikatora bayesowskiego oraz $k$-najbliższych sąsiadów zakończyło się na korpusie uczącym PWr w niewiele ponad minutę. Daje to możliwość wielokrotnego zmieniania parametrów tych algorytmów w poszukiwaniu lepszych wyników. Uczenie sieci neuronowych trwało zdecydowanie dłużej od wcześniej wymienionych, natomiast maszyny wektorów nośnych okazały się prawdziwnym wyzwaniem dla procesora w postaci wielogodzinnych obliczeń modelu danych. Uczenie klasyfikatorów za pomocą korpusu National, ze względu na wielkość danych uczących, jest kilka razy bardziej czasochłonne w porównaniu do korpusu PWr.
 
 \newpage
 \subsection{Pomiary czasów klasyfikacji}
 
 Pomiary czasów klasyfikacji przeprowadzono na próbie 10 zbiorów tekstów zawierających kolejno od 10 do 100 wyrazów. Wyniki rozdzielono na osobne wykresy przedstawiające odpowiednio klasyfikatory nauczone na korpusie PWr oraz na korpusie podmilionowym.
 
-Zauważyć można, iż na pierwszym wykresie przedstawiającym korpus PWr, najdłuższym czasem klasyfikacji wyróżnił się ten wykorzystujący kartę graficzną, osiągając przy 100 wyrazach czas 11.381 s. Dwukrotnie lepszy czas osiągnął algorytm \texttt{SVM}, osiągając 4.167 s. Trzecim, dziecięciokrotnie szybszym od pierwszego był algorytm K Neighbors -- 1.109 s. Reszta algorytmów może się pochwalić bardzo niskimi czasami, rzędu setnych sekundy, dlatego też na wykresie są prawie niewidoczne.
+Zauważyć można, iż na pierwszym wykresie przedstawiającym korpus PWr, najdłuższym czasem klasyfikacji wyróżnił się ten wykorzystujący kartę graficzną, osiągając przy 100 wyrazach czas 11,381 s. Dwukrotnie lepszy czas osiągnął algorytm \texttt{SVM}, osiągając 4,167 s. Trzecim, dziecięciokrotnie szybszym od pierwszego był algorytm \texttt{K Neighbors} -- 1,109 s. Reszta algorytmów może się pochwalić bardzo niskimi czasami, rzędu setnych sekundy, dlatego też na wykresie są prawie niewidoczne.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.8]{charts/czasy_pwr.pdf}
 	\label{Rysunek}
@@ -100,7 +103,7 @@ Zauważyć można, iż na pierwszym wykresie przedstawiającym korpus PWr, najd�
 
 W przypadku korpusu podmilionowego sytuacja jest bardzo podobna z tą różnicą, iż pominięty został algorytm bazujący na karcie graficznej albowiem nie można go było uruchomić na udostępnionej maszynie testowej z powodu niewystarczającej ilości pamięci operacyjnej.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.8]{charts/czasy_nc.pdf}
 	\label{Rysunek}
