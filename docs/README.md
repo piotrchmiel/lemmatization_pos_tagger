@@ -14,7 +14,8 @@ project-about.tex ---------------\
                                   \
 installation.md --\                \
 usage.md ----------> app-docs.tex --> report.pdf
-                                  /
-data-and-classifiers.tex --------/
-efficiency.tex -----------------/
+                                   /
+data-and-classifiers.tex ---------/
+efficiency.tex ------------------/
+summary.tex --------------------/
 ```
