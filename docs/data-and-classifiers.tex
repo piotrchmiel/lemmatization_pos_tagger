@@ -1,3 +1,37 @@
+\section{Przetwarzanie danych}
+	\subsection{Konwersja plików XML do formatu CSV}
+	Ze względu na nieefektywność przetwarzania plików XML oraz na dużą ilość niepotrzebnych danych znajdujących się w korpusach, postanowiono przetworzyć je do formy plików CSV.
+Proces zamiany plików XML odbywa się dla obydwu korpusów -- PWr oraz podkorpusu milionowego.
+	Niestety, ze względu na rozbieżność struktur, nie mogą one być przetworzone w ten sam sposób.
+	
+\begin{sloppypar}
+Do pliku CSV zapisywane są dwie informacje -- słowo oraz część mowy.
+Wyrażenia XPath służące do wydobycia tych danych z korpusu PWr wyglądają następująco:
+\texttt{//tok/orth} -- dla wyrazu, oraz \texttt{//tok/lex[disamb='1']} dla części mowy. Dla podkorpusu milionowego zapytania XPath prezentują się w sposób następujący: \texttt{//f[name='orth']/string} dla wyrazu, oraz \texttt{//f[name='disamb']/f[name='interpretation']/string} dla części mowy.
+\end{sloppypar}
+
+	\subsection{Mapowanie klas NKJP}
+Oba korpusy wykorzystują zestaw znaczników morfosyntaktycznych NKJP, który wyróżnia 36 rodzajów klas.
+Na potrzeby projektu liczba ta została ograniczona do 10 podstawowych części mowy. Poniżej zostało przedstawione mapowanie z klas NKJP na uproszczony model.
+\begin{table}[H]
+	\centering
+	\caption{Mapowanie klas NKJP.}
+	\begin{tabular}{p{3cm}p{.5cm}p{11cm}}
+		\toprule
+		\texttt{rzeczownik} & $\leftarrow$ & rzeczownik, rzeczownik deprecjatywny. \\
+		\texttt{liczebnik} & $\leftarrow$ & liczebnik główny, liczebnik zbiorowy. \\
+		\texttt{przymiotnik} & $\leftarrow$ & przymiotnik, przymiotnik przyprzym., przymiotnik poprzyimkowy, przymiotnik predykatywny. \\
+		\texttt{przysłówek} & $\leftarrow$ & przysłówek. \\
+		\texttt{zaimek} & $\leftarrow$ & zaimek nietrzecioosobowy, zaimek trzecioosobowy, zaimek siebie. \\
+		\texttt{czasownik} & $\leftarrow$ & forma nieprzeszła, forma przyszła być, aglutynant być, pseudoimiesłów, rozkaźnik, bezosobnik, bezokolicznik, im. przys. współczesny, im. przys. uprzedni, odsłownik, im. przym. czynny, im. przym. biern, winien, predykatyw. \\
+		\texttt{przyimek} & $\leftarrow$ & przyimek, wykrzyknik. \\
+		\texttt{spójnik} & $\leftarrow$ & spójnik współrzędny, spójnik podrzędny. \\
+		\texttt{partykuła} & $\leftarrow$ & kublik. \\
+		\texttt{forma nierozpoznana} & $\leftarrow$ & skrót, burkinostka, interpunkcja, ciało obce, forma nierozpoznana. \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
 \section{Opis danych}
 	System operuje na danych wejściowych, którymi są słowa w języku polskim.
 	Istnieje możliwość wprowadzenia zarówno pojedynczego słowa, jak i wielu (np. epitety czy całe zdania).
@@ -112,37 +146,3 @@
 			\bottomrule
 		\end{tabular}
 	\end{table}
-	
-	\section{Przetwarzanie danych}
-	\subsection{Konwersja plików XML do formatu CSV}
-	Ze względu na nieefektywność przetwarzania plików XML oraz na dużą ilość niepotrzebnych danych znajdujących się w korpusach, postanowiono przetworzyć je do formy plików CSV.
-Proces zamiany plików XML odbywa się dla obydwu korpusów -- PWr oraz podkorpusu milionowego.
-	Niestety, ze względu na rozbieżność struktur, nie mogą one być przetworzone w ten sam sposób.
-	
-\begin{sloppypar}
-Do pliku CSV zapisywane są dwie informacje -- słowo oraz część mowy.
-Wyrażenia XPath służące do wydobycia tych danych z korpusu PWr wyglądają następująco:
-\texttt{//tok/orth} -- dla wyrazu, oraz \texttt{//tok/lex[disamb='1']} dla części mowy. Dla podkorpusu milionowego zapytania XPath prezentują się w sposób następujący: \texttt{//f[name='orth']/string} dla wyrazu, oraz \texttt{//f[name='disamb']/f[name='interpretation']/string} dla części mowy.
-\end{sloppypar}
-
-	\subsection{Mapowanie klas NKJP}
-Oba korpusy wykorzystują zestaw znaczników morfosyntaktycznych NKJP, który wyróżnia 36 rodzajów klas.
-Na potrzeby projektu liczba ta została ograniczona do 10 podstawowych części mowy. Poniżej zostało przedstawione mapowanie z klas NKJP na uproszczony model.
-\begin{table}[H]
-	\centering
-	\caption{Mapowanie klas NKJP.}
-	\begin{tabular}{p{3cm}p{.5cm}p{11cm}}
-		\toprule
-		\texttt{rzeczownik} & $\leftarrow$ & rzeczownik, rzeczownik deprecjatywny. \\
-		\texttt{liczebnik} & $\leftarrow$ & liczebnik główny, liczebnik zbiorowy. \\
-		\texttt{przymiotnik} & $\leftarrow$ & przymiotnik, przymiotnik przyprzym., przymiotnik poprzyimkowy, przymiotnik predykatywny. \\
-		\texttt{przysłówek} & $\leftarrow$ & przysłówek. \\
-		\texttt{zaimek} & $\leftarrow$ & zaimek nietrzecioosobowy, zaimek trzecioosobowy, zaimek siebie. \\
-		\texttt{czasownik} & $\leftarrow$ & forma nieprzeszła, forma przyszła być, aglutynant być, pseudoimiesłów, rozkaźnik, bezosobnik, bezokolicznik, im. przys. współczesny, im. przys. uprzedni, odsłownik, im. przym. czynny, im. przym. biern, winien, predykatyw. \\
-		\texttt{przyimek} & $\leftarrow$ & przyimek, wykrzyknik. \\
-		\texttt{spójnik} & $\leftarrow$ & spójnik współrzędny, spójnik podrzędny. \\
-		\texttt{partykuła} & $\leftarrow$ & kublik. \\
-		\texttt{forma nierozpoznana} & $\leftarrow$ & skrót, burkinostka, interpunkcja, ciało obce, forma nierozpoznana. \\
-		\bottomrule
-	\end{tabular}
-\end{table}
