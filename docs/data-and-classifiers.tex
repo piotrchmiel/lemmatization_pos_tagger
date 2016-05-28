@@ -2,7 +2,7 @@
 	\subsection{Konwersja plików XML do formatu CSV}
 	Ze względu na nieefektywność przetwarzania plików XML oraz na dużą ilość niepotrzebnych danych znajdujących się w korpusach, postanowiono przetworzyć je do formy plików CSV.
 Proces zamiany plików XML odbywa się dla obydwu korpusów -- PWr oraz podkorpusu milionowego.
-	Niestety, ze względu na rozbieżność struktur, nie mogą one być przetworzone w ten sam sposób.
+	Niestety, ze względu na rozbieżność struktur nie mogą one być przetworzone w ten sam sposób.
 	
 \begin{sloppypar}
 Do pliku CSV zapisywane są dwie informacje -- słowo oraz część mowy.
@@ -34,7 +34,7 @@ Na potrzeby projektu liczba ta została ograniczona do 10 podstawowych części 
 
 \section{Opis danych}
 	System operuje na danych wejściowych, którymi są słowa w języku polskim.
-	Istnieje możliwość wprowadzenia zarówno pojedynczego słowa, jak i wielu (np. epitety czy całe zdania).
+	Istnieje możliwość wprowadzenia zarówno pojedynczego słowa, jak i wielu (np. epitety, całe zdania).
 	
 	\subsection{Sposób wybierania cech}
 	Cechy wybierane są na podstawie budowy słowa oraz kontekstu, w którym zostało użyte.
@@ -65,6 +65,7 @@ Na potrzeby projektu liczba ta została ograniczona do 10 podstawowych części 
 		\item wolność -- rzeczownik,
 	\end{itemize}
 	
+	\medskip
 	Podane wyrazy nie posiadają danych na temat poprzednich etykiet wyrazów. Można wyróżnić tutaj następujące końcówki:
 	\begin{itemize}
 		\item i -- rzeczownik,
@@ -89,6 +90,7 @@ Na potrzeby projektu liczba ta została ograniczona do 10 podstawowych części 
 		\item ność -- rzeczownik.
 	\end{itemize}
 	
+	\medskip
 	Etykiety są zamieniane na format wykorzystywany przez pakiet \texttt{scikit-learn} przy pomocy klasy \texttt{DictVectorizer}:
 	\begin{itemize}
 		\item rzeczownik $\rightarrow$ 0

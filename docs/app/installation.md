@@ -20,7 +20,7 @@ Podczas instalacji pakietów pod Linuksem, potrzebny jest kompilator `gcc-fortra
 
 
 ## Instalacja korpusów
-Należy uruchomić skrypt instalacyjny, który rozpakowywuje korpus PWr z pliku kpwr-1.2.6-disamb.7z a korpus polski pobiera ze źródła.
+Należy uruchomić skrypt instalacyjny, który rozpakowywuje korpus PWr z pliku kpwr-1.2.6-disamb.7z, a korpus polski pobiera ze źródła.
 
 	$ ./installCorpuses.sh
 
@@ -44,7 +44,7 @@ Dane NLTK zostaną zainstalowane w katalogu `/usr/local/share/nltk_data`.
 1. Pobranie paczki instalującej repozytorium Nvidii ze strony: https://developer.nvidia.com/cuda-downloads, testowana wersja: Linux Ubuntu 14.04, architektura x86_64, paczka deb (local).
 2. Instalacja repozytorium w systemie:
 ```
-$ dpkg -i cuda-repo-ubuntu1404-7-5-local_7.5-18_amd64.deb`
+$ dpkg -i cuda-repo-ubuntu1404-7-5-local_7.5-18_amd64.deb
 ```
 3. Instalacja sterowników i środowiska CUDA:
 ```
@@ -52,4 +52,4 @@ $ apt-get update && apt-get install -y cuda
 ```
 4. Restart maszyny w celu załadowania sterowników Nvidii zamiast Nouveau.
 5. Instalacja Nvidia cuDNN (biblioteki wspomagające sieci neuronowe): należy umieścić zawartość archiwum `cudnn-7.0-linux-x64-v4.0-prod.tgz` w folderze `/usr/local/cuda`. Do ściągnięcia ze strony https://developer.nvidia.com/rdp/form/cudnn-download-survey.
-6. Instalacja modułu [tensorflow](https://www.tensorflow.org/versions/r0.8/get_started/os_setup.html) dla Pythona.
+6. Instalacja modułu `tensorflow` dla Pythona ze strony: https://www.tensorflow.org.

@@ -42,7 +42,7 @@ Badania przeprowadzono dla różnych liczb n-literowych końcówek wyrazów.
 	\end{table}
 \end{landscape}
 
-Najlepszym klasyfikatorem okazał się być \texttt{Support Vector Machine}, a najgorszym \texttt{K Neighbors}. Konfiguracje końcówek, w których liczba dwu i więcej literowych końcówek była mniejsza niż 35 nie dawały satysfakcjonujących rezultatów. (co najmniej 50\% skuteczności) Dla konfiguracji, w których liczba tych końcówek przekracza 42 zauważono trend ku obniżaniu się skuteczności klasyfikacji dlatego też zaprzestano dalszych badań.
+Najlepszym klasyfikatorem okazał się być \texttt{Support Vector Machine}, a najgorszym \texttt{K Neighbors}. Konfiguracje końcówek, w których liczba dwu i więcej literowych końcówek była mniejsza niż 35 nie dawały satysfakcjonujących rezultatów (co najmniej 50\% skuteczności) Dla konfiguracji, w których liczba tych końcówek przekracza 42 zauważono trend ku obniżaniu się skuteczności klasyfikacji dlatego też zaprzestano dalszych badań.
 
 \begin{figure}[H]
 	\centering
@@ -82,7 +82,6 @@ Najlepszym klasyfikatorem okazał się być \texttt{Support Vector Machine}, a n
 \end{table}
 Do testów został użyty procesor Intel(R) Core(TM) i7-4930K CPU @ 3.40GHz. Jest to wydajna jednostka z 2013 roku pracująca na 6 rdzeniach w technologi Hyper-Threading (12 wątków).
 W przypadku klasyfikatora opartego na GPU została wykorzystana karta graficzna NVIDIA GeForce GT 740 (chip GK107) -- model z średniej półki z 2014 roku.
-
 W testach każdy algorytm korzystał z jednego wątku procesora.
 
 Uczenie algorytmów: drzew decyzyjnych, stochastycznego spadku gradientu, regresji logistycznej, naiwnego klasyfikatora bayesowskiego oraz $k$-najbliższych sąsiadów zakończyło się na korpusie uczącym PWr w niewiele ponad minutę. Daje to możliwość wielokrotnego zmieniania parametrów tych algorytmów w poszukiwaniu lepszych wyników. Uczenie sieci neuronowych trwało zdecydowanie dłużej od wcześniej wymienionych, natomiast maszyny wektorów nośnych okazały się prawdziwnym wyzwaniem dla procesora w postaci wielogodzinnych obliczeń modelu danych. Uczenie klasyfikatorów za pomocą korpusu National, ze względu na wielkość danych uczących, jest kilka razy bardziej czasochłonne w porównaniu do korpusu PWr.
@@ -97,6 +96,7 @@ Pomiary czasów klasyfikacji przeprowadzono na próbie 14 zbiorów tekstów zawi
 	\begin{table}[H]
 		\centering
 		\caption{Czasy klasyfikacji w zależności od ilości słów w tekście -- Korpus PWr.}
+		\scalebox{.95}{
 		\begin{tabular}{ccccccccccccccc}
 			\toprule
 			\textbf{Algorytm} & \textbf{10} & \textbf{20} & \textbf{30} & \textbf{40} & \textbf{50} & \textbf{60} & \textbf{70} & \textbf{80} & \textbf{90} & \textbf{100} & \textbf{250} & \textbf{500} & \textbf{1000} & \textbf{2000} \\
@@ -110,12 +110,13 @@ Pomiary czasów klasyfikacji przeprowadzono na próbie 14 zbiorów tekstów zawi
 			Support Vector Machine & 0.4625 & 0.7471 & 1.1418 & 1.5333 & 1.9311 & 2.2751 & 2.7042 & 3.1116 & 3.4938 & 3.8904 & 4.1399 & 8.2825 & 16.5498 & 24.7921 \\
 			Klasyfikator GPU & 2.2735 & 2.1504 & 3.3241 & 4.5460 & 5.4218 & 6.3891 & 7.6431 & 8.7503 & 10.2526 & 10.9616 & 24.4249 & 52.6103 & 104.2419 & 209.9426 \\
 			\bottomrule
-		\end{tabular}
+		\end{tabular}}
 	\end{table}
 	
 	\begin{table}[H]
 		\centering
 		\caption{Czasy klasyfikacji w zależności od ilości słów w tekście -- korpus National.}
+		\scalebox{.95}{
 		\begin{tabular}{ccccccccccccccc}
 			\toprule
 			\textbf{Algorytm} & \textbf{10} & \textbf{20} & \textbf{30} & \textbf{40} & \textbf{50} & \textbf{60} & \textbf{70} & \textbf{80} & \textbf{90} & \textbf{100} & \textbf{250} & \textbf{500} & \textbf{1000} & \textbf{2000} \\
@@ -128,15 +129,15 @@ Pomiary czasów klasyfikacji przeprowadzono na próbie 14 zbiorów tekstów zawi
 			K Neighbors & 0.4112 & 0.8940 & 1.3225 & 1.7856 & 2.2718 & 2.6559 & 3.1993 & 3.7022 & 4.2142 & 4.6087 & 12.9492 & 25.2313 & 50.9364 & 77.4012 \\
 			Support Vector Machine & 0.9388 & 2.0124 & 3.0720 & 4.1224 & 5.1977 & 6.1370 & 7.3113 & 8.3830 & 9.4158 & 10.4554 & 13.7190 & 27.3826 & 54.6263 & 81.9051 \\
 			\bottomrule
-		\end{tabular}
+		\end{tabular}}
 	\end{table}
 \end{landscape}
 
-Zauważyć można, iż najdłuższym czasem klasyfikacji wyróżnił się ten wykorzystujący kartę graficzną, osiągając przy liczbie 2000 wyrazów bardzo długi czas 209,9426 s. Lepszy czas osiągnął algorytm \texttt{SVM}, osiągając dla tej samej liczby wyrazów 24,7921 s. Trzecim, stosunkowo podobnym do poprzedniego okazał się algorytm \texttt{K Neighbors} -- 16,8673 s. Reszta algorytmów może się pochwalić bardzo niskimi i zbliżonymi do siebie czasami.
+Można zauważyć, że najdłuższym czasem klasyfikacji wyróżnił się ten wykorzystujący kartę graficzną, osiągając przy liczbie 2000 wyrazów bardzo długi czas 209,9 s. Lepszy czas osiągnął algorytm \texttt{SVM}, osiągając dla tej samej liczby wyrazów 24,8 s. Trzecim, stosunkowo podobnym do poprzedniego okazał się algorytm \texttt{K Neighbors} -- 16,9 s. Reszta algorytmów może się pochwalić bardzo niskimi i zbliżonymi do siebie czasami.
 
 Faktem również jest, że dla pierwszych pięciu algorytmów, które osiągnęły najlepsze czasy (\texttt{Logistic Regression}, \texttt{SGD}, \texttt{Decision Trees}, \texttt{Naive Bayes}, \texttt{Neural Networks}) czasy klasyfikacji dla korpusu PWr są bardzo zbliżone do czasów klasyfikacji na korpusie podmilionowym. Dla najgorszych algorytmów, czasy klasyfikacji na korpusie podmilionowym są kilkukrotnie wyższe.
 
-Poniższy wykres przestawia wyniki z korpusu PWr. W celu lepszego zobrazowania zależności zostały na nim przedstawione wyniki od 10 do 100 wyrazów. Najszybsze algorytmy osiągnęły czasu rzędu setnych sekundy, dlatego też na wykresie są prawie niewidoczne.
+Poniższy wykres przestawia wyniki z korpusu PWr. W celu lepszego zobrazowania zależności zostały na nim przedstawione wyniki od 10 do 100 wyrazów. Najszybsze algorytmy osiągnęły czasu rzędu setnych sekundy, dlatego też są prawie niewidoczne na wykresie.
 
 \begin{figure}[H]
 	\centering

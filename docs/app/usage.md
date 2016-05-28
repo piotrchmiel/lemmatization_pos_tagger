@@ -3,18 +3,18 @@
 
 ## Konfiguracja środowiska
 Należy dodać folder zawierający projekt do zmiennej środowiskowej `PYTHONPATH`.
-Jeśli akurat się w nim znajdujemy (jest on katalogiem bieżącym), można to zrobić np. poprzez:
+Jeśli jest on katalogiem bieżącym, można to zrobić poprzez:
 
     $ export PYTHONPATH="${PYTHONPATH}:${PWD}"
 
 
-Aby wykonać powyższą komendę wraz z włączeniem `venv`, wystarczy pobrać zawartość pliku `prepare` do shella poprzez:
+Aby wykonać powyższą komendę wraz z włączeniem `venv`, wystarczy pobrać zawartość pliku `prepare` do shella:
 
     $ source prepare
 
 
 ## Ustawienia ścieżek
-Skrypty korzystają ze ścieżek konfigurowalnych za pomocą pliku src/settings.py.
+Skrypty korzystają ze ścieżek konfigurowalnych za pomocą pliku `src/settings.py`.
 
 
 ## Konwersja plików xml do csv
@@ -35,7 +35,6 @@ Do stworzenia bazy końcówek służy plik src/scripts/suffix_creator.py.
 
 ## Tagger - uczenie klasyfikatorów
 
-    $ python3 src/tagger_trainer.py -h  # więcej o ustawianiu liczby rdzeni
     $ python3 src/tagger_trainer.py
 
 Domyślnie podczas uczenia używane są wszystkie rdzenie procesora - jeden rdzeń na algorytm. Logi związane z uczeniem zapisywane są do pliku `tagger_factory.log`.
