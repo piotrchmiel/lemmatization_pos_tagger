@@ -139,12 +139,12 @@ Na potrzeby projektu liczba ta została ograniczona do 10 podstawowych części 
 			\midrule
 			\texttt{DecisionTreeClassifier} & Klasyfikator oparty na drzewie decyzyjnym. \\
 			\texttt{SGDClassifier} & Klasyfikator oparty na liniowym modelu z metodą stochastycznego gradientu prostego. \\
-			\texttt{SVC} & Klasyfikator reprezentuje model maszyny wektorów nośnych. \\
+			\texttt{SVM} & Klasyfikator reprezentuje model maszyny wektorów nośnych. \\
 			\texttt{LogisticRegression} & Klasyfikator oparty na regresji logistycznej. \\
 			\texttt{BernoulliNB} & Klasyfikator wykorzystujący model naiwnego klasyfikatora bayesowskiego z rozkładem Bernoulliego. \\
 			\texttt{KNeighborsClassifier} & Klasyfikator implementujący mechanizm $k$-najbliższych sąsiadów. \\
-			Sieć neuronowa & Klasyfikator wykorzystujący sieć neuronową opartą na bibliotece \texttt{sknn}. Posiada dwie warstwy: \texttt{Rectifier} (z liczbą 100 neuronów) i \texttt{Softmax}. Współczynnik uczenia wynosi 0,01, a liczba iteracji wynosi 10.
-			Sieć neuronowa wykorzystująca kartę graficzną -- klasyfikator, podobnie jak powyższy wykorzystuje sieć neuronową, jednakże do implementacji wykorzystano bibliotekę \texttt{TensorFlow}, ponieważ wspiera wykorzystanie karty graficznej. Podobnie jak w poprzednim klasyfikatorze, sieć ta posiada dwie warstwy -- \texttt{Gated Recurrent Unit} z liczbą 50 neuronów oraz warstwę regresji logistycznej, współczynnik uczenia również wynosi 0.01, liczba iteracji wynosi 1000. Klasyfikator wykorzystuje klasę biblioteki \texttt{TensorFlow} -- \texttt{tf.nn.rnn} -- rekurencyjną sieć neuronową. Ze względu na ograniczoną pamięć kart graficznych, dane uczące dzielone są na części, domyślnie po 10 tysięcy próbek. \\
+			Sieć neuronowa & Klasyfikator wykorzystujący sieć neuronową opartą na bibliotece \texttt{sknn}. Posiada dwie warstwy: \texttt{Rectifier} (z liczbą 100 neuronów) i \texttt{Softmax}. Współczynnik uczenia wynosi 0,01, a liczba iteracji wynosi 10. \\
+			Sieć neuronowa wykorzystująca kartę graficzną & klasyfikator, podobnie jak powyższy wykorzystuje sieć neuronową, jednakże do implementacji wykorzystano bibliotekę \texttt{TensorFlow}, ponieważ wspiera wykorzystanie karty graficznej. Podobnie jak w poprzednim klasyfikatorze, sieć ta posiada dwie warstwy -- \texttt{Gated Recurrent Unit} z liczbą 50 neuronów oraz warstwę regresji logistycznej, współczynnik uczenia również wynosi 0.01, liczba iteracji wynosi 1000. Klasyfikator wykorzystuje klasę biblioteki \texttt{TensorFlow} -- \texttt{tf.nn.rnn} -- rekurencyjną sieć neuronową. Ze względu na ograniczoną pamięć kart graficznych, dane uczące dzielone są na części, domyślnie po 10 tysięcy próbek. \\
 			\bottomrule
 		\end{tabular}
 	\end{table}
