@@ -30,11 +30,5 @@ Projekt dotyczy stworzenia modułu znakującego części mowy oraz lematyzatora 
 | lxml 3.5.0 | *XML processing library*. [Docs](http://lxml.de/index.html#documentation), [PyPI](https://pypi.python.org/pypi/lxml/3.5.0). |
 
 
-## Wirtualna maszyna udostępniona przez prowadzącego
-
-    $ ssh tomekw@156.17.135.57
-      hasło: 1qaz@WSX
-
-
 ## Internal backlog
 Zadania znajdują się na Trello: [nasza tablica](https://trello.com/b/XU09b2u5/zastosowanie-informatyki-w-gospodarce-projekt-deeplearning-lematyzacja-pos-tagging).
